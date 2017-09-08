@@ -49,6 +49,8 @@
   },
   "homepage": "https://github.com/nickjohnson-dev/dawww#readme",
   "dependencies": {
-    "babel-polyfill": "6.26.0"
+    "babel-polyfill": "6.26.0",
+    "lodash": "4.17.4",
+    "tone": "0.10.0"
   }
 }
