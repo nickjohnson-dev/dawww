@@ -46,6 +46,7 @@ module.exports = {
       path.join(__dirname, '../dist'),
     ]),
     new HtmlWebpackPlugin({
+      appMountId: 'root',
       baseHref: '/',
       inject: false,
       title: 'dawww Testing',
