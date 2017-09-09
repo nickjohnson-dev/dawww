@@ -1,5 +1,5 @@
 import { mapObj } from '../helpers';
-import createSequence from './createSequence';
+import getSequence from './getSequence';
 
 const state = {
   sequences: {},
@@ -7,6 +7,6 @@ const state = {
 
 export default {
   loadSongData: (songData) => {
-    state.sequences = mapObj(createSequence, songData.sequences);
+    state.sequences = mapObj(getSequence, songData.sequences);
   },
 };

@@ -3,9 +3,8 @@ import Tone from 'tone';
 import { measuresToTime } from '../helpers';
 import playback from '../playback';
 
-export default function createPart({ data, position }) {
+export default ({ data, position }) => {
   const onStep = (time, step) => {
-    console.log(new Tone.TransportTime().toBarsBeatsSixteenths());
     data[step].forEach((note) => {
       playback.previewNote(note.name, note.length, time);
     });
@@ -18,4 +17,4 @@ export default function createPart({ data, position }) {
   part.loop = false;
 
   return part;
-}
+};

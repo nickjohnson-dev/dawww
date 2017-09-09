@@ -17,21 +17,21 @@ export default (subscriber) => {
 
 function handlePause() {
   forEach(
-    callback => callback(constants.playbackStates.PAUSED),
+    cb => cb(constants.playbackStates.PAUSED),
     playbackStateSubscribers,
   );
 }
 
 function handleStart() {
   forEach(
-    callback => callback(constants.playbackStates.STARTED),
+    cb => cb(constants.playbackStates.STARTED),
     playbackStateSubscribers,
   );
 }
 
 function handleStop() {
   forEach(
-    callback => callback(constants.playbackStates.STOPPED),
+    cb => cb(constants.playbackStates.STOPPED),
     playbackStateSubscribers,
   );
 }

@@ -9,7 +9,7 @@ const dawww = Dawww({
 
 const view = props => h('div', {}, [
   h('div', {}, [
-    props.playbackState,
+    `${props.playbackState}: ${props.time}`,
   ]),
   h('div', {}, [
     h('button', {
@@ -30,9 +30,14 @@ const view = props => h('div', {}, [
 ]);
 
 dawww.onStateChange((playbackState) => {
-  render(view({ playbackState }));
+  render(view, { playbackState });
 });
 
-render(view({
+dawww.onTimeChange((time) => {
+  render(view, { time });
+});
+
+render(view, {
   playbackState: 'STOPPED',
-}));
+  time: '0:0:0',
+});

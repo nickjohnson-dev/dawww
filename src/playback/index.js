@@ -1,3 +1,4 @@
+import range from 'lodash/fp/range';
 import Tone from 'tone';
 import { measuresToTime } from '../helpers';
 import instrument from '../instrument';
@@ -11,6 +12,10 @@ export default {
     Tone.Transport.bpm.value = songData.bpm;
     Tone.Transport.setLoopPoints(0, measuresToTime(songData.measureCount));
     Tone.Transport.loop = true;
+    const part = new Tone.Sequence(() => {
+      Tone.Transport.emit('step');
+    }, range(0, songData.measureCount * 32), '32n');
+    part.start();
   },
 
   pause: () =>
