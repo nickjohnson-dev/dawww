@@ -7,8 +7,6 @@ const state = {
 
 export default {
   loadSongData: (songData) => {
-    console.log(songData.sequences);
     state.sequences = mapObj(createSequence, songData.sequences);
-    console.log(state.sequences);
   },
 };

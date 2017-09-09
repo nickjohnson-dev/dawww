@@ -7,21 +7,32 @@ const dawww = Dawww({
   song: sampleSong,
 });
 
-const view = h('div', {}, [
-  h('button', {
-    onmousedown: () => {
-      dawww.start();
-    },
-  }, [
-    'start',
+const view = props => h('div', {}, [
+  h('div', {}, [
+    props.playbackState,
   ]),
-  h('button', {
-    onmousedown: () => {
-      dawww.stop();
-    },
-  }, [
-    'stop',
+  h('div', {}, [
+    h('button', {
+      onmousedown: () => {
+        dawww.start();
+      },
+    }, [
+      'start',
+    ]),
+    h('button', {
+      onmousedown: () => {
+        dawww.stop();
+      },
+    }, [
+      'stop',
+    ]),
   ]),
 ]);
 
-render(view);
+dawww.onStateChange((playbackState) => {
+  render(view({ playbackState }));
+});
+
+render(view({
+  playbackState: 'STOPPED',
+}));

@@ -11,6 +11,10 @@ export default {
   previewNote: (name, length, time) =>
     i.playNote(name, length, time),
 
+  setBPM: (value) => {
+    Tone.Transport.bpm.value = value;
+  },
+
   start: () =>
     Tone.Transport.start(),
 

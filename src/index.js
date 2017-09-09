@@ -8,7 +8,11 @@ export default (options) => {
 
   sequences.loadSongData(songData);
 
+  playback.setBPM(songData.bpm);
+
   return {
-    ...playback,
+    onStateChange: playback.onStateChange,
+    start: playback.start,
+    stop: playback.stop,
   };
 };

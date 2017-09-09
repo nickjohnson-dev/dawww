@@ -1,5 +1,5 @@
 export default {
-  bpm: 120,
+  bpm: 140,
   id: '0',
   measureCount: 4,
   notes: {

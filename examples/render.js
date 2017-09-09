@@ -1,9 +1,10 @@
 import { patch } from 'picodom';
 
 const root = document.querySelector('#root');
-let oldView;
+let element = root;
+let oldNode;
 
-export default function render(view) {
+export default function render(node) {
   // eslint-disable-next-line no-return-assign
-  return patch(oldView, (oldView = view), root);
+  return element = patch(oldNode, (oldNode = node), element);
 }
