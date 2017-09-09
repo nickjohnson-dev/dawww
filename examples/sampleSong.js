@@ -5,22 +5,22 @@ export default {
   notes: {
     0: {
       id: '0',
-      points: [{ x: 0, y: 47 }, { x: 1, y: 47 }],
+      points: [{ x: 0, y: 47 }, { x: 3, y: 47 }],
       sequenceId: '0',
     },
     1: {
       id: '1',
-      points: [{ x: 0, y: 35 }, { x: 1, y: 35 }],
+      points: [{ x: 0, y: 35 }, { x: 3, y: 35 }],
       sequenceId: '1',
     },
     2: {
       id: '2',
-      points: [{ x: 0, y: 23 }, { x: 1, y: 23 }],
+      points: [{ x: 0, y: 23 }, { x: 3, y: 23 }],
       sequenceId: '2',
     },
     3: {
       id: '3',
-      points: [{ x: 0, y: 11 }, { x: 1, y: 11 }],
+      points: [{ x: 0, y: 11 }, { x: 3, y: 11 }],
       sequenceId: '3',
     },
   },

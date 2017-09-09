@@ -13,7 +13,14 @@ const view = h('div', {}, [
       dawww.start();
     },
   }, [
-    'PLAY',
+    'start',
+  ]),
+  h('button', {
+    onmousedown: () => {
+      dawww.stop();
+    },
+  }, [
+    'stop',
   ]),
 ]);
 

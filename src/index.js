@@ -1,12 +1,14 @@
 import getOr from 'lodash/fp/getOr';
-import diff from 'deep-diff';
+import playback from './playback';
+import sequences from './sequences';
+import formatSong from './formatSong';
 
 export default (options) => {
-  const song = getOr({}, 'song', options);
+  const songData = formatSong(getOr({}, 'song', options));
+
+  sequences.loadSongData(songData);
 
   return {
-    updateSong: (newSong) => {
-      console.log(diff(song, newSong));
-    },
+    ...playback,
   };
 };
