@@ -1,11 +1,9 @@
 import range from 'lodash/fp/range';
 import Tone from 'tone';
 import { measuresToTime } from '../helpers';
-import instrument from '../instrument';
+import tracks from '../tracks';
 import onStateChange from './onStateChange';
 import onTimeChange from './onTimeChange';
-
-const i = instrument.getInstrument('a', 'square');
 
 export default {
   loadSongData: (songData) => {
@@ -21,8 +19,10 @@ export default {
   pause: () =>
     Tone.Transport.pause(),
 
-  previewNote: (name, length, time) =>
-    i.playNote(name, length, time),
+  previewNote: (trackId, name, length, time) => {
+    const track = tracks.get(trackId);
+    track.instrument.playNote(name, length, time);
+  },
 
   start: () =>
     Tone.Transport.start(),

@@ -1,16 +1,17 @@
 import getOr from 'lodash/fp/getOr';
 import playback from './playback';
-import sequences from './sequences';
-import format from './format';
+import parts from './parts';
+import tracks from './tracks';
+import formatSong from './formatSong';
 
 export default (options) => {
-  const songData = format(getOr({}, 'song', options));
-
-  console.log('Song Data', songData);
+  const songData = formatSong(getOr({}, 'song', options));
 
   playback.loadSongData(songData);
 
-  sequences.loadSongData(songData);
+  tracks.loadSongData(songData);
+
+  parts.loadSongData(songData);
 
   return {
     onStateChange: playback.onStateChange,

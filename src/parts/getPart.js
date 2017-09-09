@@ -3,10 +3,10 @@ import Tone from 'tone';
 import { measuresToTime } from '../helpers';
 import playback from '../playback';
 
-export default ({ data, position }) => {
+export default ({ data, position, trackId }) => {
   const onStep = (time, step) => {
     data[step].forEach((note) => {
-      playback.previewNote(note.name, note.length, time);
+      playback.previewNote(trackId, note.name, note.length, time);
     });
   };
   const steps = range(0, data.length);

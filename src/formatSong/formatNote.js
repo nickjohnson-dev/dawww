@@ -1,7 +1,7 @@
 import getOr from 'lodash/fp/getOr';
 import * as helpers from '../helpers';
 
-export default () => (note) => {
+export default (note) => {
   const position = getOr(-1, 'points[0].x', note);
 
   return {
