@@ -50,6 +50,7 @@
   "homepage": "https://github.com/nickjohnson-dev/dawww#readme",
   "dependencies": {
     "babel-polyfill": "6.26.0",
+    "deep-diff": "0.3.8",
     "lodash": "4.17.4",
     "picodom": "0.1.0",
     "tone": "0.10.0"
