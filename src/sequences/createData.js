@@ -6,8 +6,6 @@ import map from 'lodash/fp/map';
 import times from 'lodash/fp/times';
 import * as helpers from '../helpers';
 
-// createData ::
-// Sequence -> Array Note -> Array Array NoteData
 export default function createData(measureCount, notes) {
   return times(n =>
     compose(

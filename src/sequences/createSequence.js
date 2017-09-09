@@ -1,12 +1,10 @@
 import createData from './createData';
 import createPart from './createPart';
 
-// createSequence ::
-// options -> Array Note -> Server -> Sequence
 export default function createSequence({ id, measureCount, notes, position, trackId }) {
   const data = createData(measureCount, notes);
   return {
-    part: createPart(data),
+    part: createPart({ data, measureCount, position }),
     data,
     id,
     measureCount,

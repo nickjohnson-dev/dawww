@@ -6,9 +6,8 @@ import formatSong from './formatSong';
 export default (options) => {
   const songData = formatSong(getOr({}, 'song', options));
 
+  playback.loadSongData(songData);
   sequences.loadSongData(songData);
-
-  playback.setBPM(songData.bpm);
 
   return {
     onStateChange: playback.onStateChange,

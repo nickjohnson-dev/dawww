@@ -1,11 +1,11 @@
 import range from 'lodash/fp/range';
 import Tone from 'tone';
+import { measuresToTime } from '../helpers';
 import playback from '../playback';
 
-// createPart ::
-// Sequence -> Array Array NoteData -> Server -> Part
-export default function createPart(data) {
+export default function createPart({ data, position }) {
   const onStep = (time, step) => {
+    console.log(new Tone.TransportTime().toBarsBeatsSixteenths());
     data[step].forEach((note) => {
       playback.previewNote(note.name, note.length, time);
     });
@@ -14,7 +14,8 @@ export default function createPart(data) {
   const stepSize = '32n';
   const part = new Tone.Sequence(onStep, steps, stepSize);
 
-  part.start(0);
+  part.start(measuresToTime(position));
+  part.loop = false;
 
   return part;
 }

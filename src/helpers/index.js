@@ -58,6 +58,6 @@ function getLetter(point) {
   ][point % 12];
 }
 
-function sizeToTime(size) {
+export function sizeToTime(size) {
   return `(${size + 1} * 32n)`;
 }
