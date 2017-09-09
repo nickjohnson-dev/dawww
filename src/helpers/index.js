@@ -20,10 +20,9 @@ export function getNoteLength(note) {
   return sizeToTime(end - start);
 }
 
-export function getNoteName(note) {
-  const y = getOr(0, 'points[0].y', note);
-  const octaveNumber = ((constants.octaveRange.length - 1) - Math.floor(y / 12));
-  const letter = getLetter(y);
+export function getPitchName(pitch) {
+  const octaveNumber = ((constants.octaveRange.length - 1) - Math.floor(pitch / 12));
+  const letter = getLetter(pitch);
   return `${letter}${octaveNumber}`;
 }
 

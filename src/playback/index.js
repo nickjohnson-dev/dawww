@@ -19,9 +19,12 @@ export default {
   pause: () =>
     Tone.Transport.pause(),
 
-  previewNote: (trackId, name, length, time) => {
-    const channel = channels.getByTrackId(trackId);
-    channel.instrument.playNote(name, length, time);
+  playNote: (trackId, pitch, length, time) => {
+    channels.playNote(trackId, pitch, length, time);
+  },
+
+  preview: (trackId, pitch) => {
+    channels.playNote(trackId, pitch, '16n');
   },
 
   start: () =>

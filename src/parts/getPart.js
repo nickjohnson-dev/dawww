@@ -6,7 +6,7 @@ import playback from '../playback';
 export default ({ data, position, trackId }) => {
   const onStep = (time, step) => {
     data[step].forEach((note) => {
-      playback.previewNote(trackId, note.name, note.length, time);
+      playback.playNote(trackId, note.pitch, note.length, time);
     });
   };
   const steps = range(0, data.length);

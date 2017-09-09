@@ -1,7 +1,7 @@
 import getVoice from './getVoice';
 
-export default (id, type) => {
-  const voice = getVoice({ type });
+export default (options) => {
+  const voice = getVoice(options);
 
   return {
     dispose: () =>

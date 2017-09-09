@@ -16,6 +16,7 @@ export default (options) => {
   return {
     onStateChange: playback.onStateChange,
     onTimeChange: playback.onTimeChange,
+    preview: playback.preview,
     start: playback.start,
     stop: playback.stop,
   };

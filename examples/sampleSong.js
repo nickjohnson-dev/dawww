@@ -64,13 +64,15 @@ export default {
       id: '0',
       isMuted: false,
       isSoloing: false,
-      voice: 'sine',
+      voice: 'square',
+      volume: -5,
     },
     1: {
       id: '1',
       isMuted: false,
       isSoloing: false,
-      voice: 'square',
+      voice: 'sine',
+      volume: -5,
     },
   },
 };

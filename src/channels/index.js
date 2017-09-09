@@ -1,5 +1,6 @@
 import getOr from 'lodash/fp/getOr';
-import { mapObj } from '../helpers';
+import isEmpty from 'lodash/fp/isEmpty';
+import * as helpers from '../helpers';
 import getChannel from './getChannel';
 
 const state = {
@@ -7,10 +8,16 @@ const state = {
 };
 
 export default {
-  getByTrackId: id =>
-    getOr({}, `channels[${id}]`, state),
-
   loadSongData: (songData) => {
-    state.channels = mapObj(getChannel, songData.tracks);
+    state.channels = helpers.mapObj(getChannel, songData.tracks);
+  },
+
+  playNote: (trackId, pitch, length, time) => {
+    const channel = getOr({}, `channels[${trackId}]`, state);
+    const name = helpers.getPitchName(pitch);
+
+    if (isEmpty(channel)) return;
+
+    channel.instrument.playNote(name, length, time);
   },
 };

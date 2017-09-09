@@ -26,6 +26,13 @@ const view = props => h('div', {}, [
     }, [
       'stop',
     ]),
+    h('button', {
+      onmousedown: () => {
+        dawww.preview(0, 47);
+      },
+    }, [
+      'play C3',
+    ]),
   ]),
 ]);
 
