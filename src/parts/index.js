@@ -8,10 +8,6 @@ const state = {
 };
 
 export default {
-  loadSongData: (songData) => {
-    state.parts = mapObj(getPart, songData.sequences);
-  },
-
   handleUpdate: (update) => {
     const id = getOr('', 'difference.path[1]', update);
     const oldPart = getOr({ dispose: () => {} }, `parts[${id}]`, state);
@@ -21,5 +17,9 @@ export default {
     state.parts = partsReducer(state.parts, { id, kind, sequence });
 
     oldPart.dispose();
+  },
+
+  loadSongData: (songData) => {
+    state.parts = mapObj(getPart, songData.sequences);
   },
 };

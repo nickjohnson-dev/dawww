@@ -7,6 +7,7 @@ export default (track) => {
 
   return {
     ...track,
+    dispose: () => instrument.dispose(),
     instrument,
   };
 };

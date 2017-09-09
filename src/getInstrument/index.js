@@ -4,8 +4,10 @@ export default (options) => {
   const voice = getVoice(options);
 
   return {
-    dispose: () =>
-      voice.dispose(),
+    dispose: () => {
+      voice.releaseAll();
+      voice.dispose();
+    },
 
     getType: () =>
       voice.oscillator.type,

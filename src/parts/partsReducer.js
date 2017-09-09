@@ -5,6 +5,7 @@ export default (parts = {}, action) => {
   switch (action.kind) {
     case 'A':
     case 'E':
+    case 'N':
       return {
         ...parts,
         [action.sequence.id]: getPart(action.sequence),
