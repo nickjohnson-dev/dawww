@@ -7,7 +7,6 @@ export default (songData) => {
   const measureCount = getOr(0, 'measureCount', songData);
   const sequencesData = getOr({}, 'sequences', songData);
   const tracks = getOr({}, 'tracks', songData);
-
   const sequences = mapObj(formatSequence(songData), sequencesData);
 
   return {

@@ -1,7 +1,7 @@
 import getOr from 'lodash/fp/getOr';
+import channels from './channels';
 import playback from './playback';
 import parts from './parts';
-import tracks from './tracks';
 import formatSong from './formatSong';
 
 export default (options) => {
@@ -9,7 +9,7 @@ export default (options) => {
 
   playback.loadSongData(songData);
 
-  tracks.loadSongData(songData);
+  channels.loadSongData(songData);
 
   parts.loadSongData(songData);
 
