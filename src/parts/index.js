@@ -1,7 +1,7 @@
 import getOr from 'lodash/fp/getOr';
-import omit from 'lodash/fp/omit';
 import { mapObj } from '../helpers';
 import getPart from './getPart';
+import partsReducer from './partsReducer';
 
 const state = {
   parts: {},
@@ -12,16 +12,13 @@ export default {
     state.parts = mapObj(getPart, songData.sequences);
   },
 
-  handleUpdate: ({ difference, song }) => {
-    const id = getOr('', 'path[1]', difference);
+  handleUpdate: (update) => {
+    const id = getOr('', 'difference.path[1]', update);
     const oldPart = getOr({ dispose: () => {} }, `parts[${id}]`, state);
-    const newSequence = getOr({}, `sequences['${id}']`, song);
-    const parts = {
-      ...omit([oldPart], state.parts),
-      [newSequence.id]: getPart(newSequence),
-    };
+    const kind = getOr('', 'difference.kind', update);
+    const sequence = getOr({}, `song.sequences[${id}]`, update);
 
-    state.parts = parts;
+    state.parts = partsReducer(state.parts, { id, kind, sequence });
 
     oldPart.dispose();
   },
