@@ -2,6 +2,7 @@ import { h } from 'picodom';
 import Dawww from '../src';
 import render from './render';
 import sampleSong from './sampleSong';
+import sampleSongAlt from './sampleSongAlt';
 
 const dawww = Dawww({
   song: sampleSong,
@@ -25,6 +26,13 @@ const view = props => h('div', {}, [
       },
     }, [
       'stop',
+    ]),
+    h('button', {
+      onmousedown: () => {
+        dawww.updateSong(sampleSongAlt);
+      },
+    }, [
+      'update song',
     ]),
     h('button', {
       onmousedown: () => {

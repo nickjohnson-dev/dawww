@@ -25,7 +25,7 @@ export default {
     },
     1000: {
       id: '1000',
-      points: [{ x: 16, y: 35 }, { x: 19, y: 35 }],
+      points: [{ x: 16, y: 23 }, { x: 19, y: 23 }],
       sequenceId: '0',
     },
     4: {
