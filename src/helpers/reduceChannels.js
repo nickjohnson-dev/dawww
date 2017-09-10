@@ -1,18 +1,17 @@
 import omit from 'lodash/fp/omit';
-import getChannel from './getChannel';
 
-export default (channels = {}, action) => {
+export function reduceChannels(channels = {}, action) {
   switch (action.kind) {
     case 'A':
     case 'E':
     case 'N':
       return {
         ...channels,
-        [action.track.id]: getChannel(action.track),
+        [action.id]: action.channel,
       };
     case 'D':
       return omit([action.id], channels);
     default:
       return channels;
   }
-};
+}

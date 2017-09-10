@@ -1,51 +1,72 @@
 import getOr from 'lodash/fp/getOr';
 import isEmpty from 'lodash/fp/isEmpty';
-import getChannels from './channels';
-import dispatchUpdates from './dispatchUpdates';
-import getPlayback from './playback';
-import getParts from './parts';
-import formatSong from './formatSong';
+import eventEmitter from 'event-emitter';
+import Tone from 'tone';
+import channels from './channels';
+import * as helpers from './helpers';
+import playback from './playback';
+import parts from './parts';
 
-export default (options) => {
-  const state = {
+export default function Dawww(options) {
+  let state = {
     channels: {},
     parts: {},
-    song: {},
+    song: {
+      notes: {},
+      sequences: {},
+      tracks: {},
+    },
     transportPart: {},
   };
 
-  const channels = getChannels({ state });
-  const parts = getParts({ channels, state });
-  const playback = getPlayback({ state });
-
-  loadSong(getOr({}, 'song', options));
-
-  return {
-    onStateChange: playback.onStateChange,
-    onTimeChange: playback.onTimeChange,
-    preview: channels.preview,
-    start: playback.start,
-    stop: playback.stop,
-    updateSong,
+  const shared = {
+    bus: eventEmitter(),
+    getState: () => state,
+    setState: (updates) => {
+      state = { ...state, ...updates };
+    },
   };
 
-  function loadSong(song) {
+  const pause = () => Tone.Transport.pause();
+
+  const preview = (trackId, pitch) => {
+    shared.bus.emit('play', {
+      trackId,
+      pitch,
+    });
+  };
+
+  const start = () => Tone.Transport.start();
+
+  const stop = () => Tone.Transport.stop();
+
+  const updateSong = (song) => {
     if (isEmpty(song)) return;
 
-    state.song = formatSong(song);
-
-    playback.loadSongData(state.song);
-    channels.loadSongData(state.song);
-    parts.loadSongData(state.song);
-  }
-
-  function updateSong(newSong) {
-    const song = formatSong(newSong);
-    dispatchUpdates({
-      modules: { channels, parts, playback },
-      prevSong: state.song,
+    helpers.dispatchUpdates({
+      dispatch: value => shared.bus.emit('update', value),
+      prevSong: shared.getState().song,
       song,
     });
-    state.song = song;
-  }
-};
+
+    shared.setState({ song });
+  };
+
+  channels(shared);
+
+  parts(shared);
+
+  playback(shared);
+
+  updateSong(getOr({}, 'song', options));
+
+  return {
+    onStateChange: helpers.onStateChange,
+    onTimeChange: helpers.onTimeChange,
+    pause,
+    preview,
+    start,
+    stop,
+    updateSong,
+  };
+}

@@ -1,6 +1,6 @@
-import getVoice from './getVoice';
+import { getVoice } from './getVoice';
 
-export default (options) => {
+export const getInstrument = (options) => {
   const voice = getVoice(options);
 
   return {

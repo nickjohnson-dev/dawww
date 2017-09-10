@@ -8,9 +8,9 @@ Tone.Transport.on('step', () => {
   forEach(cb => cb(time.toBarsBeatsSixteenths()), subscribers);
 });
 
-export default (subscriber) => {
+export function onTimeChange(subscriber) {
   subscribers = [
     ...subscribers,
     subscriber,
   ];
-};
+}

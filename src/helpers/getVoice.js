@@ -1,8 +1,8 @@
 import getOr from 'lodash/fp/getOr';
 import Tone from 'tone';
 
-export default (options) => {
-  const isAnyTrackSoloing = getOr(false, 'track.isAnyTrackSoloing', options);
+export const getVoice = (options) => {
+  const isAnyTrackSoloing = getOr(false, 'isAnyTrackSoloing', options);
   const isMuted = getOr(false, 'track.isMuted', options);
   const isSoloing = getOr(false, 'track.isSoloing', options);
   const type = getOr('sine', 'track.voice', options);

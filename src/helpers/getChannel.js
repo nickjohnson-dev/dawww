@@ -1,7 +1,8 @@
-import getInstrument from './getInstrument';
+import { getInstrument } from './getInstrument';
 
-export default (track) => {
+export const getChannel = ({ isAnyTrackSoloing, track }) => {
   const instrument = getInstrument({
+    isAnyTrackSoloing,
     track,
   });
 

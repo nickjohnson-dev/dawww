@@ -8,12 +8,12 @@ Tone.Transport.on('pause', handlePause);
 Tone.Transport.on('start', handleStart);
 Tone.Transport.on('stop', handleStop);
 
-export default (subscriber) => {
+export function onStateChange(subscriber) {
   playbackStateSubscribers = [
     ...playbackStateSubscribers,
     subscriber,
   ];
-};
+}
 
 function handlePause() {
   forEach(

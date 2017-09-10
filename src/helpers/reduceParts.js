@@ -1,6 +1,6 @@
 import omit from 'lodash/fp/omit';
 
-export default (parts = {}, action) => {
+export function reduceParts(parts = {}, action) {
   switch (action.kind) {
     case 'A':
     case 'E':
@@ -14,4 +14,4 @@ export default (parts = {}, action) => {
     default:
       return parts;
   }
-};
+}
