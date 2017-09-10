@@ -3,11 +3,11 @@ export default {
   id: '0',
   measureCount: 1,
   notes: {
-    0: {
-      id: '0',
-      points: [{ x: 0, y: 47 }, { x: 3, y: 47 }],
-      sequenceId: '1',
-    },
+    // 0: {
+    //   id: '0',
+    //   points: [{ x: 0, y: 47 }, { x: 3, y: 47 }],
+    //   sequenceId: '0',
+    // },
     1: {
       id: '1',
       points: [{ x: 4, y: 35 }, { x: 7, y: 35 }],
