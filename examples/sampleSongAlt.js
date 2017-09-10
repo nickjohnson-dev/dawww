@@ -64,7 +64,7 @@ export default {
       id: '0',
       isMuted: false,
       isSoloing: false,
-      voice: 'square',
+      voice: 'sawtooth',
       volume: -5,
     },
     1: {

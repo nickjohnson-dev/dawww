@@ -23,8 +23,7 @@ export default (shared) => {
     const measureCount = getOr(0, 'song.measureCount', update);
     const loopEnd = helpers.measuresToTime(measureCount);
     const transportPart = new Tone.Sequence((_, position) => {
-      Tone.Transport.emit('position', position);
-      Tone.Transport.emit('time');
+      shared.bus.emit('position', position);
     }, range(0, measureCount * 32), '32n');
 
     Tone.Transport.setLoopPoints(0, loopEnd);

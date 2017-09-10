@@ -6,6 +6,8 @@ export * from './getLetterFromPitch';
 export * from './getNoteLength';
 export * from './getPart';
 export * from './getPitchName';
+export * from './getPlaybackStateNotifier';
+export * from './getPositionNotifier';
 export * from './getVoice';
 export * from './mapObj';
 export * from './measuresToTime';

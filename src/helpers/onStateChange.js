@@ -4,9 +4,9 @@ import * as constants from '../constants';
 
 let playbackStateSubscribers = [];
 
-Tone.Transport.on('pause', handlePause);
-Tone.Transport.on('start', handleStart);
-Tone.Transport.on('stop', handleStop);
+Tone.Transport.on('pause-custom', handlePause);
+Tone.Transport.on('start-custom', handleStart);
+Tone.Transport.on('stop-custom', handleStop);
 
 export function onStateChange(subscriber) {
   playbackStateSubscribers = [

@@ -16,9 +16,6 @@ const view = props => h('div', {}, [
     props.position,
   ]),
   h('div', {}, [
-    props.time,
-  ]),
-  h('div', {}, [
     h('button', {
       onmousedown: () => {
         dawww.start();
@@ -65,12 +62,7 @@ dawww.onStateChange((playbackState) => {
   render(view, { playbackState });
 });
 
-dawww.onTimeChange((time) => {
-  render(view, { time });
-});
-
 render(view, {
   playbackState: 'STOPPED',
   position: 0,
-  time: '0:0:0',
 });

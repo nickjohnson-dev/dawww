@@ -11,6 +11,8 @@ export default function Dawww(options) {
   let state = {
     channels: {},
     parts: {},
+    playbackStateSubscribers: [],
+    positionSubscribers: [],
     song: {
       notes: {},
       sequences: {},
@@ -27,7 +29,13 @@ export default function Dawww(options) {
     },
   };
 
-  const pause = () => Tone.Transport.pause();
+  const pause = () => {
+    Tone.Transport.pause();
+    shared.bus.emit('pause');
+  };
+
+  const playbackStateNotifier = helpers.getPlaybackStateNotifier(shared);
+  const positionNotifier = helpers.getPositionNotifier(shared);
 
   const preview = (trackId, pitch) => {
     shared.bus.emit('play', {
@@ -36,9 +44,15 @@ export default function Dawww(options) {
     });
   };
 
-  const start = () => Tone.Transport.start();
+  const start = () => {
+    Tone.Transport.start();
+    shared.bus.emit('start');
+  };
 
-  const stop = () => Tone.Transport.stop();
+  const stop = () => {
+    Tone.Transport.stop();
+    shared.bus.emit('stop');
+  };
 
   const updateSong = (song) => {
     if (isEmpty(song)) return;
@@ -61,9 +75,8 @@ export default function Dawww(options) {
   updateSong(getOr({}, 'song', options));
 
   return {
-    onPositionChange: helpers.onPositionChange,
-    onStateChange: helpers.onStateChange,
-    onTimeChange: helpers.onTimeChange,
+    onPositionChange: positionNotifier.subscribe,
+    onStateChange: playbackStateNotifier.subscribe,
     pause,
     preview,
     start,
