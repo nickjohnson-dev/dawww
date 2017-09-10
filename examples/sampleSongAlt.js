@@ -5,8 +5,8 @@ export default {
   notes: {
     0: {
       id: '0',
-      points: [{ x: 0, y: 23 }, { x: 3, y: 23 }],
-      sequenceId: '0',
+      points: [{ x: 0, y: 47 }, { x: 3, y: 47 }],
+      sequenceId: '1',
     },
     1: {
       id: '1',

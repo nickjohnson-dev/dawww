@@ -8,7 +8,6 @@ export const getVoice = (options) => {
   const type = getOr('sine', 'track.voice', options);
   const volume = getOr(0, 'track.volume', options);
   const synth = new Tone.PolySynth(5);
-
   synth.set({
     oscillator: {
       type,
@@ -17,6 +16,7 @@ export const getVoice = (options) => {
 
   const volumeNode = new Tone.Volume(volume);
   volumeNode.mute = isMuted || (isAnyTrackSoloing && !isSoloing);
+  console.log(`${options.track.id}: ${volumeNode.mute}`);
 
   return synth.chain(
     volumeNode,
