@@ -29,4 +29,13 @@ export default ({ state }) => ({
 
     channel.instrument.playNote(name, length, time);
   },
+
+  preview: (trackId, pitch) => {
+    const channel = getOr({}, `channels[${trackId}]`, state);
+    const name = helpers.getPitchName(pitch);
+
+    if (isEmpty(channel)) return;
+
+    channel.instrument.playNote(name, '16n');
+  },
 });

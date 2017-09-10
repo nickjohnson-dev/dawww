@@ -1,4 +1,4 @@
-import getInstrument from '../getInstrument';
+import getInstrument from './getInstrument';
 
 export default (track) => {
   const instrument = getInstrument({

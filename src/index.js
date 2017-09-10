@@ -8,20 +8,22 @@ import formatSong from './formatSong';
 
 export default (options) => {
   const state = {
-    song: {},
     channels: {},
+    parts: {},
+    song: {},
+    transportPart: {},
   };
 
   const channels = getChannels({ state });
-  const playback = getPlayback({ channels });
-  const parts = getParts({ playback });
+  const parts = getParts({ channels, state });
+  const playback = getPlayback({ state });
 
   loadSong(getOr({}, 'song', options));
 
   return {
     onStateChange: playback.onStateChange,
     onTimeChange: playback.onTimeChange,
-    preview: playback.preview,
+    preview: channels.preview,
     start: playback.start,
     stop: playback.stop,
     updateSong,
@@ -39,7 +41,11 @@ export default (options) => {
 
   function updateSong(newSong) {
     const song = formatSong(newSong);
-    dispatchUpdates(song, state.song);
+    dispatchUpdates({
+      modules: { channels, parts, playback },
+      prevSong: state.song,
+      song,
+    });
     state.song = song;
   }
 };

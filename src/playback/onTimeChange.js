@@ -1,11 +1,11 @@
 import forEach from 'lodash/fp/forEach';
 import Tone from 'tone';
 
+const time = new Tone.TransportTime();
 let subscribers = [];
 
 Tone.Transport.on('step', () => {
-  const time = new Tone.TransportTime().toBarsBeatsSixteenths();
-  forEach(cb => cb(time), subscribers);
+  forEach(cb => cb(time.toBarsBeatsSixteenths()), subscribers);
 });
 
 export default (subscriber) => {
