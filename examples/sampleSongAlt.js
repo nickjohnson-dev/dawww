@@ -5,7 +5,7 @@ export default {
   notes: {
     0: {
       id: '0',
-      points: [{ x: 0, y: 47 }, { x: 3, y: 47 }],
+      points: [{ x: 0, y: 23 }, { x: 3, y: 23 }],
       sequenceId: '0',
     },
     1: {
@@ -64,15 +64,15 @@ export default {
       id: '0',
       isMuted: false,
       isSoloing: false,
-      voice: 'sawtooth',
-      volume: -5,
+      voice: 'square',
+      volume: -10,
     },
     1: {
       id: '1',
       isMuted: false,
       isSoloing: false,
       voice: 'sine',
-      volume: -5,
+      volume: -10,
     },
   },
 };

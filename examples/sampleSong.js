@@ -65,14 +65,14 @@ export default {
       isMuted: false,
       isSoloing: false,
       voice: 'square',
-      volume: -5,
+      volume: -10,
     },
     1: {
       id: '1',
       isMuted: false,
       isSoloing: false,
       voice: 'sine',
-      volume: -5,
+      volume: -10,
     },
   },
 };

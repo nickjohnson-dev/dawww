@@ -35,6 +35,7 @@ export default function Dawww(options) {
   };
 
   const playbackStateNotifier = helpers.getPlaybackStateNotifier(shared);
+
   const positionNotifier = helpers.getPositionNotifier(shared);
 
   const preview = (trackId, pitch) => {

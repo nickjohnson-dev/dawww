@@ -1,27 +1,9 @@
 import getOr from 'lodash/fp/getOr';
 import noop from 'lodash/fp/noop';
-import * as helpers from './helpers';
+import * as helpers from '../helpers';
+import { handleNotesUpdate } from './handleNotesUpdate';
 
 export default (shared) => {
-  const handleNotesUpdate = (update) => {
-    const state = shared.getState();
-    const noteId = getOr('', 'diff.path[1]', update);
-    const notes = getOr({}, 'song.notes', update);
-    const id = getOr('', `${noteId}.sequenceId`, notes);
-    const parts = getOr({}, 'parts', state);
-    const oldPart = getOr({ dispose: noop }, id, parts);
-    const sequence = getOr({}, `song.sequences[${id}]`, update);
-    const playNote = args => shared.bus.emit('play', args);
-    const part = helpers.getPart({ notes, playNote, sequence });
-    const action = { kind: 'E', id, part };
-
-    shared.setState({
-      parts: helpers.reduceParts(parts, action),
-    });
-
-    oldPart.dispose();
-  };
-
   const handleSequencesUpdate = (update) => {
     const state = shared.getState();
     const id = getOr('', 'diff.path[1]', update);
@@ -43,7 +25,11 @@ export default (shared) => {
 
   const handleUpdate = (update) => {
     if (update.dataType === 'notes') {
-      handleNotesUpdate(update);
+      shared.setState(handleNotesUpdate(
+        update,
+        shared.getState(),
+        (...args) => shared.bus.emit(...args),
+      ));
     }
 
     if (update.dataType === 'sequences') {
