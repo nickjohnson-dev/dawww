@@ -1,5 +1,4 @@
 import omit from 'lodash/fp/omit';
-import getPart from './getPart';
 
 export default (parts = {}, action) => {
   switch (action.kind) {
@@ -8,7 +7,7 @@ export default (parts = {}, action) => {
     case 'N':
       return {
         ...parts,
-        [action.sequence.id]: getPart(action.sequence),
+        [action.id]: action.part,
       };
     case 'D':
       return omit([action.id], parts);

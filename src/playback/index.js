@@ -1,11 +1,10 @@
 import range from 'lodash/fp/range';
 import Tone from 'tone';
 import { measuresToTime } from '../helpers';
-import channels from '../channels';
 import onStateChange from './onStateChange';
 import onTimeChange from './onTimeChange';
 
-export default {
+export default ({ channels }) => ({
   loadSongData: (songData) => {
     Tone.Transport.bpm.value = songData.bpm;
     Tone.Transport.setLoopPoints(0, measuresToTime(songData.measureCount));
@@ -35,4 +34,4 @@ export default {
 
   onStateChange,
   onTimeChange,
-};
+});

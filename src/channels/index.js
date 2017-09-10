@@ -1,14 +1,11 @@
+/* eslint-disable no-param-reassign */
 import getOr from 'lodash/fp/getOr';
 import isEmpty from 'lodash/fp/isEmpty';
 import * as helpers from '../helpers';
 import channelsReducer from './channelsReducer';
 import getChannel from './getChannel';
 
-const state = {
-  channels: {},
-};
-
-export default {
+export default ({ state }) => ({
   handleUpdate: (update) => {
     const id = getOr('', 'difference.path[1]', update);
     const oldChannel = getOr({ dispose: () => {} }, `channels[${id}]`, state);
@@ -32,4 +29,4 @@ export default {
 
     channel.instrument.playNote(name, length, time);
   },
-};
+});
