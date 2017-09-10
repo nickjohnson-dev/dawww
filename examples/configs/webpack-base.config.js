@@ -10,7 +10,6 @@ module.exports = {
   entry: {
     app: path.join(__dirname, '../index.js'),
     vendor: [
-      'babel-polyfill',
       'lodash',
     ],
   },
