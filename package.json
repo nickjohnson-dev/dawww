@@ -2,7 +2,7 @@
   "name": "dawww",
   "version": "0.0.0-development",
   "description": "Simple backend for a step sequencer",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "babel src --out-dir dist --ignore test.js",
     "clean": "rimraf dist",
