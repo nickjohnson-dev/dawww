@@ -5,13 +5,11 @@ import * as helpers from './helpers';
 export default (shared) => {
   const handleNotesUpdate = (update) => {
     const state = shared.getState();
-    const id = (
-      getOr('', 'diff.lhs.sequenceId', update) ||
-      getOr('', 'diff.rhs.sequenceId', update)
-    );
+    const noteId = getOr('', 'diff.path[1]', update);
+    const notes = getOr({}, 'song.notes', update);
+    const id = getOr('', `${noteId}.sequenceId`, notes);
     const parts = getOr({}, 'parts', state);
     const oldPart = getOr({ dispose: noop }, id, parts);
-    const notes = getOr({}, 'song.notes', update);
     const sequence = getOr({}, `song.sequences[${id}]`, update);
     const playNote = args => shared.bus.emit('play', args);
     const part = helpers.getPart({ notes, playNote, sequence });
@@ -26,10 +24,7 @@ export default (shared) => {
 
   const handleSequencesUpdate = (update) => {
     const state = shared.getState();
-    const id = (
-      getOr('', 'diff.lhs.id', update) ||
-      getOr('', 'diff.rhs.id', update)
-    );
+    const id = getOr('', 'diff.path[1]', update);
     const parts = getOr({}, 'parts', state);
     const oldPart = getOr({ dispose: noop }, id, parts);
     const kind = getOr('', 'diff.kind', update);

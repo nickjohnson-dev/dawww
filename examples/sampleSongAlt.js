@@ -1,7 +1,7 @@
 export default {
   bpm: 140,
   id: '0',
-  measureCount: 2,
+  measureCount: 1,
   notes: {
     0: {
       id: '0',
