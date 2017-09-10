@@ -4,7 +4,7 @@ import Tone from 'tone';
 const time = new Tone.TransportTime();
 let subscribers = [];
 
-Tone.Transport.on('step', () => {
+Tone.Transport.on('time', () => {
   forEach(cb => cb(time.toBarsBeatsSixteenths()), subscribers);
 });
 

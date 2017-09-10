@@ -15,8 +15,9 @@ export default (shared) => {
   const handleMeasureCountUpdate = (update) => {
     const measureCount = getOr(0, 'song.measureCount', update);
     const loopEnd = helpers.measuresToTime(measureCount);
-    const transportPart = new Tone.Sequence(() => {
-      Tone.Transport.emit('step');
+    const transportPart = new Tone.Sequence((_, position) => {
+      Tone.Transport.emit('position', position);
+      Tone.Transport.emit('time');
     }, range(0, measureCount * 32), '32n');
 
     Tone.Transport.setLoopPoints(0, loopEnd);
@@ -40,8 +41,9 @@ export default (shared) => {
     const bpm = getOr(0, 'bpm', songData);
     const measureCount = getOr(0, 'measureCount', songData);
     const loopEnd = helpers.measuresToTime(measureCount);
-    const transportPart = new Tone.Sequence(() => {
-      Tone.Transport.emit('step');
+    const transportPart = new Tone.Sequence((_, position) => {
+      Tone.Transport.emit('position', position);
+      Tone.Transport.emit('time');
     }, range(0, measureCount * 32), '32n');
 
 

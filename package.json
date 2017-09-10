@@ -11,7 +11,7 @@
     "lint": "eslint src",
     "prebuild": "npm run clean -s",
     "precommit": "npm run lint",
-    "start": "webpack-dev-server --config ./examples/configs/webpack-dev.config.js",
+    "start": "webpack-dev-server --config ./examples/configs/webpack-dev.config.js --port 8082 --open",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "devDependencies": {

@@ -9,6 +9,7 @@ export * from './getPitchName';
 export * from './getVoice';
 export * from './mapObj';
 export * from './measuresToTime';
+export * from './onPositionChange';
 export * from './onStateChange';
 export * from './onTimeChange';
 export * from './reduceChannels';

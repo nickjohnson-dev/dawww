@@ -61,6 +61,7 @@ export default function Dawww(options) {
   updateSong(getOr({}, 'song', options));
 
   return {
+    onPositionChange: helpers.onPositionChange,
     onStateChange: helpers.onStateChange,
     onTimeChange: helpers.onTimeChange,
     pause,

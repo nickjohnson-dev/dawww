@@ -10,7 +10,13 @@ const dawww = Dawww({
 
 const view = props => h('div', {}, [
   h('div', {}, [
-    `${props.playbackState}: ${props.time}`,
+    props.playbackState,
+  ]),
+  h('div', {}, [
+    props.position,
+  ]),
+  h('div', {}, [
+    props.time,
   ]),
   h('div', {}, [
     h('button', {
@@ -29,6 +35,13 @@ const view = props => h('div', {}, [
     ]),
     h('button', {
       onmousedown: () => {
+        dawww.updateSong(sampleSong);
+      },
+    }, [
+      'load song',
+    ]),
+    h('button', {
+      onmousedown: () => {
         dawww.updateSong(sampleSongAlt);
       },
     }, [
@@ -44,6 +57,10 @@ const view = props => h('div', {}, [
   ]),
 ]);
 
+dawww.onPositionChange((position) => {
+  render(view, { position });
+});
+
 dawww.onStateChange((playbackState) => {
   render(view, { playbackState });
 });
@@ -54,5 +71,6 @@ dawww.onTimeChange((time) => {
 
 render(view, {
   playbackState: 'STOPPED',
+  position: 0,
   time: '0:0:0',
 });

@@ -34,5 +34,6 @@ function handleStop() {
     cb => cb(constants.playbackStates.STOPPED),
     playbackStateSubscribers,
   );
-  Tone.Transport.emit('step');
+  Tone.Transport.emit('position', 0);
+  Tone.Transport.emit('time');
 }
