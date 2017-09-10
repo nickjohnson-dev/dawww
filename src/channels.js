@@ -7,7 +7,7 @@ import * as helpers from './helpers';
 
 const getIsAnyTrackSoloing = compose(
   some(getOr(false, 'isSoloing')),
-  getOr({}, 'tracks'),
+  getOr({}, 'song.tracks'),
 );
 
 export default (shared) => {
