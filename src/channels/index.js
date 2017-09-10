@@ -6,7 +6,7 @@ import { handleTracksUpdate } from './handleTracksUpdate';
 export default (shared) => {
   const handleUpdate = (update) => {
     if (update.dataType === 'tracks') {
-      handleTracksUpdate(update, shared.getState());
+      shared.setState(handleTracksUpdate(update, shared.getState()));
     }
   };
 
