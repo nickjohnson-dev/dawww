@@ -3,7 +3,9 @@ cache:
   directories:
     - node_modules
 notifications:
-  email: false
+  email:
+    recipients:
+      - nickjohnson.dev@gmail.com
 node_js:
   - '7'
   - '6'
