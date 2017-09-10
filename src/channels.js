@@ -38,18 +38,6 @@ export default (shared) => {
     }
   };
 
-  const loadSongData = (songData) => {
-    shared.setState({
-      channels: helpers.mapObj(
-        track => helpers.getChannel({
-          isAnyTrackSoloing: getIsAnyTrackSoloing(songData),
-          track,
-        }),
-        songData.tracks,
-      ),
-    });
-  };
-
   const playNote = ({ trackId, pitch, length = '16n', time }) => {
     const state = shared.getState();
     const channel = getOr({}, `channels[${trackId}]`, state);
@@ -66,7 +54,6 @@ export default (shared) => {
 
   return {
     handleUpdate,
-    loadSongData,
     playNote,
   };
 };

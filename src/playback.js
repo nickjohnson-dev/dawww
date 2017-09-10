@@ -1,11 +1,18 @@
 import getOr from 'lodash/fp/getOr';
-import invoke from 'lodash/fp/invoke';
+import isEmpty from 'lodash/fp/isEmpty';
 import range from 'lodash/fp/range';
 import Tone from 'tone';
 import * as helpers from './helpers';
 
 export default (shared) => {
-  const cleanup = () => invoke('state.transportPart.dispose', shared);
+  const cleanup = () => {
+    const state = shared.getState();
+    const transportPart = getOr({}, 'transportPart', state);
+
+    if (isEmpty(transportPart)) return;
+
+    transportPart.dispose();
+  };
 
   const handleBPMUpdate = (update) => {
     const bpm = getOr(0, 'song.bpm', update);
@@ -37,27 +44,9 @@ export default (shared) => {
     }
   };
 
-  const loadSongData = (songData) => {
-    const bpm = getOr(0, 'bpm', songData);
-    const measureCount = getOr(0, 'measureCount', songData);
-    const loopEnd = helpers.measuresToTime(measureCount);
-    const transportPart = new Tone.Sequence((_, position) => {
-      Tone.Transport.emit('position', position);
-      Tone.Transport.emit('time');
-    }, range(0, measureCount * 32), '32n');
-
-
-    Tone.Transport.bpm.value = bpm;
-    Tone.Transport.setLoopPoints(0, loopEnd);
-    Tone.Transport.loop = true;
-    transportPart.start(0);
-    shared.setState({ transportPart });
-  };
-
   shared.bus.on('update', handleUpdate);
 
   return {
     handleUpdate,
-    loadSongData,
   };
 };

@@ -56,23 +56,9 @@ export default (shared) => {
     }
   };
 
-  const loadSongData = (songData) => {
-    const notes = getOr({}, 'notes', songData);
-    const sequences = getOr({}, 'sequences', songData);
-    const playNote = args => shared.bus.emit('play', args);
-
-    shared.setState({
-      parts: helpers.mapObj(
-        sequence => helpers.getPart({ notes, playNote, sequence }),
-        sequences,
-      ),
-    });
-  };
-
   shared.bus.on('update', handleUpdate);
 
   return {
     handleUpdate,
-    loadSongData,
   };
 };
