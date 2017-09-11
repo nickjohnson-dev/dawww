@@ -58,13 +58,17 @@ export default function Dawww(options) {
   const updateSong = (song) => {
     if (isEmpty(song)) return;
 
-    helpers.dispatchUpdates({
-      dispatch: value => shared.bus.emit('update', value),
-      prevSong: shared.getState().song,
-      song,
-    });
+    const prevSong = shared.getState().song;
 
     shared.setState({ song });
+
+    helpers.dispatchUpdates({
+      dispatch: value => shared.bus.emit('update', value),
+      emit: (...args) => shared.bus.emit(...args),
+      state: shared.getState(),
+      prevSong,
+      song,
+    });
   };
 
   channels(shared);

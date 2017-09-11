@@ -4,14 +4,14 @@ import { interpretNotesDiff } from './interpretNotesDiff';
 import { interpretSequencesDiff } from './interpretSequencesDiff';
 import { interpretTracksDiff } from './interpretTracksDiff';
 
-export function interpretDiff(diff) {
+export function interpretDiff(diff, ...rest) {
   switch (getOr('', 'path[0]', diff)) {
     case 'notes':
-      return interpretNotesDiff(diff);
+      return interpretNotesDiff(diff, ...rest);
     case 'sequences':
-      return interpretSequencesDiff(diff);
+      return interpretSequencesDiff(diff, ...rest);
     case 'tracks':
-      return interpretTracksDiff(diff);
+      return interpretTracksDiff(diff, ...rest);
     default:
       return actions.unknown();
   }

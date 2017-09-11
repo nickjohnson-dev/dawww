@@ -1,13 +1,18 @@
 import getOr from 'lodash/fp/getOr';
 import isEmpty from 'lodash/fp/isEmpty';
 import * as helpers from '../helpers';
-import { handleTracksUpdate } from './handleTracksUpdate';
+import { effects } from './effects';
+import { reducer } from './reducer';
 
 export default (shared) => {
   const handleUpdate = (update) => {
-    if (update.dataType === 'tracks') {
-      shared.setState(handleTracksUpdate(update, shared.getState()));
-    }
+    shared.setState({
+      channels: reducer(
+        shared.getState().channels,
+        update.action,
+      ),
+    });
+    effects(update.action, shared.getState(), (...args) => shared.bus.emit(...args));
   };
 
   const playNote = ({ trackId, pitch, length = '16n', time }) => {

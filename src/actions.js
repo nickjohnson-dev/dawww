@@ -78,9 +78,9 @@ export const sequenceTrackIdEdited = ({ id, prevValue, value }) => ({
   payload: { id, prevValue, value },
 });
 
-export const trackAdded = track => ({
+export const trackAdded = ({ isAnyTrackSoloing, track }) => ({
   type: TRACK_ADDED,
-  payload: { track },
+  payload: { isAnyTrackSoloing, track },
 });
 
 export const trackDeleted = track => ({

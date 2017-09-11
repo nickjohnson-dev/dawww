@@ -9,6 +9,8 @@ export const getChannel = ({ isAnyTrackSoloing, track }) => {
   return {
     ...track,
     dispose: () => instrument.dispose(),
+    mute: () => instrument.mute(),
+    unmute: () => instrument.unmute(),
     instrument,
   };
 };
