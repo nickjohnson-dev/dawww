@@ -4,7 +4,7 @@ import last from 'lodash/fp/last';
 import * as actions from '../../actions';
 
 export function interpretSequenceEditedDiff(diff) {
-  const id = last(getOr([], 'path[1]', diff));
+  const id = getOr([], 'path[1]', diff);
   const prevValue = getOr('', 'lhs', diff);
   const value = getOr('', 'rhs', diff);
 
