@@ -48,7 +48,6 @@ export const createInstrument = (options) => {
           type: value,
         },
       });
-      console.log(voice);
     },
 
     setVolume: (value) => {
