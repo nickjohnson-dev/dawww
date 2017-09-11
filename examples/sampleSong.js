@@ -70,7 +70,7 @@ export default {
     1: {
       id: '1',
       isMuted: false,
-      isSoloing: false,
+      isSoloing: true,
       voice: 'sine',
       volume: -10,
     },

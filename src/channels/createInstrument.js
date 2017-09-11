@@ -1,13 +1,13 @@
 import getOr from 'lodash/fp/getOr';
 import Tone from 'tone';
-import { getVoice } from './getVoice';
+import { createVoice } from './createVoice';
 
-export const getInstrument = (options) => {
+export const createInstrument = (options) => {
   const isAnyTrackSoloing = getOr(false, 'isAnyTrackSoloing', options);
   const isMuted = getOr(false, 'track.isMuted', options);
   const isSoloing = getOr(false, 'track.isSoloing', options);
   const volume = getOr(0, 'track.volume', options);
-  const voice = getVoice(options);
+  const voice = createVoice(options);
 
   const volumeNode = new Tone.Volume(volume);
   volumeNode.mute = isMuted || (isAnyTrackSoloing && !isSoloing);
@@ -42,8 +42,17 @@ export const getInstrument = (options) => {
     release: () =>
       voice.releaseAll(),
 
-    setType: (newType) => {
-      voice.oscillator.type = newType;
+    setVoice: (value) => {
+      voice.set({
+        oscillator: {
+          type: value,
+        },
+      });
+      console.log(voice);
+    },
+
+    setVolume: (value) => {
+      volumeNode.volume.value = value;
     },
   };
 };
