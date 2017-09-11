@@ -1,5 +1,4 @@
 import getOr from 'lodash/fp/getOr';
-// import isEmpty from 'lodash/fp/isEmpty';
 import last from 'lodash/fp/last';
 import * as actions from '../../actions';
 
