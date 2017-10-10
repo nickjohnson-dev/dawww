@@ -15,7 +15,7 @@ before_script:
 script:
   - npm run lint
   - npm run testonce
-  - npm run build
+  - npm run trybuild
 after_success:
   - npm run semantic-release
   - './node_modules/.bin/nyc report --reporter=text-lcov > coverage.lcov && ./node_modules/.bin/codecov'
