@@ -1,5 +1,7 @@
 .gitignore
+.nyc_output
 configs
 docs
 examples
 src
+coverage

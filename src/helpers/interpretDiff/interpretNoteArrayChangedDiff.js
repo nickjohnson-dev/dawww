@@ -5,14 +5,14 @@ import * as constants from '../../constants';
 
 export function interpretNoteArrayChangedDiff(diff) {
   const id = getOr([], 'path[1]', diff);
-  const index = getOr('', 'index', diff);
-  const prevValue = getOr('', 'item.lhs', diff);
-  const value = getOr('', 'item.rhs', diff);
+  const index = getOr(-1, 'index', diff);
+  const prevValue = getOr({}, 'item.lhs', diff);
+  const value = getOr({}, 'item.rhs', diff);
 
   switch (last(getOr('', 'item.kind', diff))) {
-    case constants.diffKinds.D:
+    case constants.DIFF_KIND_D:
       return actions.notePointDeleted({ id, index, prevValue });
-    case constants.diffKinds.N:
+    case constants.DIFF_KIND_N:
       return actions.notePointAdded({ id, index, value });
     default:
       return actions.unknown();

@@ -10,11 +10,14 @@
     "cmretry": "git-cz --retry",
     "lint": "eslint src",
     "prebuild": "npm run clean -s",
-    "precommit": "npm run lint",
+    "precommit": "npm run lint && npm run testonce && npm run build",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "start": "webpack-dev-server --config ./examples/configs/webpack-dev.config.js --port 8082 --open",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "test": "ava --watch",
+    "testonce": "nyc ava"
   },
   "devDependencies": {
+    "ava": "0.22.0",
     "babel-cli": "6.26.0",
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
@@ -24,6 +27,7 @@
     "babel-preset-stage-2": "6.24.1",
     "circular-dependency-plugin": "4.0.0",
     "clean-webpack-plugin": "0.1.16",
+    "codecov": "2.3.0",
     "commitizen": "2.9.6",
     "cz-conventional-changelog": "2.0.0",
     "eslint": "4.5.0",
@@ -34,6 +38,7 @@
     "html-webpack-plugin": "2.30.1",
     "html-webpack-template": "5.6.0",
     "husky": "0.14.3",
+    "nyc": "11.2.1",
     "picodom": "0.1.0",
     "rimraf": "2.6.1",
     "semantic-release": "^7.0.2",
@@ -44,6 +49,12 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/nickjohnson-dev/dawww.git"
+  },
+  "ava": {
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
   },
   "babel": {
     "presets": [

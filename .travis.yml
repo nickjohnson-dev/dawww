@@ -7,15 +7,15 @@ notifications:
     recipients:
       - nickjohnson.dev@gmail.com
 node_js:
+  - '8'
   - '7'
   - '6'
 before_script:
   - npm prune
 script:
   - npm run lint
+  - npm run testonce
   - npm run build
 after_success:
   - npm run semantic-release
-branches:
-  except:
-    - /^v\d+\.\d+\.\d+$/
+  - './node_modules/.bin/nyc report --reporter=text-lcov > coverage.lcov && ./node_modules/.bin/codecov'

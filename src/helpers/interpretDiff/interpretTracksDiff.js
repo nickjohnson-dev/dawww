@@ -7,11 +7,11 @@ import { interpretTrackEditedDiff } from './interpretTrackEditedDiff';
 
 export function interpretTracksDiff(diff, ...rest) {
   switch (getOr('', 'kind', diff)) {
-    case constants.diffKinds.D:
+    case constants.DIFF_KIND_D:
       return interpretTrackDeletedDiff(diff, ...rest);
-    case constants.diffKinds.E:
+    case constants.DIFF_KIND_E:
       return interpretTrackEditedDiff(diff, ...rest);
-    case constants.diffKinds.N:
+    case constants.DIFF_KIND_N:
       return interpretTrackAddedDiff(diff, ...rest);
     default:
       return actions.unknown();

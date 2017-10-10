@@ -38,14 +38,14 @@ export const notePointDeleted = ({ id, index, prevValue }) => ({
   payload: { id, index, prevValue },
 });
 
-export const notePointXEdited = ({ id, prevValue, value }) => ({
+export const notePointXEdited = ({ id, index, prevValue, value }) => ({
   type: NOTE_POINT_X_EDITED,
-  payload: { id, prevValue, value },
+  payload: { id, index, prevValue, value },
 });
 
-export const notePointYEdited = ({ id, prevValue, value }) => ({
+export const notePointYEdited = ({ id, index, prevValue, value }) => ({
   type: NOTE_POINT_Y_EDITED,
-  payload: { id, prevValue, value },
+  payload: { id, index, prevValue, value },
 });
 
 export const noteSequenceIdEdited = ({ id, prevValue, value }) => ({

@@ -7,11 +7,11 @@ import { interpretSequenceEditedDiff } from './interpretSequenceEditedDiff';
 
 export function interpretSequencesDiff(diff) {
   switch (getOr('', 'kind', diff)) {
-    case constants.diffKinds.D:
+    case constants.DIFF_KIND_D:
       return interpretSequenceDeletedDiff(diff);
-    case constants.diffKinds.E:
+    case constants.DIFF_KIND_E:
       return interpretSequenceEditedDiff(diff);
-    case constants.diffKinds.N:
+    case constants.DIFF_KIND_N:
       return interpretSequenceAddedDiff(diff);
     default:
       return actions.unknown();
