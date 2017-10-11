@@ -21,7 +21,7 @@ export function getPlaybackStateNotifier(shared) {
       cb => cb(constants.playbackStates.STOPPED),
       shared.getState().playbackStateSubscribers,
     );
-    shared.bus.emit('position', 0);
+    shared.emit('position', 0);
   };
 
   const subscribe = (fn) => {
@@ -35,9 +35,9 @@ export function getPlaybackStateNotifier(shared) {
     });
   };
 
-  shared.bus.on('pause', handlePause);
-  shared.bus.on('start', handleStart);
-  shared.bus.on('stop', handleStop);
+  shared.on('pause', handlePause);
+  shared.on('start', handleStart);
+  shared.on('stop', handleStop);
 
   return {
     subscribe,

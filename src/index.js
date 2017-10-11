@@ -8,6 +8,7 @@ import playback from './playback';
 import parts from './parts';
 
 export default function Dawww(options) {
+  const bus = eventEmitter();
   let state = {
     channels: {},
     parts: {},
@@ -20,10 +21,10 @@ export default function Dawww(options) {
     },
     transportPart: {},
   };
-
   const shared = {
-    bus: eventEmitter(),
-    getState: () => state,
+    emit: (...args) => bus.emit(...args),
+    getState: () => ({ ...state }),
+    on: (...args) => bus.on(...args),
     setState: (updates) => {
       state = { ...state, ...updates };
     },
@@ -31,7 +32,7 @@ export default function Dawww(options) {
 
   const pause = () => {
     Tone.Transport.pause();
-    shared.bus.emit('pause');
+    shared.emit('pause');
   };
 
   const playbackStateNotifier = helpers.getPlaybackStateNotifier(shared);
@@ -39,7 +40,7 @@ export default function Dawww(options) {
   const positionNotifier = helpers.getPositionNotifier(shared);
 
   const preview = (trackId, pitch) => {
-    shared.bus.emit('play', {
+    shared.emit('play', {
       trackId,
       pitch,
     });
@@ -47,12 +48,12 @@ export default function Dawww(options) {
 
   const start = () => {
     Tone.Transport.start();
-    shared.bus.emit('start');
+    shared.emit('start');
   };
 
   const stop = () => {
     Tone.Transport.stop();
-    shared.bus.emit('stop');
+    shared.emit('stop');
   };
 
   const updateSong = (song) => {
@@ -63,8 +64,8 @@ export default function Dawww(options) {
     shared.setState({ song });
 
     helpers.dispatchUpdates({
-      dispatch: value => shared.bus.emit('update', value),
-      emit: (...args) => shared.bus.emit(...args),
+      dispatch: value => shared.emit('update', value),
+      emit: (...args) => shared.emit(...args),
       state: shared.getState(),
       prevSong,
       song,

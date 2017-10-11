@@ -19,7 +19,7 @@ export function getPositionNotifier(shared) {
     });
   };
 
-  shared.bus.on('position', handlePosition);
+  shared.on('position', handlePosition);
 
   return {
     subscribe,

@@ -3,15 +3,15 @@ import includes from 'lodash/fp/includes';
 import { handleNotesDelete } from './handleNotesDelete';
 import { handleNotesEdit } from './handleNotesEdit';
 
-export function handleNotesUpdate(update, state, emit) {
+export function handleNotesUpdate(shared, update) {
   const kind = getOr('', 'diff.kind', update);
 
   if (kind === 'D') {
-    return handleNotesDelete(update, state, emit);
+    return handleNotesDelete(shared, update);
   }
 
   if (includes(kind, ['A', 'E', 'N'])) {
-    return handleNotesEdit(update, state, emit);
+    return handleNotesEdit(shared, update);
   }
 
   return {};

@@ -12,7 +12,7 @@ export default (shared) => {
         update.action,
       ),
     });
-    effects(update.action, shared.getState(), (...args) => shared.bus.emit(...args));
+    effects(update.action, shared.getState(), (...args) => shared.emit(...args));
   };
 
   const playNote = ({ trackId, pitch, length = '16n', time }) => {
@@ -25,9 +25,9 @@ export default (shared) => {
     channel.instrument.playNote(name, length, time);
   };
 
-  shared.bus.on('play', playNote);
+  shared.on('play', playNote);
 
-  shared.bus.on('update', handleUpdate);
+  shared.on('update', handleUpdate);
 
   return {
     handleUpdate,

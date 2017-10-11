@@ -2,13 +2,13 @@ import getOr from 'lodash/fp/getOr';
 import isEmpty from 'lodash/fp/isEmpty';
 import * as helpers from '../helpers';
 
-export function handleNotesDelete(update, state, emit) {
+export function handleNotesDelete(shared, update) {
   const id = getOr('', 'diff.lhs.sequenceId', update);
   const notes = getOr({}, 'song.notes', update);
-  const parts = getOr({}, 'parts', state);
+  const parts = getOr({}, 'parts', shared.getState());
   const oldPart = getOr({}, id, parts);
   const sequence = getOr({}, `song.sequences[${id}]`, update);
-  const playNote = args => emit('play', args);
+  const playNote = args => shared.emit('play', args);
   const part = helpers.getPart({ notes, playNote, sequence });
   const action = { kind: 'E', id, part };
 
