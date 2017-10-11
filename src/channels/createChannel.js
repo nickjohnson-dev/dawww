@@ -10,9 +10,9 @@ export function createChannel({ isAnyTrackSoloing, track }) {
     ...track,
     dispose: instrument.dispose,
     mute: instrument.mute,
+    playNote: instrument.playNote,
     setVoice: instrument.setVoice,
     setVolume: instrument.setVolume,
     unmute: instrument.unmute,
-    instrument,
   };
 }

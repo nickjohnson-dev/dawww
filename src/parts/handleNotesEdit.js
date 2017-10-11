@@ -9,7 +9,7 @@ export function handleNotesEdit(shared, update) {
   const id = getOr('', `[${noteId}].sequenceId`, notes);
   const oldPart = getOr({}, id, parts);
   const sequence = getOr({}, `song.sequences[${id}]`, update);
-  const playNote = args => shared.emit('play', args);
+  const playNote = shared.emit('play');
   const part = helpers.getPart({ notes, playNote, sequence });
   const action = { kind: 'E', id, part };
 

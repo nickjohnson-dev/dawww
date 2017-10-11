@@ -1,33 +1,33 @@
 import forEach from 'lodash/fp/forEach';
 import * as constants from '../constants';
 
-export function getPlaybackStateNotifier(shared) {
+export function getPlaybackStateNotifier({ emit, getState, on, setState }) {
   const handlePause = () => {
     forEach(
       cb => cb(constants.playbackStates.PAUSED),
-      shared.getState().playbackStateSubscribers,
+      getState().playbackStateSubscribers,
     );
   };
 
   const handleStart = () => {
     forEach(
       cb => cb(constants.playbackStates.STARTED),
-      shared.getState().playbackStateSubscribers,
+      getState().playbackStateSubscribers,
     );
   };
 
   const handleStop = () => {
     forEach(
       cb => cb(constants.playbackStates.STOPPED),
-      shared.getState().playbackStateSubscribers,
+      getState().playbackStateSubscribers,
     );
-    shared.emit('position', 0);
+    emit('position')(0);
   };
 
   const subscribe = (fn) => {
-    const state = shared.getState();
+    const state = getState();
 
-    shared.setState({
+    setState({
       playbackStateSubscribers: [
         ...state.playbackStateSubscribers,
         fn,
@@ -35,9 +35,9 @@ export function getPlaybackStateNotifier(shared) {
     });
   };
 
-  shared.on('pause', handlePause);
-  shared.on('start', handleStart);
-  shared.on('stop', handleStop);
+  on('pause', handlePause);
+  on('start', handleStart);
+  on('stop', handleStop);
 
   return {
     subscribe,

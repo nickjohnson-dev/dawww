@@ -4,9 +4,7 @@ import Tone from 'tone';
 import { getDataFromNotes } from './getDataFromNotes';
 import { measuresToTime } from './measuresToTime';
 
-
 // TODO: createPart
-
 export const getPart = ({ playNote, notes, sequence }) => {
   const position = getOr(0, 'position', sequence);
   const trackId = getOr('', 'trackId', sequence);
@@ -25,6 +23,7 @@ export const getPart = ({ playNote, notes, sequence }) => {
   const part = new Tone.Sequence(onStep, steps, stepSize);
 
   part.start(measuresToTime(position));
+
   part.loop = false;
 
   return part;

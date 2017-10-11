@@ -1,7 +1,7 @@
 import getOr from 'lodash/fp/getOr';
-import Tone from 'tone';
 
-export function handleBPMUpdate(update) {
+export function handleBPMUpdate(update, shared) {
   const bpm = getOr(0, 'song.bpm', update);
-  Tone.Transport.bpm.value = bpm;
+
+  shared.setBPM(bpm);
 }

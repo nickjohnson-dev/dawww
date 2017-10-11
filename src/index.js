@@ -1,38 +1,22 @@
 import getOr from 'lodash/fp/getOr';
 import isEmpty from 'lodash/fp/isEmpty';
-import eventEmitter from 'event-emitter';
 import Tone from 'tone';
+import { emit, on } from './bus';
 import channels from './channels';
 import * as helpers from './helpers';
 import playback from './playback';
 import parts from './parts';
+import { getState, setState } from './state';
+import toneAdapter from './toneAdapter';
 
 export default function Dawww(options) {
-  const bus = eventEmitter();
-  let state = {
-    channels: {},
-    parts: {},
-    playbackStateSubscribers: [],
-    positionSubscribers: [],
-    song: {
-      notes: {},
-      sequences: {},
-      tracks: {},
-    },
-    transportPart: {},
-  };
   const shared = {
-    emit: (...args) => bus.emit(...args),
-    getState: () => ({ ...state }),
-    on: (...args) => bus.on(...args),
-    setState: (updates) => {
-      state = { ...state, ...updates };
-    },
-  };
-
-  const pause = () => {
-    Tone.Transport.pause();
-    shared.emit('pause');
+    setBPM: emit('bpmSet'),
+    getState,
+    setState,
+    emit,
+    on,
+    Tone,
   };
 
   const playbackStateNotifier = helpers.getPlaybackStateNotifier(shared);
@@ -40,37 +24,29 @@ export default function Dawww(options) {
   const positionNotifier = helpers.getPositionNotifier(shared);
 
   const preview = (trackId, pitch) => {
-    shared.emit('play', {
+    emit('play')({
       trackId,
       pitch,
     });
   };
 
-  const start = () => {
-    Tone.Transport.start();
-    shared.emit('start');
-  };
-
-  const stop = () => {
-    Tone.Transport.stop();
-    shared.emit('stop');
-  };
-
   const updateSong = (song) => {
     if (isEmpty(song)) return;
 
-    const prevSong = shared.getState().song;
+    const prevSong = getState().song;
 
-    shared.setState({ song });
+    setState({ song });
 
     helpers.dispatchUpdates({
-      dispatch: value => shared.emit('update', value),
-      emit: (...args) => shared.emit(...args),
-      state: shared.getState(),
+      dispatch: emit('update'),
+      emit,
+      state: getState(),
       prevSong,
       song,
     });
   };
+
+  toneAdapter(shared);
 
   channels(shared);
 
@@ -83,10 +59,10 @@ export default function Dawww(options) {
   return {
     onPositionChange: positionNotifier.subscribe,
     onStateChange: playbackStateNotifier.subscribe,
-    pause,
+    pause: emit('pause'),
+    start: emit('start'),
+    stop: emit('stop'),
     preview,
-    start,
-    stop,
     updateSong,
   };
 }

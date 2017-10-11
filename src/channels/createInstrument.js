@@ -31,11 +31,6 @@ export const createInstrument = (options) => {
       volumeNode.mute = true;
     },
 
-    unmute: () => {
-      if (!volumeNode.mute) return;
-      volumeNode.mute = false;
-    },
-
     playNote: (name, length, time) =>
       voice.triggerAttackRelease(name, length, time),
 
@@ -52,6 +47,11 @@ export const createInstrument = (options) => {
 
     setVolume: (value) => {
       volumeNode.volume.value = value;
+    },
+
+    unmute: () => {
+      if (!volumeNode.mute) return;
+      volumeNode.mute = false;
     },
   };
 };

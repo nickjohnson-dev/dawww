@@ -8,11 +8,11 @@ export default {
       points: [{ x: 0, y: 47 }, { x: 3, y: 47 }],
       sequenceId: '0',
     },
-    1: {
-      id: '1',
-      points: [{ x: 4, y: 35 }, { x: 7, y: 35 }],
-      sequenceId: '0',
-    },
+    // 1: {
+    //   id: '1',
+    //   points: [{ x: 4, y: 35 }, { x: 7, y: 35 }],
+    //   sequenceId: '0',
+    // },
     2: {
       id: '2',
       points: [{ x: 8, y: 23 }, { x: 11, y: 23 }],
