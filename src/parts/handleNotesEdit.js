@@ -1,5 +1,6 @@
 import getOr from 'lodash/fp/getOr';
 import isEmpty from 'lodash/fp/isEmpty';
+import * as busChannels from '../busChannels';
 import * as helpers from '../helpers';
 
 export function handleNotesEdit(shared, update) {
@@ -9,7 +10,7 @@ export function handleNotesEdit(shared, update) {
   const id = getOr('', `[${noteId}].sequenceId`, notes);
   const oldPart = getOr({}, id, parts);
   const sequence = getOr({}, `song.sequences[${id}]`, update);
-  const playNote = shared.emit('play');
+  const playNote = shared.emit(busChannels.NOTE_PLAYED);
   const part = helpers.getPart({ notes, playNote, sequence });
   const action = { kind: 'E', id, part };
 

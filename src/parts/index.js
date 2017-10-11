@@ -1,8 +1,9 @@
+import * as busChannels from '../busChannels';
 import { handleNotesUpdate } from './handleNotesUpdate';
 import { handleSequencesUpdate } from './handleSequencesUpdate';
 
 export default (shared) => {
-  shared.on('update', (update) => {
+  shared.on(busChannels.UPDATE_OCCURRED, (update) => {
     if (update.dataType === 'notes') {
       shared.setState(handleNotesUpdate(shared, update));
     }

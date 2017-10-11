@@ -4,8 +4,6 @@ export * from './getLetterFromPitch';
 export * from './getNoteLength';
 export * from './getPart';
 export * from './getPitchName';
-export * from './getPlaybackStateNotifier';
-export * from './getPositionNotifier';
 export * from './measuresToTime';
 export * from './reduceChannels';
 export * from './reduceParts';

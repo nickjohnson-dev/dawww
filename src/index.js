@@ -1,68 +1,48 @@
+import compose from 'lodash/fp/compose';
 import getOr from 'lodash/fp/getOr';
-import isEmpty from 'lodash/fp/isEmpty';
-import Tone from 'tone';
 import { emit, on } from './bus';
+import * as busChannels from './busChannels';
 import channels from './channels';
-import * as helpers from './helpers';
+import dispatcher from './dispatcher';
 import playback from './playback';
 import parts from './parts';
 import { getState, setState } from './state';
+import playbackState from './playbackState';
 import toneAdapter from './toneAdapter';
 
 export default function Dawww(options) {
+  const initialSong = getOr({}, 'song', options);
   const shared = {
-    setBPM: emit('bpmSet'),
+    setBPM: emit(busChannels.BPM_SET),
+    setPlaybackState: emit(busChannels.PLAYBACK_STATE_SET),
+    setPosition: emit(busChannels.POSITION_SET),
     getState,
     setState,
     emit,
     on,
-    Tone,
   };
 
-  const playbackStateNotifier = helpers.getPlaybackStateNotifier(shared);
-
-  const positionNotifier = helpers.getPositionNotifier(shared);
-
-  const preview = (trackId, pitch) => {
-    emit('play')({
-      trackId,
-      pitch,
-    });
-  };
-
-  const updateSong = (song) => {
-    if (isEmpty(song)) return;
-
-    const prevSong = getState().song;
-
-    setState({ song });
-
-    helpers.dispatchUpdates({
-      dispatch: emit('update'),
-      emit,
-      state: getState(),
-      prevSong,
-      song,
-    });
-  };
-
+  // Initialize modules
+  dispatcher(shared);
+  channels(shared);
+  parts(shared);
+  playback(shared);
+  playbackState(shared);
   toneAdapter(shared);
 
-  channels(shared);
-
-  parts(shared);
-
-  playback(shared);
-
-  updateSong(getOr({}, 'song', options));
+  // Load initial song data
+  emit(busChannels.UPDATE_REQUESTED)(initialSong);
 
   return {
-    onPositionChange: positionNotifier.subscribe,
-    onStateChange: playbackStateNotifier.subscribe,
-    pause: emit('pause'),
-    start: emit('start'),
-    stop: emit('stop'),
-    preview,
-    updateSong,
+    onPositionChange: on(busChannels.POSITION_SET),
+    onStateChange: on(busChannels.PLAYBACK_STATE_SET),
+    pause: emit(busChannels.PLAYBACK_PAUSE_REQUESTED),
+    preview: compose(
+      emit(busChannels.NOTE_PLAYED),
+      (trackId, pitch) => ({ pitch, trackId }),
+    ),
+    start: emit(busChannels.PLAYBACK_START_REQUESTED),
+    stop: emit(busChannels.PLAYBACK_STOP_REQUESTED),
+    updateSong: emit(busChannels.UPDATE_REQUESTED),
   };
 }

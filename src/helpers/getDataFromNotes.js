@@ -1,5 +1,4 @@
 import compose from 'lodash/fp/compose';
-import curry from 'lodash/fp/curry';
 import filter from 'lodash/fp/filter';
 import getOr from 'lodash/fp/getOr';
 import map from 'lodash/fp/map';
@@ -7,7 +6,7 @@ import reduce from 'lodash/fp/reduce';
 import times from 'lodash/fp/times';
 import { getNoteLength } from './getNoteLength';
 
-const stackAt = curry((property, xs) =>
+const stackAt = (property, xs) =>
   reduce((acc, cur) => {
     const key = cur[property];
     const currentStack = acc[key] || [];
@@ -15,8 +14,7 @@ const stackAt = curry((property, xs) =>
       ...acc,
       [key]: [...currentStack, cur],
     };
-  }, {}, xs),
-);
+  }, {}, xs);
 
 export function getDataFromNotes(notes, sequence) {
   const measureCount = getOr(0, 'measureCount', sequence);
