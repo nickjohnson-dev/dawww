@@ -1,17 +1,17 @@
 import * as busChannels from './busChannels';
 import * as constants from './constants';
 
-export default ({ on, setPlaybackState, setPosition }) => {
+export default ({ emit, on }) => {
   on(busChannels.PLAYBACK_PAUSE_REQUESTED, () => {
-    setPlaybackState(constants.playbackStates.PAUSED);
+    emit(busChannels.PLAYBACK_STATE_SET)(constants.playbackStates.PAUSED);
   });
 
   on(busChannels.PLAYBACK_START_REQUESTED, () => {
-    setPlaybackState(constants.playbackStates.STARTED);
+    emit(busChannels.PLAYBACK_STATE_SET)(constants.playbackStates.STARTED);
   });
 
   on(busChannels.PLAYBACK_STOP_REQUESTED, () => {
-    setPlaybackState(constants.playbackStates.STOPPED);
-    setPosition(0);
+    emit(busChannels.PLAYBACK_STATE_SET)(constants.playbackStates.STOPPED);
+    emit(busChannels.POSITION_SET)(0);
   });
 };

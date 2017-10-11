@@ -13,9 +13,6 @@ import toneAdapter from './toneAdapter';
 export default function Dawww(options) {
   const initialSong = getOr({}, 'song', options);
   const shared = {
-    setBPM: emit(busChannels.BPM_SET),
-    setPlaybackState: emit(busChannels.PLAYBACK_STATE_SET),
-    setPosition: emit(busChannels.POSITION_SET),
     getState,
     setState,
     emit,
@@ -23,8 +20,8 @@ export default function Dawww(options) {
   };
 
   // Initialize modules
-  dispatcher(shared);
   channels(shared);
+  dispatcher(shared);
   parts(shared);
   playback(shared);
   playbackState(shared);
