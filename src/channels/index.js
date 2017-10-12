@@ -2,6 +2,7 @@ import getOr from 'lodash/fp/getOr';
 import isEmpty from 'lodash/fp/isEmpty';
 import * as busChannels from '../busChannels';
 import * as helpers from '../helpers';
+import { playNote } from '../models/channel';
 import { effects } from './effects';
 import { reducer } from './reducer';
 
@@ -13,7 +14,7 @@ export default (shared) => {
 
     if (isEmpty(channel)) return;
 
-    channel.playNote(name, length, time);
+    playNote(channel, name, length, time);
   });
 
   shared.on(busChannels.UPDATE_OCCURRED, (update) => {

@@ -1,7 +1,8 @@
 import getOr from 'lodash/fp/getOr';
 import isEmpty from 'lodash/fp/isEmpty';
 import * as busChannels from '../busChannels';
-import * as helpers from '../helpers';
+import { createPart } from '../models/part';
+import { reducer } from './reducer';
 
 export function handleNotesDelete(shared, update) {
   const id = getOr('', 'diff.lhs.sequenceId', update);
@@ -10,7 +11,7 @@ export function handleNotesDelete(shared, update) {
   const oldPart = getOr({}, id, parts);
   const sequence = getOr({}, `song.sequences[${id}]`, update);
   const playNote = shared.emit(busChannels.NOTE_PLAYED);
-  const part = helpers.getPart({ notes, playNote, sequence });
+  const part = createPart({ notes, playNote, sequence });
   const action = { kind: 'E', id, part };
 
   if (!isEmpty(oldPart)) {
@@ -18,6 +19,6 @@ export function handleNotesDelete(shared, update) {
   }
 
   return {
-    parts: helpers.reduceParts(parts, action),
+    parts: reducer(parts, action),
   };
 }

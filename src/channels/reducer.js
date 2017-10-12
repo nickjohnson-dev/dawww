@@ -1,6 +1,6 @@
 import omit from 'lodash/fp/omit';
 import * as actions from '../actions';
-import { createChannel } from './createChannel';
+import { createChannel } from '../models/channel';
 
 export function reducer(state = {}, action) {
   switch (action.type) {

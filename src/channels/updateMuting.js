@@ -1,6 +1,7 @@
 import forEach from 'lodash/fp/forEach';
 import getOr from 'lodash/fp/getOr';
 import * as selectors from '../selectors';
+import { muteChannel, unmuteChannel } from '../models/channel';
 
 export function updateMuting(action, state) {
   const channels = getOr({}, 'channels', state);
@@ -13,10 +14,10 @@ export function updateMuting(action, state) {
     const noMutingOrSoloing = !anySolo && !mute && !solo;
 
     if (isOneOfSomeSoloingTracks || noMutingOrSoloing) {
-      channel.unmute();
+      unmuteChannel(channel);
       return;
     }
 
-    channel.mute();
+    muteChannel(channel);
   }, channels);
 }

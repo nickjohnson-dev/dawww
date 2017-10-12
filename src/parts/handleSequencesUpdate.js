@@ -1,7 +1,8 @@
 import getOr from 'lodash/fp/getOr';
 import noop from 'lodash/fp/noop';
 import * as busChannels from '../busChannels';
-import * as helpers from '../helpers';
+import { createPart } from '../models/part';
+import { reducer } from './reducer';
 
 export function handleSequencesUpdate(shared, update) {
   const state = shared.getState();
@@ -12,12 +13,12 @@ export function handleSequencesUpdate(shared, update) {
   const notes = getOr({}, 'song.notes', update);
   const sequence = getOr({}, `song.sequences[${id}]`, update);
   const playNote = shared.emit(busChannels.NOTE_PLAYED);
-  const part = helpers.getPart({ notes, playNote, sequence });
+  const part = createPart({ notes, playNote, sequence });
   const action = { id, kind, part };
 
   oldPart.dispose();
 
   return {
-    parts: helpers.reduceParts(parts, action),
+    parts: reducer(parts, action),
   };
 }

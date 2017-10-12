@@ -22,6 +22,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 0,
     'import/prefer-default-export': 0,
     'linebreak-style': 0,
+    'lodash-fp/no-unused-result': 0,
     'new-cap': 0,
     'no-use-before-define': [
       'error',
