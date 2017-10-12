@@ -1,5 +1,5 @@
 import noop from 'lodash/fp/noop';
-import * as actions from '../actions';
+import * as actions from '../../actions';
 import { setChannelVoice } from './setChannelVoice';
 import { setChannelVolume } from './setChannelVolume';
 import { updateMuting } from './updateMuting';

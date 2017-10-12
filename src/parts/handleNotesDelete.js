@@ -1,7 +1,7 @@
 import getOr from 'lodash/fp/getOr';
 import isEmpty from 'lodash/fp/isEmpty';
 import * as busChannels from '../busChannels';
-import { createPart } from '../models/part';
+import { createPart, disposePart } from '../models/part';
 import { reducer } from './reducer';
 
 export function handleNotesDelete(shared, update) {
@@ -15,7 +15,7 @@ export function handleNotesDelete(shared, update) {
   const action = { kind: 'E', id, part };
 
   if (!isEmpty(oldPart)) {
-    oldPart.dispose();
+    disposePart(oldPart);
   }
 
   return {

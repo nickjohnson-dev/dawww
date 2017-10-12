@@ -1,5 +1,6 @@
 import getOr from 'lodash/fp/getOr';
 import isEmpty from 'lodash/fp/isEmpty';
+import { disposePart } from '../models/part';
 
 export function cleanup({ getState }) {
   const state = getState();
@@ -7,5 +8,5 @@ export function cleanup({ getState }) {
 
   if (isEmpty(transportPart)) return;
 
-  transportPart.dispose();
+  disposePart(transportPart);
 }

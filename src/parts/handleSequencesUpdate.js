@@ -1,7 +1,7 @@
 import getOr from 'lodash/fp/getOr';
 import noop from 'lodash/fp/noop';
 import * as busChannels from '../busChannels';
-import { createPart } from '../models/part';
+import { createPart, disposePart } from '../models/part';
 import { reducer } from './reducer';
 
 export function handleSequencesUpdate(shared, update) {
@@ -16,7 +16,7 @@ export function handleSequencesUpdate(shared, update) {
   const part = createPart({ notes, playNote, sequence });
   const action = { id, kind, part };
 
-  oldPart.dispose();
+  disposePart(oldPart);
 
   return {
     parts: reducer(parts, action),
