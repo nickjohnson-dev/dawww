@@ -13,7 +13,7 @@ export function handleSequencesUpdate(shared, update) {
   const notes = getOr({}, 'song.notes', update);
   const sequence = getOr({}, `song.sequences[${id}]`, update);
   const playNote = shared.emit(busChannels.NOTE_PLAYED);
-  const part = createPart({ notes, playNote, sequence });
+  const part = createPart({ notes, playNote, sequence }, shared);
   const action = { id, kind, part };
 
   disposePart(oldPart);

@@ -7,7 +7,7 @@ module.exports = {
     'airbnb-base',
     'plugin:import/errors',
     'plugin:import/warnings',
-    'plugin:lodash-fp/recommended',
+    // 'plugin:lodash-fp/recommended',
   ],
   parser: "babel-eslint",
   parserOptions: {
@@ -16,13 +16,13 @@ module.exports = {
     },
   },
   plugins: [
-    'lodash-fp',
+    // 'lodash-fp',
   ],
   rules: {
     'import/no-extraneous-dependencies': 0,
     'import/prefer-default-export': 0,
     'linebreak-style': 0,
-    'lodash-fp/no-unused-result': 0,
+    // 'lodash-fp/no-unused-result': 0,
     'new-cap': 0,
     'no-use-before-define': [
       'error',

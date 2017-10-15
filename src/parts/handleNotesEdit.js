@@ -12,7 +12,7 @@ export function handleNotesEdit(shared, update) {
   const oldPart = getOr({}, id, parts);
   const sequence = getOr({}, `song.sequences[${id}]`, update);
   const playNote = shared.emit(busChannels.NOTE_PLAYED);
-  const part = createPart({ notes, playNote, sequence });
+  const part = createPart({ notes, playNote, sequence }, shared);
   const action = { kind: 'E', id, part };
 
   if (!isEmpty(oldPart)) {

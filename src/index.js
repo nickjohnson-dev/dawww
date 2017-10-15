@@ -1,5 +1,6 @@
 import compose from 'lodash/fp/compose';
 import getOr from 'lodash/fp/getOr';
+import Tone from 'tone';
 import { emit, on } from './bus';
 import * as busChannels from './busChannels';
 import channels from './channels';
@@ -8,11 +9,12 @@ import playback from './playback';
 import parts from './parts';
 import { getState, setState } from './state';
 import playbackState from './playbackState';
-import toneAdapter from './toneAdapter';
+import { createToneAdapter } from './toneAdapter';
 
 export default function Dawww(options) {
   const initialSong = getOr({}, 'song', options);
   const shared = {
+    toneAdapter: createToneAdapter(Tone),
     getState,
     setState,
     emit,
@@ -25,7 +27,6 @@ export default function Dawww(options) {
   parts(shared);
   playback(shared);
   playbackState(shared);
-  toneAdapter(shared);
 
   // Load initial song data
   emit(busChannels.UPDATE_REQUESTED)(initialSong);

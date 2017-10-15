@@ -22,6 +22,7 @@ export default (shared) => {
       channels: reducer(
         shared.getState().channels,
         update.action,
+        shared,
       ),
     });
     effects(update.action, shared.getState(), shared.emit);

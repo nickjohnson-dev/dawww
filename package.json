@@ -43,6 +43,7 @@
     "picodom": "0.1.0",
     "rimraf": "2.6.1",
     "semantic-release": "^7.0.2",
+    "sinon": "4.0.1",
     "webpack": "3.5.5",
     "webpack-dev-server": "2.7.1",
     "webpack-merge": "4.1.0"
@@ -79,7 +80,7 @@
     "deep-diff": "0.3.8",
     "event-emitter": "0.3.5",
     "lodash": "4.17.4",
-    "tone": "0.10.0"
+    "tone": "0.11.11"
   },
   "config": {
     "commitizen": {

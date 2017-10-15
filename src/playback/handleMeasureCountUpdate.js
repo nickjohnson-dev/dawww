@@ -1,6 +1,5 @@
 import getOr from 'lodash/fp/getOr';
 import range from 'lodash/fp/range';
-import Tone from 'tone';
 import * as busChannels from '../busChannels';
 import * as helpers from '../helpers';
 import { cleanup } from './cleanup';
@@ -8,13 +7,11 @@ import { cleanup } from './cleanup';
 export function handleMeasureCountUpdate(update, shared) {
   const measureCount = getOr(0, 'song.measureCount', update);
   const loopEnd = helpers.measuresToTime(measureCount);
-  const transportPart = new Tone.Sequence((_, position) => {
+  const transportPart = shared.toneAdapter.createSequence((_, position) => {
     shared.emit(busChannels.POSITION_SET)(position);
   }, range(0, measureCount * 32), '32n');
 
-  Tone.Transport.setLoopPoints(0, loopEnd);
-
-  Tone.Transport.loop = true;
+  shared.toneAdapter.setLoopPoints(0, loopEnd);
 
   cleanup(shared);
 
