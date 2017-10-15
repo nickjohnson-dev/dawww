@@ -10,6 +10,7 @@ export const SEQUENCE_DELETED = 'SEQUENCE_DELETED';
 export const SEQUENCE_MEASURE_COUNT_EDITED = 'SEQUENCE_MEASURE_COUNT_EDITED';
 export const SEQUENCE_POSITION_EDITED = 'SEQUENCE_POSITION_EDITED';
 export const SEQUENCE_TRACK_ID_EDITED = 'SEQUENCE_TRACK_ID_EDITED';
+export const SONG_UPDATED = 'SONG_UPDATED';
 export const TRACK_ADDED = 'TRACK_ADDED';
 export const TRACK_DELETED = 'TRACK_DELETED';
 export const TRACK_IS_MUTED_EDITED = 'TRACK_IS_MUTED_EDITED';
@@ -76,6 +77,11 @@ export const sequencePositionEdited = ({ id, prevValue, value }) => ({
 export const sequenceTrackIdEdited = ({ id, prevValue, value }) => ({
   type: SEQUENCE_TRACK_ID_EDITED,
   payload: { id, prevValue, value },
+});
+
+export const songUpdated = ({ prevSong, song }) => ({
+  type: SONG_UPDATED,
+  payload: { prevSong, song },
 });
 
 export const trackAdded = ({ isAnyTrackSoloing, track }) => ({

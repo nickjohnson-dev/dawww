@@ -1,7 +1,7 @@
 import test from 'ava';
-import * as actions from '../actions';
-import * as constants from '../constants';
-import { interpretDiff } from '../helpers/interpretDiff';
+import * as actions from '../../actions';
+import * as constants from '../../constants';
+import { interpretDiff } from '../interpretDiff';
 
 test('should return interpreted action when diff is NOTE_ADDED type', (t) => {
   const expected = {
@@ -228,11 +228,9 @@ test('should return interpreted action when diff is TRACK_ADDED type', (t) => {
     path: ['tracks'],
     rhs: { id: 'a' },
   }, {
-    song: {
-      tracks: [
-        { isSoloing: true },
-        { isSoloing: false },
-      ],
+    tracks: {
+      0: { isSoloing: true },
+      1: { isSoloing: false },
     },
   });
   t.deepEqual(result, expected);

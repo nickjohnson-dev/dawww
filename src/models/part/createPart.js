@@ -1,5 +1,4 @@
 import getOr from 'lodash/fp/getOr';
-import range from 'lodash/fp/range';
 import { getDataFromNotes, measuresToTime } from '../../helpers';
 
 export function createPart({ playNote, notes, sequence }, { toneAdapter }) {
@@ -15,9 +14,7 @@ export function createPart({ playNote, notes, sequence }, { toneAdapter }) {
       });
     });
   };
-  const steps = range(0, data.length);
-  const stepSize = '32n';
-  const part = toneAdapter.createSequence(onStep, steps, stepSize);
+  const part = toneAdapter.createSequence(onStep, data.length);
 
   part.start(measuresToTime(position));
 

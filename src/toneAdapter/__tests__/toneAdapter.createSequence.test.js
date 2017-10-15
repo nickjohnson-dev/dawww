@@ -13,8 +13,9 @@ test('should return instance of Tone.Sequence ', (t) => {
   t.is(result, expected);
 });
 
-test('should invoke Tone.Sequence constructor with args', (t) => {
-  const expected = ['a', 'b', 'c'];
+test('should invoke Tone.Sequence constructor with onStep, number range with length === length, "32n"', (t) => {
+  const onStep = () => {};
+  const expected = [onStep, [0, 1, 2], '32n'];
   const constructor = sinon.spy();
   class Sequence {
     constructor(...args) {
@@ -24,7 +25,7 @@ test('should invoke Tone.Sequence constructor with args', (t) => {
   const toneAdapter = createToneAdapter({
     Sequence,
   });
-  toneAdapter.createSequence('a', 'b', 'c');
+  toneAdapter.createSequence(onStep, 3);
   const result = constructor.lastCall.args;
   t.deepEqual(result, expected);
 });

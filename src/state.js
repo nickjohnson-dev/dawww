@@ -3,6 +3,8 @@ let state = {
   parts: {},
   playbackStateSubscribers: [],
   positionSubscribers: [],
+  stepSequences: {},
+  sequences: {},
   song: {
     notes: {},
     sequences: {},
