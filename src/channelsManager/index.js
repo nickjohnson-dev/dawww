@@ -1,4 +1,5 @@
 import getOr from 'lodash/fp/getOr';
+import * as actions from '../actions';
 import * as busChannels from '../busChannels';
 import * as helpers from '../helpers';
 import { playNote } from '../models/channel';
@@ -24,14 +25,18 @@ export function createChannelsManager(shared) {
         return;
       }
 
-      if (action.type === busChannels.STEP_SEQUENCE_STEP_TRIGGERED) {
-        const { position, sequenceId, trackId, time } = action;
-
+      if (action.type === actions.SEQUENCE_STEP_TRIGGERED) {
+        const time = getOr(0, 'payload.time', action);
+        const trackId = getOr('', 'payload.trackId', action);
         const channel = getOr({}, `channels[${trackId}]`, state);
-        const step = getOr({ notes: [] }, `sequenceSteps[${sequenceId}][${position}]`, state);
+        const noteIds = getOr([], 'payload.noteIds', action);
 
-        step.notes.forEach(({ length, pitch }) => {
+        noteIds.forEach((noteId) => {
+          const note = getOr({}, `song.notes[${noteId}]`, state);
+          const pitch = getOr(-1, 'points[0].y', note);
           const name = helpers.getPitchName(pitch);
+          const length = helpers.getNoteLength(note);
+
           playNote(channel, name, length, time);
         });
       }

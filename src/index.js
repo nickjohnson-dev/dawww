@@ -6,9 +6,8 @@ import { emit, on } from './bus';
 import * as actions from './actions';
 import * as busChannels from './busChannels';
 import { createChannelsManager } from './channelsManager';
-// import parts from './parts';
-// import playback from './playback';
-// import playbackState from './playbackState';
+import playback from './playback';
+import playbackState from './playbackState';
 import { getState, setState } from './state';
 import { createPartsManager } from './partsManager';
 import { createSongManager } from './songManager';
@@ -37,8 +36,8 @@ export default function Dawww(options) {
   }));
 
   // Initialize modules
-  // playback(shared);
-  // playbackState(shared);
+  playback(shared);
+  playbackState(shared);
 
   on(busChannels.ACTION_OCCURRED, (action) => {
     const reduceNewState = (acc, cur) => ({

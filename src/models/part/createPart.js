@@ -1,22 +1,14 @@
 import getOr from 'lodash/fp/getOr';
-import { getDataFromNotes, measuresToTime } from '../../helpers';
+import multiply from 'lodash/fp/multiply';
+import { measuresToTime } from '../../helpers';
 
-export function createPart({ playNote, notes, sequence }, { toneAdapter }) {
+export function createPart({ sequence }, { toneAdapter }) {
   const position = getOr(0, 'position', sequence);
-  const trackId = getOr('', 'trackId', sequence);
-  const data = getDataFromNotes(notes, sequence);
+  const length = multiply(getOr(0, 'measureCount', sequence), 32);
   const onStep = (time, step) => {
-    data[step].forEach((note) => {
-      playNote({
-        length: note.length,
-        pitch: note.pitch,
-        position: note.position,
-        trackId,
-        time,
-      });
-    });
+    step.fn(step.payload, time);
   };
-  const part = toneAdapter.createSequence(onStep, data.length);
+  const part = toneAdapter.createSequence(onStep, length);
 
   part.start(measuresToTime(position));
 

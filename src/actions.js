@@ -10,6 +10,7 @@ export const SEQUENCE_ADDED = 'SEQUENCE_ADDED';
 export const SEQUENCE_DELETED = 'SEQUENCE_DELETED';
 export const SEQUENCE_MEASURE_COUNT_EDITED = 'SEQUENCE_MEASURE_COUNT_EDITED';
 export const SEQUENCE_POSITION_EDITED = 'SEQUENCE_POSITION_EDITED';
+export const SEQUENCE_STEP_TRIGGERED = 'SEQUENCE_STEP_TRIGGERED';
 export const SEQUENCE_TRACK_ID_EDITED = 'SEQUENCE_TRACK_ID_EDITED';
 export const SONG_UPDATED = 'SONG_UPDATED';
 export const TRACK_ADDED = 'TRACK_ADDED';
@@ -78,6 +79,11 @@ export const sequenceMeasureCountEdited = ({ id, prevValue, value }) => ({
 export const sequencePositionEdited = ({ id, prevValue, value }) => ({
   type: SEQUENCE_POSITION_EDITED,
   payload: { id, prevValue, value },
+});
+
+export const sequenceStepTriggered = payload => ({
+  type: SEQUENCE_STEP_TRIGGERED,
+  payload,
 });
 
 export const sequenceTrackIdEdited = ({ id, prevValue, value }) => ({

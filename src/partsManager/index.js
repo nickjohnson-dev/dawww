@@ -1,6 +1,5 @@
+import { runEffects } from './effects';
 import { reducer } from './reducer';
-// import { handleNotesUpdate } from './handleNotesUpdate';
-// import { handleSequencesUpdate } from './handleSequencesUpdate';
 
 export function createPartsManager(shared) {
   return {
@@ -8,6 +7,8 @@ export function createPartsManager(shared) {
       return reducer(state, action, shared);
     },
 
-    performSideEffects() {},
+    performSideEffects(state, action, dispatch) {
+      runEffects(state, action, dispatch);
+    },
   };
 }
