@@ -7,7 +7,8 @@ export const NOTE_POINT_X_EDITED = 'NOTE_POINT_X_EDITED';
 export const NOTE_POINT_Y_EDITED = 'NOTE_POINT_Y_EDITED';
 export const NOTE_SEQUENCE_ID_EDITED = 'NOTE_SEQUENCE_ID_EDITED';
 export const SEQUENCE_ADDED = 'SEQUENCE_ADDED';
-export const SEQUENCE_DELETED = 'SEQUENCE_DELETED';
+export const SEQUENCE_DELETION_ACCEPTED = 'SEQUENCE_DELETION_ACCEPTED';
+export const SEQUENCE_DELETION_REQUESTED = 'SEQUENCE_DELETION_REQUESTED';
 export const SEQUENCE_MEASURE_COUNT_EDITED = 'SEQUENCE_MEASURE_COUNT_EDITED';
 export const SEQUENCE_POSITION_EDITED = 'SEQUENCE_POSITION_EDITED';
 export const SEQUENCE_STEP_TRIGGERED = 'SEQUENCE_STEP_TRIGGERED';
@@ -66,8 +67,13 @@ export const sequenceAdded = sequence => ({
   payload: { sequence },
 });
 
-export const sequenceDeleted = sequence => ({
-  type: SEQUENCE_DELETED,
+export const sequenceDeletionAccepted = sequence => ({
+  type: SEQUENCE_DELETION_ACCEPTED,
+  payload: { sequence },
+});
+
+export const sequenceDeletionRequested = sequence => ({
+  type: SEQUENCE_DELETION_REQUESTED,
   payload: { sequence },
 });
 

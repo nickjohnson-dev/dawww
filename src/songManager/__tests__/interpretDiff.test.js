@@ -146,9 +146,9 @@ test('should return interpreted action when diff is SEQUENCE_ADDED type', (t) =>
   t.deepEqual(result, expected);
 });
 
-test('should return interpreted action when diff is SEQUENCE_DELETED type', (t) => {
+test('should return interpreted action when diff is SEQUENCE_DELETION_REQUESTED type', (t) => {
   const expected = {
-    type: actions.SEQUENCE_DELETED,
+    type: actions.SEQUENCE_DELETION_REQUESTED,
     payload: {
       sequence: { id: 'a' },
     },

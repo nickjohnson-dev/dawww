@@ -4,5 +4,5 @@ import * as actions from '../../actions';
 export function interpretSequenceDeletedDiff(diff) {
   const sequence = getOr({}, 'lhs', diff);
 
-  return actions.sequenceDeleted(sequence);
+  return actions.sequenceDeletionRequested(sequence);
 }

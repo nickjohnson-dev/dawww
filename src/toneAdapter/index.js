@@ -1,9 +1,7 @@
 /* eslint-disable no-param-reassign */
-import constant from 'lodash/fp/constant';
 import getOr from 'lodash/fp/getOr';
 import invokeArgs from 'lodash/fp/invokeArgs';
-import noop from 'lodash/fp/noop';
-import times from 'lodash/fp/times';
+import range from 'lodash/fp/range';
 // eslint-disable-next-line lodash-fp/use-fp
 import set from 'lodash/set';
 
@@ -29,7 +27,7 @@ export function createToneAdapter(Tone) {
     createSequence(onStep, length) {
       const Sequence = getOr(Object, 'Sequence', Tone);
 
-      return new Sequence(onStep, times(constant({ fn: noop }), length), '32n');
+      return new Sequence(onStep, range(0, length), '32n');
     },
 
     createVolume(volume) {

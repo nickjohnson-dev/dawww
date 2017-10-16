@@ -11,7 +11,7 @@ export function reducer(state = {}, action, shared) {
           sequence: action.payload.sequence,
         }, shared),
       };
-    case actions.SEQUENCE_DELETED:
+    case actions.SEQUENCE_DELETION_ACCEPTED:
       // This corresponding part needs to be disposed before the reference is lost.
       return omit([action.payload.sequence.id], state);
     default:
