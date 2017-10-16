@@ -1,3 +1,5 @@
+export const BPM_CHANGED = 'BPM_CHANGED';
+export const MEASURE_COUNT_CHANGED = 'MEASURE_COUNT_CHANGED';
 export const NOTE_ADDED = 'NOTE_ADDED';
 export const NOTE_DELETED = 'NOTE_DELETED';
 export const NOTE_PLAYED = 'NOTE_PLAYED';
@@ -6,6 +8,8 @@ export const NOTE_POINT_DELETED = 'NOTE_POINT_DELETED';
 export const NOTE_POINT_X_EDITED = 'NOTE_POINT_X_EDITED';
 export const NOTE_POINT_Y_EDITED = 'NOTE_POINT_Y_EDITED';
 export const NOTE_SEQUENCE_ID_EDITED = 'NOTE_SEQUENCE_ID_EDITED';
+export const PLAYBACK_STATE_SET = 'PLAYBACK_STATE_SET';
+export const POSITION_SET = 'POSITION_SET';
 export const SEQUENCE_ADDED = 'SEQUENCE_ADDED';
 export const SEQUENCE_DELETION_ACCEPTED = 'SEQUENCE_DELETION_ACCEPTED';
 export const SEQUENCE_DELETION_REQUESTED = 'SEQUENCE_DELETION_REQUESTED';
@@ -21,6 +25,16 @@ export const TRACK_IS_SOLOING_EDITED = 'TRACK_IS_SOLOING_EDITED';
 export const TRACK_VOICE_EDITED = 'TRACK_VOICE_EDITED';
 export const TRACK_VOLUME_EDITED = 'TRACK_VOLUME_EDITED';
 export const UNKNOWN = 'UNKNOWN';
+
+export const bpmChanged = bpm => ({
+  type: BPM_CHANGED,
+  payload: { bpm },
+});
+
+export const measureCountChanged = measureCount => ({
+  type: MEASURE_COUNT_CHANGED,
+  payload: { measureCount },
+});
 
 export const noteAdded = note => ({
   type: NOTE_ADDED,
@@ -60,6 +74,16 @@ export const notePointYEdited = ({ id, index, prevValue, value }) => ({
 export const noteSequenceIdEdited = ({ id, prevValue, value }) => ({
   type: NOTE_SEQUENCE_ID_EDITED,
   payload: { id, prevValue, value },
+});
+
+export const playbackStateSet = playbackState => ({
+  type: PLAYBACK_STATE_SET,
+  payload: { playbackState },
+});
+
+export const positionSet = position => ({
+  type: POSITION_SET,
+  payload: { position },
 });
 
 export const sequenceAdded = sequence => ({

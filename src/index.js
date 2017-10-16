@@ -6,37 +6,36 @@ import { emit, on } from './bus';
 import * as actions from './actions';
 import * as busChannels from './busChannels';
 import { createChannelsManager } from './channelsManager';
-import playback from './playback';
 import playbackState from './playbackState';
 import { getState, setState } from './state';
 import { createPartsManager } from './partsManager';
 import { createSongManager } from './songManager';
-import { createStepSequencesManager } from './stepSequencesManager';
+import { createTransportPartManager } from './transportPartManager';
 import { createToneAdapter } from './toneAdapter';
 
 export default function Dawww(options) {
-  const initialSong = getOr({}, 'song', options);
+  const dispatch = emit(busChannels.ACTION_OCCURRED);
+  const toneAdapter = createToneAdapter(Tone);
   const shared = {
-    toneAdapter: createToneAdapter(Tone),
-    dispatch: emit(busChannels.ACTION_OCCURRED),
+    dispatch,
     getState,
     setState,
     emit,
     on,
+    toneAdapter,
   };
   const modules = {
     channels: createChannelsManager(shared),
     parts: createPartsManager(shared),
     song: createSongManager(shared),
-    stepSequences: createStepSequencesManager(shared),
+    transportPart: createTransportPartManager(shared),
   };
-  const updateSong = song => emit(busChannels.ACTION_OCCURRED)(actions.songUpdated({
+  const updateSong = song => dispatch(actions.songUpdated({
     prevSong: getOr({}, 'song', getState()),
     song,
   }));
 
   // Initialize modules
-  playback(shared);
   playbackState(shared);
 
   on(busChannels.ACTION_OCCURRED, (action) => {
@@ -48,18 +47,26 @@ export default function Dawww(options) {
 
     setState(newState);
 
-    // console.log('update', action.type, getState());
+    console.log('ACTION_OCCURRED', action, getState());
     values(modules).forEach(({ performSideEffects }) => {
-      performSideEffects(getState(), action, shared.dispatch);
+      performSideEffects(getState(), action, dispatch, toneAdapter);
     });
+
+    if (action.type === actions.POSITION_SET) {
+      emit(busChannels.POSITION_SET)(action.payload.position);
+    }
+
+    if (action.type === actions.PLAYBACK_STATE_SET) {
+      emit(busChannels.PLAYBACK_STATE_SET)(action.payload.playbackState);
+    }
   });
 
   // Load initial song data
-  updateSong(initialSong);
+  updateSong(getOr({}, 'song', options));
 
   return {
-    onPositionChange: on(busChannels.POSITION_SET),
-    onStateChange: on(busChannels.PLAYBACK_STATE_SET),
+    onPositionChange: fn => on(busChannels.POSITION_SET, fn),
+    onStateChange: fn => on(busChannels.PLAYBACK_STATE_SET, fn),
     pause: emit(busChannels.PLAYBACK_PAUSE_REQUESTED),
     preview: compose(
       emit(busChannels.ACTION_OCCURRED),

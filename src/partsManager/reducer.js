@@ -8,8 +8,10 @@ export function reducer(state = {}, action, shared) {
       return {
         ...state,
         [action.payload.sequence.id]: createPart({
-          sequence: action.payload.sequence,
-        }, shared),
+          measureCount: action.payload.sequence.measureCount,
+          position: action.payload.sequence.position,
+          shared,
+        }),
       };
     case actions.SEQUENCE_DELETION_ACCEPTED:
       // This corresponding part needs to be disposed before the reference is lost.

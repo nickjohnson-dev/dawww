@@ -1,5 +1,5 @@
 import getOr from 'lodash/fp/getOr';
-import * as actions from '../../actions';
+import * as actions from '../../../actions';
 
 export function interpretNoteAddedDiff(diff) {
   const note = getOr({}, 'rhs', diff);

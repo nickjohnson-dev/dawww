@@ -1,10 +1,6 @@
 let state = {
   channels: {},
   parts: {},
-  playbackStateSubscribers: [],
-  positionSubscribers: [],
-  stepSequences: {},
-  sequences: {},
   song: {
     notes: {},
     sequences: {},

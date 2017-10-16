@@ -1,6 +1,6 @@
 import getOr from 'lodash/fp/getOr';
-import * as actions from '../../actions';
-import * as constants from '../../constants';
+import * as actions from '../../../actions';
+import * as constants from '../../../constants';
 import { interpretNoteAddedDiff } from './interpretNoteAddedDiff';
 import { interpretNoteArrayChangedDiff } from './interpretNoteArrayChangedDiff';
 import { interpretNoteDeletedDiff } from './interpretNoteDeletedDiff';

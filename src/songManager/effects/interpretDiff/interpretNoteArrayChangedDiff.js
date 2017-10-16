@@ -1,7 +1,7 @@
 import getOr from 'lodash/fp/getOr';
 import last from 'lodash/fp/last';
-import * as actions from '../../actions';
-import * as constants from '../../constants';
+import * as actions from '../../../actions';
+import * as constants from '../../../constants';
 
 export function interpretNoteArrayChangedDiff(diff) {
   const id = getOr([], 'path[1]', diff);

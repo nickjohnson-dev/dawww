@@ -1,7 +1,37 @@
 import test from 'ava';
-import * as actions from '../../actions';
-import * as constants from '../../constants';
+import * as actions from '../../../actions';
+import * as constants from '../../../constants';
 import { interpretDiff } from '../interpretDiff';
+
+test('should return interpreted action when diff is BPM_CHANGED type', (t) => {
+  const expected = {
+    type: actions.BPM_CHANGED,
+    payload: {
+      bpm: 200,
+    },
+  };
+  const result = interpretDiff({
+    kind: constants.DIFF_KIND_E,
+    path: ['bpm'],
+    rhs: 200,
+  });
+  t.deepEqual(result, expected);
+});
+
+test('should return interpreted action when diff is MEASURE_COUNT_CHANGED type', (t) => {
+  const expected = {
+    type: actions.MEASURE_COUNT_CHANGED,
+    payload: {
+      measureCount: 4,
+    },
+  };
+  const result = interpretDiff({
+    kind: constants.DIFF_KIND_E,
+    path: ['measureCount'],
+    rhs: 4,
+  });
+  t.deepEqual(result, expected);
+});
 
 test('should return interpreted action when diff is NOTE_ADDED type', (t) => {
   const expected = {
