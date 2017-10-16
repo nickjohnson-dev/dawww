@@ -1,22 +1,26 @@
 import deepDiff from 'deep-diff';
-import getOr from 'lodash/fp/getOr';
 import * as actions from '../actions';
 import { interpretDiff } from './interpretDiff';
+import { reducer } from './reducer';
 
-export function createSongManager(shared) {
+export function createSongManager() {
   return {
-    getNewState(state, action) {
-      return getOr({}, 'payload.song', action);
+    getNewState(state, action, dispatch) {
+      return reducer(state, action, dispatch);
     },
 
-    performSideEffects(state, action) {
+    performSideEffects(state, action, dispatch) {
       if (action.type === actions.SONG_UPDATED) {
         const { prevSong, song } = action.payload;
-        console.log(action.payload);
         const differences = deepDiff(prevSong, song) || [];
 
+        // console.log('-----');
+        // console.log(differences[differences.length - 1]);
+        // console.log(interpretDiff(differences[differences.length - 1], song));
+        // console.log('-----');
+
         differences.forEach((diff) => {
-          shared.dispatch(interpretDiff(diff, song));
+          dispatch(interpretDiff(diff, song));
         });
       }
     },

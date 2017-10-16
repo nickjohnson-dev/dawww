@@ -1,15 +1,13 @@
-import * as busChannels from '../busChannels';
-import { handleNotesUpdate } from './handleNotesUpdate';
-import { handleSequencesUpdate } from './handleSequencesUpdate';
+import { reducer } from './reducer';
+// import { handleNotesUpdate } from './handleNotesUpdate';
+// import { handleSequencesUpdate } from './handleSequencesUpdate';
 
-export default (shared) => {
-  shared.on(busChannels.UPDATE_OCCURRED, (update) => {
-    if (update.dataType === 'notes') {
-      shared.setState(handleNotesUpdate(shared, update));
-    }
+export function createPartsManager(shared) {
+  return {
+    getNewState(state, action) {
+      return reducer(state, action, shared);
+    },
 
-    if (update.dataType === 'sequences') {
-      shared.setState(handleSequencesUpdate(shared, update));
-    }
-  });
-};
+    performSideEffects() {},
+  };
+}

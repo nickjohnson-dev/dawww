@@ -1,5 +1,6 @@
 export const NOTE_ADDED = 'NOTE_ADDED';
 export const NOTE_DELETED = 'NOTE_DELETED';
+export const NOTE_PLAYED = 'NOTE_PLAYED';
 export const NOTE_POINT_ADDED = 'NOTE_POINT_ADDED';
 export const NOTE_POINT_DELETED = 'NOTE_POINT_DELETED';
 export const NOTE_POINT_X_EDITED = 'NOTE_POINT_X_EDITED';
@@ -27,6 +28,11 @@ export const noteAdded = note => ({
 export const noteDeleted = note => ({
   type: NOTE_DELETED,
   payload: { note },
+});
+
+export const notePlayed = ({ length, pitch, position, time, trackId }) => ({
+  type: NOTE_PLAYED,
+  payload: { length, pitch, position, time, trackId },
 });
 
 export const notePointAdded = ({ id, index, value }) => ({

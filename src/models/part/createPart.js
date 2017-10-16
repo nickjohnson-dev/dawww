@@ -8,9 +8,11 @@ export function createPart({ playNote, notes, sequence }, { toneAdapter }) {
   const onStep = (time, step) => {
     data[step].forEach((note) => {
       playNote({
+        length: note.length,
+        pitch: note.pitch,
+        position: note.position,
         trackId,
         time,
-        ...note,
       });
     });
   };

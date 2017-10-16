@@ -10,6 +10,7 @@ import { createChannelsManager } from './channelsManager';
 // import playback from './playback';
 // import playbackState from './playbackState';
 import { getState, setState } from './state';
+import { createPartsManager } from './partsManager';
 import { createSongManager } from './songManager';
 import { createStepSequencesManager } from './stepSequencesManager';
 import { createToneAdapter } from './toneAdapter';
@@ -26,6 +27,7 @@ export default function Dawww(options) {
   };
   const modules = {
     channels: createChannelsManager(shared),
+    parts: createPartsManager(shared),
     song: createSongManager(shared),
     stepSequences: createStepSequencesManager(shared),
   };
@@ -35,17 +37,8 @@ export default function Dawww(options) {
   }));
 
   // Initialize modules
-  // parts(shared);
   // playback(shared);
   // playbackState(shared);
-
-  // on(busChannels.UPDATE_REQUESTED, (song) => {
-  //   const actions = updateManager.getUpdateActions(song);
-  //
-  //   actions.forEach((action) => {
-  //     emit(busChannels.ACTION_OCCURRED)(action);
-  //   });
-  // });
 
   on(busChannels.ACTION_OCCURRED, (action) => {
     const reduceNewState = (acc, cur) => ({
@@ -56,10 +49,9 @@ export default function Dawww(options) {
 
     setState(newState);
 
-    // console.log('update', getState());
-
+    // console.log('update', action.type, getState());
     values(modules).forEach(({ performSideEffects }) => {
-      performSideEffects(getState(), action);
+      performSideEffects(getState(), action, shared.dispatch);
     });
   });
 
