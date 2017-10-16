@@ -1,5 +1,4 @@
 import test from 'ava';
-import noop from 'lodash/fp/noop';
 import sinon from 'sinon';
 import { createToneAdapter } from '../index';
 
@@ -16,7 +15,7 @@ test('should return instance of Tone.Sequence ', (t) => {
 
 test('should invoke Tone.Sequence constructor with onStep, array of empty objects with length === length, "32n"', (t) => {
   const onStep = () => {};
-  const expected = [onStep, [{ fn: noop }, { fn: noop }, { fn: noop }], '32n'];
+  const expected = [onStep, [0, 1, 2], '32n'];
   const constructor = sinon.spy();
   class Sequence {
     constructor(...args) {
