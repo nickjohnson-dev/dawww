@@ -6,6 +6,7 @@ import * as actions from '../../actions';
 
 export function handleSequenceAdded(getState, action, shared) {
   const sequence = getOr({}, 'payload.sequence', action);
+  const position = getOr(0, 'position', sequence);
   const trackId = getOr('', 'trackId', sequence);
   const allNotes = getOr({}, 'song.notes', getState());
   const notesInSequence = filter(
@@ -15,8 +16,8 @@ export function handleSequenceAdded(getState, action, shared) {
   const part = getOr({ at: noop }, `parts[${sequence.id}]`, getState());
 
   notesInSequence.forEach((note) => {
-    const position = getOr(-1, 'points[0].x', note);
-    const step = part.at(position).value;
+    const notePosition = getOr(-1, 'points[0].x', note);
+    const step = part.at(notePosition).value;
     const fn = (payload, time) => shared.dispatch(actions.partStepTriggered({
       noteIds: payload.noteIds,
       trackId: payload.trackId,
@@ -27,6 +28,10 @@ export function handleSequenceAdded(getState, action, shared) {
       trackId,
     };
 
-    part.at(position, { fn, payload });
+    part.at(notePosition, { fn, payload });
   });
+
+  part.start(shared.helpers.measuresToTime(position));
+
+  part.loop = false;
 }

@@ -6,10 +6,8 @@ export default function reducer(state = {}, action, shared) {
     case actions.SEQUENCE_ADDED:
       return {
         ...state,
-        [action.payload.sequence.id]: shared.models.part.create({
-          measureCount: action.payload.sequence.measureCount,
-          position: action.payload.sequence.position,
-          shared,
+        [action.payload.sequence.id]: shared.toneAdapter.createSequence({
+          length: action.payload.measureCount * 32,
         }),
       };
     case actions.SEQUENCE_DELETION_ACCEPTED:

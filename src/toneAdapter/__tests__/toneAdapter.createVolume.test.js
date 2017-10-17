@@ -13,7 +13,7 @@ test('should return instance of Tone.Volume ', (t) => {
   t.is(result, expected);
 });
 
-test('should invoke Tone.Volume constructor with volume', (t) => {
+test('should invoke Tone.Volume constructor with options.track.volume', (t) => {
   const expected = [-5];
   const constructor = sinon.spy();
   class Volume {
@@ -24,7 +24,11 @@ test('should invoke Tone.Volume constructor with volume', (t) => {
   const toneAdapter = createToneAdapter({
     Volume,
   });
-  toneAdapter.createVolume(-5);
+  toneAdapter.createVolume({
+    track: {
+      volume: -5,
+    },
+  });
   const result = constructor.lastCall.args;
   t.deepEqual(result, expected);
 });

@@ -13,19 +13,22 @@ test('should return instance of Tone.Sequence ', (t) => {
   t.is(result, expected);
 });
 
-test('should invoke Tone.Sequence constructor with onStep, array of empty objects with length === length, "32n"', (t) => {
-  const onStep = () => {};
-  const expected = [onStep, [0, 1, 2], '32n'];
+test('should invoke Tone.Sequence constructor with correct onSequenceStep method, range of numbers with length === length, "32n"', (t) => {
+  const onSequenceStep = () => {};
+  const expected = [onSequenceStep, [0, 1, 2], '32n'];
   const constructor = sinon.spy();
   class Sequence {
     constructor(...args) {
       constructor(...args);
     }
   }
-  const toneAdapter = createToneAdapter({
-    Sequence,
+  const toneAdapter = {
+    ...createToneAdapter({ Sequence }),
+    onSequenceStep,
+  };
+  toneAdapter.createSequence({
+    length: 3,
   });
-  toneAdapter.createSequence(onStep, 3);
   const result = constructor.lastCall.args;
   t.deepEqual(result, expected);
 });

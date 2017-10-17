@@ -6,9 +6,8 @@ export default function reducer(state = {}, action, shared) {
     case actions.TRACK_ADDED:
       return {
         ...state,
-        [action.payload.track.id]: shared.models.instrument.create({
+        [action.payload.track.id]: shared.toneAdapter.createInstrument({
           track: action.payload.track,
-          shared,
         }),
       };
     case actions.TRACK_DELETED:

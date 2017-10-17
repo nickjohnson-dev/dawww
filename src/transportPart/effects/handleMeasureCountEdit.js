@@ -14,5 +14,9 @@ export function handleMeasureCountEdit(getState, action, shared) {
     });
   }, part.length);
 
+  part.start(0);
+
+  part.loop = false;
+
   shared.toneAdapter.setLoopPoints(0, shared.helpers.measuresToTime(measureCount));
 }

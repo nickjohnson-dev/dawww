@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import getOr from 'lodash/fp/getOr';
 import invokeArgs from 'lodash/fp/invokeArgs';
+import isFunction from 'lodash/fp/isFunction';
 import range from 'lodash/fp/range';
 // eslint-disable-next-line lodash-fp/use-fp
 import set from 'lodash/set';
@@ -24,16 +25,23 @@ export function createToneAdapter(Tone) {
       return instrument;
     },
 
-    createSequence(onStep, length) {
+    createSequence(options) {
+      const length = getOr(0, 'length', options);
       const Sequence = getOr(Object, 'Sequence', Tone);
 
-      return new Sequence(onStep, range(0, length), '32n');
+      return new Sequence(this.onSequenceStep, range(0, length), '32n');
     },
 
-    createVolume(volume) {
+    createVolume(options) {
+      const volume = getOr(0, 'track.volume', options);
       const Volume = getOr(Object, 'Volume', Tone);
 
       return new Volume(volume);
+    },
+
+    onSequenceStep(time, step) {
+      if (!isFunction(step.fn)) return;
+      step.fn(step.payload, time);
     },
 
     pause() {

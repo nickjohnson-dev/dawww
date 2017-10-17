@@ -6,10 +6,9 @@ export default function reducer(state = {}, action, shared) {
     case actions.TRACK_ADDED:
       return {
         ...state,
-        [action.payload.track.id]: shared.models.volumeNode.create({
-          isAnyTrackSoloing: action.payload.isAnyTrackSoloing,
+        [action.payload.track.id]: shared.toneAdapter.createVolume({
           track: action.payload.track,
-        }, shared),
+        }),
       };
     case actions.TRACK_DELETED:
       return omit([action.payload.track.id], state);
