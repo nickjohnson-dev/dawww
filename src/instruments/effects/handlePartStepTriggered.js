@@ -1,11 +1,11 @@
 import getOr from 'lodash/fp/getOr';
 import * as helpers from '../../helpers';
-import { playNote } from '../../models/channel';
+import { playNote } from '../../models/instrument';
 
 export function handlePartStepTriggered(getState, action) {
   const time = getOr(0, 'payload.time', action);
   const trackId = getOr('', 'payload.trackId', action);
-  const channel = getOr({}, `channels[${trackId}]`, getState());
+  const instrument = getOr({}, `instruments[${trackId}]`, getState());
   const noteIds = getOr([], 'payload.noteIds', action);
 
   noteIds.forEach((noteId) => {
@@ -14,6 +14,6 @@ export function handlePartStepTriggered(getState, action) {
     const name = helpers.getPitchName(pitch);
     const length = helpers.getNoteLength(note);
 
-    playNote(channel, name, length, time);
+    playNote(instrument, name, length, time);
   });
 }

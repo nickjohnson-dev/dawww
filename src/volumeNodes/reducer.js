@@ -1,13 +1,13 @@
 import omit from 'lodash/fp/omit';
 import * as actions from '../actions';
-import { createChannel } from '../models/channel';
+import { createVolumeNode } from '../models/volumeNode';
 
 export default function reducer(state = {}, action, shared) {
   switch (action.type) {
     case actions.TRACK_ADDED:
       return {
         ...state,
-        [action.payload.track.id]: createChannel({
+        [action.payload.track.id]: createVolumeNode({
           isAnyTrackSoloing: action.payload.isAnyTrackSoloing,
           track: action.payload.track,
         }, shared),

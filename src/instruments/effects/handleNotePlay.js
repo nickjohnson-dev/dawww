@@ -1,11 +1,11 @@
 import getOr from 'lodash/fp/getOr';
 import * as helpers from '../../helpers';
-import { playNote } from '../../models/channel';
+import { playNote } from '../../models/instrument';
 
 export function handleNotePlay(getState, action) {
   const { trackId, pitch, length, time } = action.payload;
-  const channel = getOr({}, `channels[${trackId}]`, getState());
+  const instrument = getOr({}, `instruments[${trackId}]`, getState());
   const name = helpers.getPitchName(pitch);
 
-  playNote(channel, name, length, time);
+  playNote(instrument, name, length, time);
 }

@@ -1,5 +1,5 @@
 let state = {
-  channels: {},
+  instruments: {},
   parts: {},
   song: {
     notes: {},
@@ -7,6 +7,7 @@ let state = {
     tracks: {},
   },
   transportPart: {},
+  volumeNodes: {},
 };
 
 export function getState() {

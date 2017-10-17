@@ -1,5 +1,5 @@
 export default {
-  bpm: 200,
+  bpm: 140,
   id: '0',
   measureCount: 1,
   notes: {
@@ -65,7 +65,7 @@ export default {
       isMuted: false,
       isSoloing: false,
       voice: 'square',
-      volume: -10,
+      volume: -2,
     },
     1: {
       id: '1',

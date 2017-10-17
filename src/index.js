@@ -22,7 +22,7 @@ export default function Dawww(options) {
   on(channels.ACTION_OCCURRED, (action) => {
     setState(reducer(getState(), action, shared));
 
-    // console.log('ACTION_OCCURRED', action, getState());
+    console.log('ACTION_OCCURRED', action, getState());
     effects(getState, action, shared);
 
     if (action.type === actions.POSITION_SET) {
