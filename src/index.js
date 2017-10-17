@@ -2,6 +2,8 @@ import getOr from 'lodash/fp/getOr';
 import Tone from 'tone';
 import { channels, emit, on } from './bus';
 import * as actions from './actions';
+import * as helpers from './helpers';
+import * as models from './models';
 import { getState, setState } from './state';
 import effects from './effects';
 import reducer from './reducer';
@@ -12,6 +14,8 @@ export default function Dawww(options) {
   const toneAdapter = createToneAdapter(Tone);
   const shared = {
     dispatch,
+    helpers,
+    models,
     toneAdapter,
   };
   const updateSong = song => dispatch(actions.songUpdated({

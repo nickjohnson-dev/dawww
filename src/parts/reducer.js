@@ -1,13 +1,12 @@
 import omit from 'lodash/fp/omit';
 import * as actions from '../actions';
-import { createPart } from '../models/part';
 
 export default function reducer(state = {}, action, shared) {
   switch (action.type) {
     case actions.SEQUENCE_ADDED:
       return {
         ...state,
-        [action.payload.sequence.id]: createPart({
+        [action.payload.sequence.id]: shared.models.part.create({
           measureCount: action.payload.sequence.measureCount,
           position: action.payload.sequence.position,
           shared,

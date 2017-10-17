@@ -1,8 +1,7 @@
 import getOr from 'lodash/fp/getOr';
 import * as selectors from '../../selectors';
-import { mute, unmute } from '../../models/volumeNode';
 
-export function updateMuting(getState) {
+export function updateMuting(getState, action, shared) {
   const volumeNodes = getOr({}, 'volumeNodes', getState());
   const anySolo = selectors.getIsAnyTrackSoloing(getState());
 
@@ -14,10 +13,10 @@ export function updateMuting(getState) {
     const noMutingOrSoloing = !anySolo && !isMuted && !isSoloing;
 
     if (isOneOfSomeSoloingTracks || noMutingOrSoloing) {
-      unmute(volumeNode);
+      shared.models.volumeNode.unmute(volumeNode);
       return;
     }
 
-    mute(volumeNode);
+    shared.models.volumeNode.mute(volumeNode);
   });
 }

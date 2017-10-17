@@ -1,2 +1,7 @@
-export { createPart } from './createPart';
-export { disposePart } from './disposePart';
+import { create } from './create';
+import { dispose } from './dispose';
+
+export const part = {
+  create,
+  dispose,
+};

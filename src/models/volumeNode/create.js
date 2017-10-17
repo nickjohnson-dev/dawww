@@ -1,6 +1,6 @@
 import getOr from 'lodash/fp/getOr';
 
-export function createVolumeNode(options, shared) {
+export function create(options, shared) {
   const isAnyTrackSoloing = getOr(false, 'isAnyTrackSoloing', options);
   const isMuted = getOr(false, 'track.isMuted', options);
   const isSoloing = getOr(false, 'track.isSoloing', options);

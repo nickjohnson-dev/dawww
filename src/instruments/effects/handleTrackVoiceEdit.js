@@ -1,10 +1,9 @@
 import getOr from 'lodash/fp/getOr';
-import { setVoice } from '../../models/instrument';
 
-export function handleTrackVoiceEdit(getState, action) {
+export function handleTrackVoiceEdit(getState, action, shared) {
   const id = getOr('', 'payload.id', action);
   const instrument = getOr({}, `instruments[${id}]`, getState());
   const voice = getOr(0, 'payload.value', action);
 
-  setVoice(instrument, voice);
+  shared.models.instrument.setVoice(instrument, voice);
 }

@@ -1,3 +1,9 @@
-export * from './createInstrument';
-export * from './playNote';
-export * from './setVoice';
+import { create } from './create';
+import { playNote } from './playNote';
+import { setVoice } from './setVoice';
+
+export const instrument = {
+  create,
+  playNote,
+  setVoice,
+};
