@@ -8,7 +8,10 @@ export const NOTE_POINT_DELETED = 'NOTE_POINT_DELETED';
 export const NOTE_POINT_X_EDITED = 'NOTE_POINT_X_EDITED';
 export const NOTE_POINT_Y_EDITED = 'NOTE_POINT_Y_EDITED';
 export const NOTE_SEQUENCE_ID_EDITED = 'NOTE_SEQUENCE_ID_EDITED';
+export const PLAYBACK_PAUSE_REQUESTED = 'PLAYBACK_PAUSE_REQUESTED';
+export const PLAYBACK_START_REQUESTED = 'PLAYBACK_START_REQUESTED';
 export const PLAYBACK_STATE_SET = 'PLAYBACK_STATE_SET';
+export const PLAYBACK_STOP_REQUESTED = 'PLAYBACK_STOP_REQUESTED';
 export const POSITION_SET = 'POSITION_SET';
 export const SEQUENCE_ADDED = 'SEQUENCE_ADDED';
 export const SEQUENCE_DELETION_ACCEPTED = 'SEQUENCE_DELETION_ACCEPTED';
@@ -76,9 +79,21 @@ export const noteSequenceIdEdited = ({ id, prevValue, value }) => ({
   payload: { id, prevValue, value },
 });
 
+export const playbackPauseRequested = () => ({
+  type: PLAYBACK_PAUSE_REQUESTED,
+});
+
+export const playbackStartRequested = () => ({
+  type: PLAYBACK_START_REQUESTED,
+});
+
 export const playbackStateSet = playbackState => ({
   type: PLAYBACK_STATE_SET,
   payload: { playbackState },
+});
+
+export const playbackStopRequested = () => ({
+  type: PLAYBACK_STOP_REQUESTED,
 });
 
 export const positionSet = position => ({

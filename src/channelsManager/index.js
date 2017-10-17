@@ -1,6 +1,5 @@
 import getOr from 'lodash/fp/getOr';
 import * as actions from '../actions';
-import * as busChannels from '../busChannels';
 import * as helpers from '../helpers';
 import { playNote } from '../models/channel';
 import { effects } from './effects';
@@ -15,8 +14,8 @@ export function createChannelsManager(shared) {
     performSideEffects(state, action) {
       effects(action, state, shared.emit);
 
-      if (action.type === busChannels.NOTE_PLAYED) {
-        const { trackId, pitch, length, time } = action;
+      if (action.type === actions.NOTE_PLAYED) {
+        const { trackId, pitch, length, time } = action.payload;
 
         const channel = getOr({}, `channels[${trackId}]`, state);
         const name = helpers.getPitchName(pitch);
