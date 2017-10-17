@@ -8,8 +8,6 @@ const dawww = Dawww({
   song: sampleSong,
 });
 
-// dawww.updateSong(sampleSongAlt);
-
 const view = props => h('div', {}, [
   h('div', {}, [
     props.playbackState,

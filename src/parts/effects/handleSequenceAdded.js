@@ -17,14 +17,18 @@ export function handleSequenceAdded(getState, action, shared) {
 
   notesInSequence.forEach((note) => {
     const notePosition = getOr(-1, 'points[0].x', note);
-    const step = part.at(notePosition).value;
+    const step = part.at(notePosition);
+
+    if (!step) return;
+
+    const stepValue = step.value;
     const fn = (payload, time) => shared.dispatch(actions.partStepTriggered({
       noteIds: payload.noteIds,
       trackId: payload.trackId,
       time,
     }));
     const payload = {
-      noteIds: uniq([...getOr([], 'value.payload.noteIds', step), note.id]),
+      noteIds: uniq([...getOr([], 'value.payload.noteIds', stepValue), note.id]),
       trackId,
     };
 

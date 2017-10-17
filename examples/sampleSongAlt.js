@@ -1,7 +1,7 @@
 export default {
   bpm: 140,
   id: '0',
-  measureCount: 1,
+  measureCount: 2,
   notes: {
     0: {
       id: '0',
@@ -10,7 +10,7 @@ export default {
     },
     1: {
       id: '1',
-      points: [{ x: 4, y: 47 }, { x: 7, y: 47 }],
+      points: [{ x: 4, y: 35 }, { x: 7, y: 35 }],
       sequenceId: '0',
     },
     2: {
@@ -20,7 +20,7 @@ export default {
     },
     3: {
       id: '3',
-      points: [{ x: 12, y: 47 }, { x: 15, y: 47 }],
+      points: [{ x: 12, y: 35 }, { x: 15, y: 35 }],
       sequenceId: '0',
     },
     4: {
@@ -43,18 +43,23 @@ export default {
       points: [{ x: 12, y: 47 }, { x: 15, y: 47 }],
       sequenceId: '1',
     },
+    8: {
+      id: '8',
+      points: [{ x: 32, y: 47 }, { x: 35, y: 47 }],
+      sequenceId: '0',
+    },
   },
   sequences: {
     0: {
       id: '0',
-      measureCount: 1,
+      measureCount: 2,
       position: 0,
       trackId: '0',
     },
     1: {
       id: '1',
       measureCount: 1,
-      position: 0,
+      position: 1,
       trackId: '1',
     },
   },
@@ -65,14 +70,14 @@ export default {
       isMuted: false,
       isSoloing: false,
       voice: 'square',
-      volume: -10,
+      volume: -5,
     },
     1: {
       id: '1',
       isMuted: false,
       isSoloing: false,
       voice: 'sawtooth',
-      volume: -10,
+      volume: -5,
     },
   },
 };
