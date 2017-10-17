@@ -1,10 +1,10 @@
 import { runEffects } from './effects';
 import { reducer } from './reducer';
 
-export function createPartsManager(shared) {
+export function createPartsManager() {
   return {
     getNewState(...args) {
-      return reducer(...args, shared);
+      return reducer(...args);
     },
 
     performSideEffects(...args) {

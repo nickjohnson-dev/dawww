@@ -5,31 +5,31 @@ import { handleTrackVoiceEdit } from './handleTrackVoiceEdit';
 import { handleTrackVolumeEdit } from './handleTrackVolumeEdit';
 import { handleTrackMutingEdits } from './handleTrackMutingEdits';
 
-export function runEffects(state, action, dispatch, toneAdapter) {
+export function runEffects(state, action, shared) {
   switch (action.type) {
     case actions.NOTE_PLAYED:
-      handleNotePlay(state, action, dispatch, toneAdapter);
+      handleNotePlay(state, action, shared);
       break;
     case actions.PART_STEP_TRIGGERED:
-      handlePartStepTriggered(state, action, dispatch, toneAdapter);
+      handlePartStepTriggered(state, action, shared);
       break;
     case actions.TRACK_ADDED:
-      handleTrackMutingEdits(state, action, dispatch, toneAdapter);
+      handleTrackMutingEdits(state, action, shared);
       break;
     case actions.TRACK_DELETED:
-      handleTrackMutingEdits(state, action, dispatch, toneAdapter);
+      handleTrackMutingEdits(state, action, shared);
       break;
     case actions.TRACK_IS_MUTED_EDITED:
-      handleTrackMutingEdits(state, action, dispatch, toneAdapter);
+      handleTrackMutingEdits(state, action, shared);
       break;
     case actions.TRACK_IS_SOLOING_EDITED:
-      handleTrackMutingEdits(state, action, dispatch, toneAdapter);
+      handleTrackMutingEdits(state, action, shared);
       break;
     case actions.TRACK_VOICE_EDITED:
-      handleTrackVoiceEdit(state, action, dispatch, toneAdapter);
+      handleTrackVoiceEdit(state, action, shared);
       break;
     case actions.TRACK_VOLUME_EDITED:
-      handleTrackVolumeEdit(state, action, dispatch, toneAdapter);
+      handleTrackVolumeEdit(state, action, shared);
       break;
     default:
   }

@@ -1,7 +1,7 @@
 import deepDiff from 'deep-diff';
 import { interpretDiff } from './interpretDiff';
 
-export function handleSongUpdate(state, action, dispatch) {
+export function handleSongUpdate(state, action, shared) {
   const { prevSong, song } = action.payload;
   const differences = deepDiff(prevSong, song) || [];
 
@@ -13,6 +13,6 @@ export function handleSongUpdate(state, action, dispatch) {
   // console.groupEnd('handleSongUpdate');
 
   differences.forEach((diff) => {
-    dispatch(interpretDiff(diff, song));
+    shared.dispatch(interpretDiff(diff, song));
   });
 }

@@ -1,10 +1,10 @@
 import { reducer } from './reducer';
 import { runEffects } from './effects';
 
-export function createChannelsManager(shared) {
+export function createChannelsManager() {
   return {
     getNewState(...args) {
-      return reducer(...args, shared);
+      return reducer(...args);
     },
 
     performSideEffects(...args) {

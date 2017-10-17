@@ -38,7 +38,7 @@ export default function Dawww(options) {
   on(busChannels.ACTION_OCCURRED, (action) => {
     const reduceNewState = (acc, cur) => ({
       ...acc,
-      [cur]: modules[cur].getNewState(getState()[cur], action),
+      [cur]: modules[cur].getNewState(getState()[cur], action, shared),
     });
     const newState = Object.keys(modules).reduce(reduceNewState, {});
 
@@ -46,7 +46,7 @@ export default function Dawww(options) {
 
     // console.log('ACTION_OCCURRED', action, getState());
     values(modules).forEach(({ performSideEffects }) => {
-      performSideEffects(getState(), action, dispatch, toneAdapter);
+      performSideEffects(getState(), action, shared);
     });
 
     if (action.type === actions.POSITION_SET) {

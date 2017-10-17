@@ -4,16 +4,16 @@ import times from 'lodash/fp/times';
 import * as actions from '../../actions';
 import { measuresToTime } from '../../helpers';
 
-export function handleMeasureCountEdit(state, action, dispatch, toneAdapter) {
+export function handleMeasureCountEdit(state, action, shared) {
   const measureCount = getOr(0, 'payload.measureCount', action);
   const part = getOr({ at: noop }, 'transportPart', state);
 
   times((i) => {
     part.at(i, {
-      fn: payload => dispatch(actions.positionSet(payload)),
+      fn: payload => shared.dispatch(actions.positionSet(payload)),
       payload: i,
     });
   }, part.length);
 
-  toneAdapter.setLoopPoints(0, measuresToTime(measureCount));
+  shared.toneAdapter.setLoopPoints(0, measuresToTime(measureCount));
 }
