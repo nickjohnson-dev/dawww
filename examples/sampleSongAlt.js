@@ -52,7 +52,7 @@ export default {
   sequences: {
     0: {
       id: '0',
-      measureCount: 2,
+      measureCount: 1,
       position: 0,
       trackId: '0',
     },
@@ -65,13 +65,13 @@ export default {
   },
   title: 'Sample Song',
   tracks: {
-    0: {
-      id: '0',
-      isMuted: false,
-      isSoloing: false,
-      voice: 'square',
-      volume: -5,
-    },
+    // 0: {
+    //   id: '0',
+    //   isMuted: false,
+    //   isSoloing: false,
+    //   voice: 'square',
+    //   volume: -5,
+    // },
     1: {
       id: '1',
       isMuted: false,

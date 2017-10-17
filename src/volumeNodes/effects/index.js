@@ -9,7 +9,7 @@ export default function effects(getState, action, shared) {
       handleTrackAdded(getState, action, shared);
       updateMuting(getState, action, shared);
       break;
-    case actions.TRACK_DELETED:
+    case actions.TRACK_DELETION_ACCEPTED:
       updateMuting(getState, action, shared);
       break;
     case actions.TRACK_IS_MUTED_EDITED:

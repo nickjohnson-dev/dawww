@@ -4,5 +4,5 @@ import * as actions from '../../../actions';
 export function interpretTrackDeletedDiff(diff) {
   const track = getOr({}, 'lhs', diff);
 
-  return actions.trackDeleted(track);
+  return actions.trackDeletionRequested(track);
 }

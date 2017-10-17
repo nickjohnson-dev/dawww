@@ -266,9 +266,9 @@ test('should return interpreted action when diff is TRACK_ADDED type', (t) => {
   t.deepEqual(result, expected);
 });
 
-test('should return interpreted action when diff is TRACK_DELETED type', (t) => {
+test('should return interpreted action when diff is TRACK_DELETION_REQUESTED type', (t) => {
   const expected = {
-    type: actions.TRACK_DELETED,
+    type: actions.TRACK_DELETION_REQUESTED,
     payload: {
       track: { id: 'a' },
     },

@@ -10,7 +10,7 @@ export default function reducer(state = {}, action, shared) {
           track: action.payload.track,
         }),
       };
-    case actions.TRACK_DELETED:
+    case actions.TRACK_DELETION_ACCEPTED:
       return omit([action.payload.track.id], state);
     default:
       return state;

@@ -22,7 +22,8 @@ export const SEQUENCE_POSITION_EDITED = 'SEQUENCE_POSITION_EDITED';
 export const SEQUENCE_TRACK_ID_EDITED = 'SEQUENCE_TRACK_ID_EDITED';
 export const SONG_UPDATED = 'SONG_UPDATED';
 export const TRACK_ADDED = 'TRACK_ADDED';
-export const TRACK_DELETED = 'TRACK_DELETED';
+export const TRACK_DELETION_ACCEPTED = 'TRACK_DELETION_ACCEPTED';
+export const TRACK_DELETION_REQUESTED = 'TRACK_DELETION_REQUESTED';
 export const TRACK_IS_MUTED_EDITED = 'TRACK_IS_MUTED_EDITED';
 export const TRACK_IS_SOLOING_EDITED = 'TRACK_IS_SOLOING_EDITED';
 export const TRACK_VOICE_EDITED = 'TRACK_VOICE_EDITED';
@@ -146,8 +147,13 @@ export const trackAdded = ({ isAnyTrackSoloing, track }) => ({
   payload: { isAnyTrackSoloing, track },
 });
 
-export const trackDeleted = track => ({
-  type: TRACK_DELETED,
+export const trackDeletionAccepted = track => ({
+  type: TRACK_DELETION_ACCEPTED,
+  payload: { track },
+});
+
+export const trackDeletionRequested = track => ({
+  type: TRACK_DELETION_REQUESTED,
   payload: { track },
 });
 
