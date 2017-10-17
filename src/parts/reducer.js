@@ -7,7 +7,7 @@ export default function reducer(state = {}, action, shared) {
       return {
         ...state,
         [action.payload.sequence.id]: shared.toneAdapter.createSequence({
-          length: action.payload.measureCount * 32,
+          length: action.payload.sequence.measureCount * 32,
         }),
       };
     case actions.SEQUENCE_DELETION_ACCEPTED:
