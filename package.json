@@ -54,7 +54,8 @@
   },
   "ava": {
     "require": [
-      "babel-register"
+      "babel-register",
+      "./test/helpers/setup-browser-env.js"
     ],
     "babel": "inherit"
   },
