@@ -3,9 +3,9 @@ import * as actions from '../../../actions';
 import * as constants from '../../../constants';
 import { interpretDiff } from '../interpretDiff';
 
-test('should return interpreted action when diff is BPM_CHANGED type', (t) => {
+test('should return interpreted action when diff is BPM_EDITED type', (t) => {
   const expected = {
-    type: actions.BPM_CHANGED,
+    type: actions.BPM_EDITED,
     payload: {
       bpm: 200,
     },
@@ -18,9 +18,9 @@ test('should return interpreted action when diff is BPM_CHANGED type', (t) => {
   t.deepEqual(result, expected);
 });
 
-test('should return interpreted action when diff is MEASURE_COUNT_CHANGED type', (t) => {
+test('should return interpreted action when diff is MEASURE_COUNT_EDITED type', (t) => {
   const expected = {
-    type: actions.MEASURE_COUNT_CHANGED,
+    type: actions.MEASURE_COUNT_EDITED,
     payload: {
       measureCount: 4,
     },

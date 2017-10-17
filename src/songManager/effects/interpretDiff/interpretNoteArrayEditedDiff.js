@@ -3,7 +3,7 @@ import last from 'lodash/fp/last';
 import * as actions from '../../../actions';
 import * as constants from '../../../constants';
 
-export function interpretNoteArrayChangedDiff(diff) {
+export function interpretNoteArrayEditedDiff(diff) {
   const id = getOr([], 'path[1]', diff);
   const index = getOr(-1, 'index', diff);
   const prevValue = getOr({}, 'item.lhs', diff);

@@ -1,18 +1,36 @@
-import noop from 'lodash/fp/noop';
 import * as actions from '../../actions';
-import { setChannelVoice } from './setChannelVoice';
-import { setChannelVolume } from './setChannelVolume';
-import { updateMuting } from './updateMuting';
+import { handleNotePlay } from './handleNotePlay';
+import { handlePartStepTriggered } from './handlePartStepTriggered';
+import { handleTrackVoiceEdit } from './handleTrackVoiceEdit';
+import { handleTrackVolumeEdit } from './handleTrackVolumeEdit';
+import { handleTrackMutingEdits } from './handleTrackMutingEdits';
 
-export function effects(action, ...rest) {
-  const effect = {
-    [actions.TRACK_ADDED]: updateMuting,
-    [actions.TRACK_DELETED]: updateMuting,
-    [actions.TRACK_IS_MUTED_EDITED]: updateMuting,
-    [actions.TRACK_IS_SOLOING_EDITED]: updateMuting,
-    [actions.TRACK_VOICE_EDITED]: setChannelVoice,
-    [actions.TRACK_VOLUME_EDITED]: setChannelVolume,
-  }[action.type] || noop;
-
-  effect(action, ...rest);
+export function runEffects(state, action, dispatch, toneAdapter) {
+  switch (action.type) {
+    case actions.NOTE_PLAYED:
+      handleNotePlay(state, action, dispatch, toneAdapter);
+      break;
+    case actions.PART_STEP_TRIGGERED:
+      handlePartStepTriggered(state, action, dispatch, toneAdapter);
+      break;
+    case actions.TRACK_ADDED:
+      handleTrackMutingEdits(state, action, dispatch, toneAdapter);
+      break;
+    case actions.TRACK_DELETED:
+      handleTrackMutingEdits(state, action, dispatch, toneAdapter);
+      break;
+    case actions.TRACK_IS_MUTED_EDITED:
+      handleTrackMutingEdits(state, action, dispatch, toneAdapter);
+      break;
+    case actions.TRACK_IS_SOLOING_EDITED:
+      handleTrackMutingEdits(state, action, dispatch, toneAdapter);
+      break;
+    case actions.TRACK_VOICE_EDITED:
+      handleTrackVoiceEdit(state, action, dispatch, toneAdapter);
+      break;
+    case actions.TRACK_VOLUME_EDITED:
+      handleTrackVolumeEdit(state, action, dispatch, toneAdapter);
+      break;
+    default:
+  }
 }

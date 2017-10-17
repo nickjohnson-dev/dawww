@@ -1,8 +1,8 @@
 import getOr from 'lodash/fp/getOr';
 import * as actions from '../../../actions';
 
-export function interpretMeasureCountChangedDiff(diff) {
+export function interpretMeasureCountEditedDiff(diff) {
   const measureCount = getOr(0, 'rhs', diff);
 
-  return actions.measureCountChanged(measureCount);
+  return actions.measureCountEdited(measureCount);
 }

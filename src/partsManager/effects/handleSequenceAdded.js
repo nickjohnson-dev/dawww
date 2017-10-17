@@ -17,8 +17,9 @@ export function handleSequenceAdded(state, action, dispatch) {
   notesInSequence.forEach((note) => {
     const position = getOr(-1, 'points[0].x', note);
     const step = part.at(position).value;
-    const fn = (payload, time) => dispatch(actions.sequenceStepTriggered({
-      ...payload,
+    const fn = (payload, time) => dispatch(actions.partStepTriggered({
+      noteIds: payload.noteIds,
+      trackId: payload.trackId,
       time,
     }));
     const payload = {

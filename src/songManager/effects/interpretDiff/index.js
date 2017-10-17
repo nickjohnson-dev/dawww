@@ -1,7 +1,7 @@
 import getOr from 'lodash/fp/getOr';
 import * as actions from '../../../actions';
-import { interpretBPMChangedDiff } from './interpretBPMChangedDiff';
-import { interpretMeasureCountChangedDiff } from './interpretMeasureCountChangedDiff';
+import { interpretBPMEditedDiff } from './interpretBPMEditedDiff';
+import { interpretMeasureCountEditedDiff } from './interpretMeasureCountEditedDiff';
 import { interpretNotesDiff } from './interpretNotesDiff';
 import { interpretSequencesDiff } from './interpretSequencesDiff';
 import { interpretTracksDiff } from './interpretTracksDiff';
@@ -9,9 +9,9 @@ import { interpretTracksDiff } from './interpretTracksDiff';
 export function interpretDiff(diff, ...rest) {
   switch (getOr('', 'path[0]', diff)) {
     case 'bpm':
-      return interpretBPMChangedDiff(diff, ...rest);
+      return interpretBPMEditedDiff(diff, ...rest);
     case 'measureCount':
-      return interpretMeasureCountChangedDiff(diff, ...rest);
+      return interpretMeasureCountEditedDiff(diff, ...rest);
     case 'notes':
       return interpretNotesDiff(diff, ...rest);
     case 'sequences':

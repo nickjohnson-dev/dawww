@@ -3,7 +3,7 @@ import getOr from 'lodash/fp/getOr';
 import * as selectors from '../../selectors';
 import { muteChannel, unmuteChannel } from '../../models/channel';
 
-export function updateMuting(action, state) {
+export function handleTrackMutingEdits(state) {
   const channels = getOr({}, 'channels', state);
   const anySolo = selectors.getIsAnyTrackSoloing(state);
 

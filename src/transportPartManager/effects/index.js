@@ -1,10 +1,10 @@
 import * as actions from '../../actions';
-import { handleMeasureCountChange } from './handleMeasureCountChange';
+import { handleMeasureCountEdit } from './handleMeasureCountEdit';
 
 export function runEffects(state, action, dispatch, toneAdapter) {
   switch (action.type) {
-    case actions.MEASURE_COUNT_CHANGED:
-      handleMeasureCountChange(state, action, dispatch, toneAdapter);
+    case actions.MEASURE_COUNT_EDITED:
+      handleMeasureCountEdit(state, action, dispatch, toneAdapter);
       break;
     default:
   }

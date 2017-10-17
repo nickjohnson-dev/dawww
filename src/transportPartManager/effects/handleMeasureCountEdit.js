@@ -4,7 +4,7 @@ import times from 'lodash/fp/times';
 import * as actions from '../../actions';
 import { measuresToTime } from '../../helpers';
 
-export function handleMeasureCountChange(state, action, dispatch, toneAdapter) {
+export function handleMeasureCountEdit(state, action, dispatch, toneAdapter) {
   const measureCount = getOr(0, 'payload.measureCount', action);
   const part = getOr({ at: noop }, 'transportPart', state);
 

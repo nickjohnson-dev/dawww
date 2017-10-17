@@ -3,7 +3,7 @@ import { createPart } from '../models/part';
 
 export function reducer(state = {}, action, shared) {
   switch (action.type) {
-    case actions.MEASURE_COUNT_CHANGED:
+    case actions.MEASURE_COUNT_EDITED:
       return createPart({
         measureCount: action.payload.measureCount,
         shared,
