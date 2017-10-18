@@ -1,39 +1,49 @@
 import filter from 'lodash/fp/filter';
 import getOr from 'lodash/fp/getOr';
 import noop from 'lodash/fp/noop';
-import uniq from 'lodash/fp/uniq';
+import times from 'lodash/fp/times';
 import * as actions from '../../actions';
 
 export function handleSequenceAdded(getState, action, shared) {
   const sequence = getOr({}, 'payload.sequence', action);
+  const sequenceId = getOr('', 'id', sequence);
   const position = getOr(0, 'position', sequence);
   const trackId = getOr('', 'trackId', sequence);
   const allNotes = getOr({}, 'song.notes', getState());
   const notesInSequence = filter(
-    n => n.sequenceId === sequence.id,
+    n => n.sequenceId === sequenceId,
     allNotes,
   );
-  const part = getOr({ at: noop }, `parts[${sequence.id}]`, getState());
+  const part = getOr({ at: noop }, `parts[${sequenceId}]`, getState());
 
-  notesInSequence.forEach((note) => {
-    const notePosition = getOr(-1, 'points[0].x', note);
-    const step = part.at(notePosition);
+  times((i) => {
+    const notesAtStep = filter((note) => {
+      const notePosition = getOr(-1, 'points[0].x', note);
+      return notePosition === i;
+    }, notesInSequence);
+    const noteIdsAtStep = notesAtStep.map(getOr('', 'id'));
 
-    if (!step) return;
+    const fn = (payload, time) => {
+      const focusedSequenceId = getOr('', 'song.focusedSequenceId', getState());
 
-    const stepValue = step.value;
-    const fn = (payload, time) => shared.dispatch(actions.partStepTriggered({
-      noteIds: payload.noteIds,
-      trackId: payload.trackId,
-      time,
-    }));
+      if (focusedSequenceId !== '' && focusedSequenceId === sequenceId) {
+        shared.dispatch(actions.positionSet(i));
+      }
+
+      shared.dispatch(actions.partStepTriggered({
+        noteIds: payload.noteIds,
+        trackId: payload.trackId,
+        time,
+      }));
+    };
     const payload = {
-      noteIds: uniq([...getOr([], 'value.payload.noteIds', stepValue), note.id]),
+      noteIds: noteIdsAtStep,
+      i,
       trackId,
     };
 
-    part.at(notePosition, { fn, payload });
-  });
+    part.at(i, { fn, payload });
+  }, part.length);
 
   part.start(shared.helpers.measuresToTime(position));
 

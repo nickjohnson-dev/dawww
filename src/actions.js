@@ -1,4 +1,5 @@
 export const BPM_EDITED = 'BPM_EDITED';
+export const FOCUSED_SEQUENCE_ID_EDITED = 'FOCUSED_SEQUENCE_ID_EDITED';
 export const MEASURE_COUNT_EDITED = 'MEASURE_COUNT_EDITED';
 export const NOTE_ADDED = 'NOTE_ADDED';
 export const NOTE_DELETED = 'NOTE_DELETED';
@@ -33,6 +34,11 @@ export const UNKNOWN = 'UNKNOWN';
 export const bpmEdited = bpm => ({
   type: BPM_EDITED,
   payload: { bpm },
+});
+
+export const focusedSequenceIdEdited = focusedSequenceId => ({
+  type: FOCUSED_SEQUENCE_ID_EDITED,
+  payload: { focusedSequenceId },
 });
 
 export const measureCountEdited = measureCount => ({

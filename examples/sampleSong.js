@@ -1,5 +1,6 @@
 export default {
   bpm: 140,
+  focusedSequenceId: '1',
   id: '0',
   measureCount: 2,
   notes: {

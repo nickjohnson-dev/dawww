@@ -1,6 +1,7 @@
 import getOr from 'lodash/fp/getOr';
 import * as actions from '../../../actions';
 import { interpretBPMEditedDiff } from './interpretBPMEditedDiff';
+import { interpretFocusedSequenceIdEditedDiff } from './interpretFocusedSequenceIdEditedDiff';
 import { interpretMeasureCountEditedDiff } from './interpretMeasureCountEditedDiff';
 import { interpretNotesDiff } from './interpretNotesDiff';
 import { interpretSequencesDiff } from './interpretSequencesDiff';
@@ -10,6 +11,8 @@ export function interpretDiff(diff, ...rest) {
   switch (getOr('', 'path[0]', diff)) {
     case 'bpm':
       return interpretBPMEditedDiff(diff, ...rest);
+    case 'focusedSequenceId':
+      return interpretFocusedSequenceIdEditedDiff(diff, ...rest);
     case 'measureCount':
       return interpretMeasureCountEditedDiff(diff, ...rest);
     case 'notes':

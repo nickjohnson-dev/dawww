@@ -57,8 +57,8 @@ export function createToneAdapter(Tone) {
       set(Tone, 'Transport.loop', true);
     },
 
-    start() {
-      invokeArgs('Transport.start', [], Tone);
+    start(...args) {
+      invokeArgs('Transport.start', args, Tone);
     },
 
     stop() {
