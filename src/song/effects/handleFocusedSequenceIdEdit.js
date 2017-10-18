@@ -13,6 +13,6 @@ export function handleFocusedSequenceIdEdit(getState, action, shared) {
   );
 
   if (focusedSequenceId) {
-    shared.dispatch(actions.positionSetRequested(loopStartPoint * 32));
+    shared.dispatch(actions.positionSetRequested(0));
   }
 }
