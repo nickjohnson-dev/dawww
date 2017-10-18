@@ -1,3 +1,3 @@
 export function measuresToTime(measures) {
-  return `(${measures * 32} * 32n)`;
+  return `(${Math.floor(measures * 32)} * 32n)`;
 }

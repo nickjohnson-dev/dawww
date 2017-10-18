@@ -51,6 +51,13 @@ const view = props => h('div', {}, [
     }, [
       'play C3',
     ]),
+    h('button', {
+      onmousedown: () => {
+        dawww.setPosition(8);
+      },
+    }, [
+      'set position 8',
+    ]),
   ]),
 ]);
 

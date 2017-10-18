@@ -2,6 +2,7 @@ import * as actions from '../../actions';
 import { handlePlaybackPauseRequest } from './handlePlaybackPauseRequest';
 import { handlePlaybackStartRequest } from './handlePlaybackStartRequest';
 import { handlePlaybackStopRequest } from './handlePlaybackStopRequest';
+import { handlePositionSetRequest } from './handlePositionSetRequest';
 
 export default function effects(getState, action, shared) {
   switch (action.type) {
@@ -13,6 +14,9 @@ export default function effects(getState, action, shared) {
       break;
     case actions.PLAYBACK_STOP_REQUESTED:
       handlePlaybackStopRequest(getState, action, shared);
+      break;
+    case actions.POSITION_SET_REQUESTED:
+      handlePositionSetRequest(getState, action, shared);
       break;
     default:
   }

@@ -49,6 +49,7 @@ export default function Dawww(options) {
       pitch,
       trackId,
     })),
+    setPosition: (...args) => dispatch(actions.positionSetRequested(...args)),
     start: () => dispatch(actions.playbackStartRequested()),
     stop: () => dispatch(actions.playbackStopRequested()),
     updateSong,
