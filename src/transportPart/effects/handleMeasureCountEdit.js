@@ -1,34 +1,36 @@
 import getOr from 'lodash/fp/getOr';
 import noop from 'lodash/fp/noop';
-import times from 'lodash/fp/times';
 import * as actions from '../../actions';
-import * as helpers from '../../helpers';
-import * as selectors from '../../selectors';
 
 export function handleMeasureCountEdit(getState, action, shared) {
-  const loopStartPoint = selectors.getLoopStartPoint(getState());
-  const loopEndPoint = selectors.getLoopEndPoint(getState());
-  const part = getOr({ at: noop }, 'transportPart', getState());
+  const measuresToTime = getOr(noop, 'helpers.measuresToTime', shared);
+  const disableLoop = getOr(noop, 'models.part.disableLoop', shared);
+  const getEvents = getOr(() => [], 'models.part.getEvents', shared);
+  const setEvents = getOr(noop, 'models.part.setEvents', shared);
+  const startAtOffset = getOr(noop, 'models.part.startAtOffset', shared);
+  const getLoopEndPoint = getOr(noop, 'selectors.getLoopEndPoint', shared);
+  const getLoopStartPoint = getOr(noop, 'selectors.getLoopStartPoint', shared);
+  const setLoopPoints = getOr(noop, 'toneAdapter.setLoopPoints', shared);
+  const loopEndPoint = getLoopEndPoint(getState());
+  const loopEndTime = measuresToTime(loopEndPoint);
+  const loopStartPoint = getLoopStartPoint(getState());
+  const loopStartTime = measuresToTime(loopStartPoint);
+  const transportPart = getOr({}, 'transportPart', getState());
 
-  times((i) => {
-    part.at(i, {
-      fn: (payload) => {
-        const focusedSequenceId = getOr('', 'song.focusedSequenceId', getState());
+  setEvents(getEvents(transportPart).map((event, index) => ({
+    fn: (payload) => {
+      const focusedSequenceId = getOr('', 'song.focusedSequenceId', getState());
 
-        if (focusedSequenceId) return;
+      if (focusedSequenceId) return;
 
-        shared.dispatch(actions.positionSet(payload));
-      },
-      payload: i,
-    });
-  }, part.length);
+      shared.dispatch(actions.positionSet(payload));
+    },
+    payload: index,
+  })), transportPart);
 
-  part.start(undefined, helpers.measuresToTime(loopStartPoint));
+  startAtOffset(loopStartTime, transportPart);
 
-  part.loop = false;
+  disableLoop(transportPart);
 
-  shared.toneAdapter.setLoopPoints(
-    shared.helpers.measuresToTime(loopStartPoint),
-    shared.helpers.measuresToTime(loopEndPoint),
-  );
+  setLoopPoints(loopStartTime, loopEndTime);
 }

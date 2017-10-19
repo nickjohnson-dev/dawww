@@ -4,6 +4,7 @@ import { channels, emit, on } from './bus';
 import * as actions from './actions';
 import * as helpers from './helpers';
 import * as models from './models';
+import * as selectors from './selectors';
 import { getState, setState } from './state';
 import effects from './effects';
 import reducer from './reducer';
@@ -16,6 +17,7 @@ export default function Dawww(options) {
     dispatch,
     helpers,
     models,
+    selectors,
     toneAdapter,
   };
   const updateSong = song => dispatch(actions.songUpdated({

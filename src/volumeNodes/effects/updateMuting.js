@@ -1,9 +1,8 @@
 import getOr from 'lodash/fp/getOr';
-import * as selectors from '../../selectors';
 
 export function updateMuting(getState, action, shared) {
   const volumeNodes = getOr({}, 'volumeNodes', getState());
-  const anySolo = selectors.getIsAnyTrackSoloing(getState());
+  const anySolo = shared.selectors.getIsAnyTrackSoloing(getState());
 
   Object.keys(volumeNodes).forEach((key) => {
     const volumeNode = volumeNodes[key];
