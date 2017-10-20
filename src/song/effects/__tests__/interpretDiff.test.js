@@ -18,6 +18,21 @@ test('should return interpreted action when diff is BPM_EDITED type', (t) => {
   t.deepEqual(result, expected);
 });
 
+test('should return interpreted action when diff is FOCUSED_SEQUENCE_ID_EDITED type', (t) => {
+  const expected = {
+    type: actions.FOCUSED_SEQUENCE_ID_EDITED,
+    payload: {
+      focusedSequenceId: 'a',
+    },
+  };
+  const result = interpretDiff({
+    kind: constants.DIFF_KIND_E,
+    path: ['focusedSequenceId'],
+    rhs: 'a',
+  });
+  t.deepEqual(result, expected);
+});
+
 test('should return interpreted action when diff is MEASURE_COUNT_EDITED type', (t) => {
   const expected = {
     type: actions.MEASURE_COUNT_EDITED,
