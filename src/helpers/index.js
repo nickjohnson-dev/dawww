@@ -1,4 +1,3 @@
-export * from './getDataFromNotes';
 export * from './getLetterFromPitch';
 export * from './getNoteLength';
 export * from './getPitchName';
