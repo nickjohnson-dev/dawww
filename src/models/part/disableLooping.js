@@ -1,5 +1,5 @@
 import set from 'lodash/set';
 
-export function disableLoop(part) {
+export function disableLooping(part) {
   set(part, 'loop', false);
 }
