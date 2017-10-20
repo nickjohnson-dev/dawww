@@ -1,7 +1,5 @@
-import isEmpty from 'lodash/fp/isEmpty';
+import invokeArgs from 'lodash/fp/invokeArgs';
 
 export function playNote(instrument, name, length = '16n', time) {
-  if (isEmpty(instrument)) return;
-
-  instrument.triggerAttackRelease(name, length, time);
+  invokeArgs('triggerAttackRelease', [name, length, time], instrument);
 }

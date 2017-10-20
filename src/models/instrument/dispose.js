@@ -1,7 +1,5 @@
-import isFunction from 'lodash/fp/isFunction';
+import invoke from 'lodash/fp/invoke';
 
 export function dispose(instrument) {
-  if (!isFunction(instrument.dispose)) return;
-
-  instrument.dispose();
+  invoke('dispose', instrument);
 }

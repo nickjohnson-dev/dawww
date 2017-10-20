@@ -1,6 +1,5 @@
-export function unmute(volumeNode) {
-  if (!volumeNode.mute) return;
+import set from 'lodash/set';
 
-  // eslint-disable-next-line no-param-reassign
-  volumeNode.mute = false;
+export function unmute(volumeNode) {
+  set(volumeNode, 'mute', false);
 }

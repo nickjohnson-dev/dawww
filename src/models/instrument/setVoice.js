@@ -1,7 +1,9 @@
+import invokeArgs from 'lodash/fp/invokeArgs';
+
 export function setVoice(instrument, value) {
-  instrument.set({
+  invokeArgs('set', [{
     oscillator: {
       type: value,
     },
-  });
+  }], instrument);
 }
