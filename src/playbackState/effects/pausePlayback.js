@@ -7,5 +7,5 @@ export function pausePlayback(getState, action, shared) {
   const dispatch = getOr(noop, 'dispatch', shared);
   const pause = getOr(noop, 'toneAdapter.pause', shared);
   pause();
-  dispatch(actions.playbackStateSet(constants.playbackStates.PAUSED));
+  dispatch(actions.playbackStateSet(constants.PLAYBACK_STATES.PAUSED));
 }

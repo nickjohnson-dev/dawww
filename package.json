@@ -82,6 +82,7 @@
     "deep-diff": "0.3.8",
     "event-emitter": "0.3.5",
     "lodash": "4.17.4",
+    "shortid": "2.2.8",
     "tone": "0.11.11"
   },
   "config": {

@@ -4,7 +4,7 @@ import * as actions from '../../../actions';
 import * as constants from '../../../constants';
 import { pausePlayback } from '../pausePlayback';
 
-test('should invoke toneAdapter.pause, dispatch with actions.playbackStateSet(constants.playbackStates.PAUSED)', (t) => {
+test('should invoke toneAdapter.pause, dispatch with actions.playbackStateSet(constants.PLAYBACK_STATES.PAUSED)', (t) => {
   const dispatch = sinon.spy();
   const pause = sinon.spy();
   pausePlayback(
@@ -17,6 +17,6 @@ test('should invoke toneAdapter.pause, dispatch with actions.playbackStateSet(co
       dispatch,
     },
   );
-  t.deepEqual(dispatch.lastCall.args, [actions.playbackStateSet(constants.playbackStates.PAUSED)]);
+  t.deepEqual(dispatch.lastCall.args, [actions.playbackStateSet(constants.PLAYBACK_STATES.PAUSED)]);
   t.deepEqual(pause.calledOnce, true);
 });

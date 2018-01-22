@@ -2,6 +2,7 @@ import getOr from 'lodash/fp/getOr';
 import Tone from 'tone';
 import { channels, emit, on } from './bus';
 import * as actions from './actions';
+import * as constants from './constants';
 import * as helpers from './helpers';
 import * as models from './models';
 import * as selectors from './selectors';
@@ -54,6 +55,8 @@ export default function Dawww(options) {
     setPosition: (...args) => dispatch(actions.positionSetRequested(...args)),
     start: () => dispatch(actions.playbackStartRequested()),
     stop: () => dispatch(actions.playbackStopRequested()),
+    constants,
+    helpers,
     updateSong,
   };
 }

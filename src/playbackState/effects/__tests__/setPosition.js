@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import * as actions from '../../../actions';
 import { setPosition } from '../setPosition';
 
-test('should invoke toneAdapter.setTransportPosition with loopStartPoint + position - 1 as time, dispatch with actions.playbackStateSet(constants.playbackStates.STARTED)', (t) => {
+test('should invoke toneAdapter.setTransportPosition with loopStartPoint + position - 1 as time, dispatch with actions.playbackStateSet(constants.PLAYBACK_STATES.STARTED)', (t) => {
   const dispatch = sinon.spy();
   const setTransportPosition = sinon.spy();
   setPosition(
