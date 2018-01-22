@@ -17,6 +17,8 @@ test('should invoke toneAdapter.start, dispatch with actions.playbackStateSet(co
       dispatch,
     },
   );
-  t.deepEqual(dispatch.lastCall.args, [actions.playbackStateSet(constants.PLAYBACK_STATES.STARTED)]);
+  t.deepEqual(dispatch.lastCall.args, [
+    actions.playbackStateSet(constants.PLAYBACK_STATES.STARTED),
+  ]);
   t.deepEqual(start.calledOnce, true);
 });
