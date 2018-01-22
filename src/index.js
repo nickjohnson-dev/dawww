@@ -15,8 +15,8 @@ export default function Dawww(options) {
   const dispatch = emit(channels.ACTION_OCCURRED);
   const toneAdapter = createToneAdapter(Tone);
   const shared = {
-    dispatch,
     helpers,
+    dispatch,
     models,
     selectors,
     toneAdapter,
@@ -55,8 +55,14 @@ export default function Dawww(options) {
     setPosition: (...args) => dispatch(actions.positionSetRequested(...args)),
     start: () => dispatch(actions.playbackStartRequested()),
     stop: () => dispatch(actions.playbackStopRequested()),
-    constants,
-    helpers,
     updateSong,
   };
 }
+
+/* eslint-disable import/namespace */
+Object.keys(constants).forEach((key) => {
+  Dawww[key] = constants[key];
+});
+Object.keys(helpers).forEach((key) => {
+  Dawww[key] = helpers[key];
+});
