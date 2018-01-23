@@ -103,7 +103,7 @@ export const SCALE = [
   { name: 'C#0', y: 82 },
   { name: 'C0', y: 83 },
 ];
-export const voices = {
+export const VOICES = {
   PWM: 'PWM',
   SAWTOOTH: 'SAWTOOTH',
   SINE: 'SINE',

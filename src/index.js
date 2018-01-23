@@ -42,7 +42,11 @@ export default function Dawww(options) {
   });
 
   // Load initial song data
-  updateSong(getOr({}, 'song', options));
+  updateSong(getOr({
+    notes: {},
+    sequences: {},
+    tracks: {},
+  }, 'song', options));
 
   return {
     onPositionChange: fn => on(channels.POSITION_SET, fn),

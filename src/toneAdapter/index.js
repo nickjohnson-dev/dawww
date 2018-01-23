@@ -18,7 +18,7 @@ export function createToneAdapter(Tone) {
 
       invokeArgs('set', [{
         oscillator: {
-          type: voice,
+          type: voice.toLowerCase(),
         },
       }], instrument);
 
