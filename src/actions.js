@@ -47,14 +47,14 @@ export const measureCountEdited = measureCount => ({
   payload: { measureCount },
 });
 
-export const noteAdded = note => ({
+export const noteAdded = (note, id) => ({
   type: NOTE_ADDED,
-  payload: { note },
+  payload: { id, note },
 });
 
-export const noteDeleted = note => ({
+export const noteDeleted = (note, id) => ({
   type: NOTE_DELETED,
-  payload: { note },
+  payload: { id, note },
 });
 
 export const notePlayed = ({ length, pitch, position, time, trackId }) => ({

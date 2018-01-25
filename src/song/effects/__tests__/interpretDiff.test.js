@@ -52,6 +52,7 @@ test('should return interpreted action when diff is NOTE_ADDED type', (t) => {
   const expected = {
     type: actions.NOTE_ADDED,
     payload: {
+      id: 'a',
       note: { id: 'a' },
     },
   };
@@ -67,6 +68,7 @@ test('should return interpreted action when diff is NOTE_DELETED type', (t) => {
   const expected = {
     type: actions.NOTE_DELETED,
     payload: {
+      id: 'a',
       note: { id: 'a' },
     },
   };

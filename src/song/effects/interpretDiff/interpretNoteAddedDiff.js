@@ -4,5 +4,5 @@ import * as actions from '../../../actions';
 export function interpretNoteAddedDiff(diff) {
   const note = getOr({}, 'rhs', diff);
 
-  return actions.noteAdded(note);
+  return actions.noteAdded(note, note.id);
 }

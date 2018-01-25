@@ -4,20 +4,21 @@ import noop from 'lodash/fp/noop';
 import times from 'lodash/fp/times';
 import * as actions from '../../actions';
 
-export function setPartEventsByNote(getState, action, shared) {
-  const sequenceId = getOr('', 'payload.note.sequenceId', action);
-  const sequence = getOr({}, `song.sequences[${sequenceId}]`, getState());
+export function setPartEventsByNoteId(getState, action, shared) {
+  const noteId = getOr('', 'payload.id', action);
+  const note = getOr({}, `song.notes[${noteId}]`, getState());
+  const sequence = getOr({}, `song.sequences[${note.sequenceId}]`, getState());
   const trackId = getOr('', 'trackId', sequence);
   const allNotes = getOr({}, 'song.notes', getState());
   const notesInSequence = filter(
-    n => n.sequenceId === sequenceId,
+    n => n.sequenceId === note.sequenceId,
     allNotes,
   );
-  const part = getOr({ at: noop }, `parts[${sequenceId}]`, getState());
+  const part = getOr({ at: noop }, `parts[${note.sequenceId}]`, getState());
 
   times((i) => {
-    const notesAtStep = filter((note) => {
-      const notePosition = getOr(-1, 'points[0].x', note);
+    const notesAtStep = filter((n) => {
+      const notePosition = getOr(-1, 'points[0].x', n);
       return notePosition === i;
     }, notesInSequence);
     const noteIdsAtStep = notesAtStep.map(getOr('', 'id'));
@@ -25,7 +26,7 @@ export function setPartEventsByNote(getState, action, shared) {
     const fn = (payload, time) => {
       const focusedSequenceId = getOr('', 'song.focusedSequenceId', getState());
 
-      if (focusedSequenceId !== '' && focusedSequenceId === sequenceId) {
+      if (focusedSequenceId !== '' && focusedSequenceId === note.sequenceId) {
         shared.dispatch(actions.positionSet(i));
       }
 
