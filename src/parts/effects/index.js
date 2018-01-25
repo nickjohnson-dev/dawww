@@ -3,12 +3,21 @@ import { acceptSequenceDeletion } from './acceptSequenceDeletion';
 import { disablePartLooping } from './disablePartLooping';
 import { disposePart } from './disposePart';
 import { reloadSequence } from './reloadSequence';
+import { setPartEventsByNote } from './setPartEventsByNote';
 import { setPartEvents } from './setPartEvents';
 import { startPart } from './startPart';
 import { stopPart } from './stopPart';
 
 export default function effects(getState, action, shared) {
   switch (action.type) {
+    case actions.NOTE_ADDED:
+    case actions.NOTE_DELETED:
+    case actions.NOTE_POINT_ADDED:
+    case actions.NOTE_POINT_DELETED:
+    case actions.NOTE_POINT_X_EDITED:
+    case actions.NOTE_POINT_Y_EDITED:
+      setPartEventsByNote(getState, action, shared);
+      break;
     case actions.SEQUENCE_ADDED:
       setPartEvents(getState, action, shared);
       startPart(getState, action, shared);

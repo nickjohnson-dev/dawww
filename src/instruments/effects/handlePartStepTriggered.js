@@ -1,4 +1,5 @@
 import getOr from 'lodash/fp/getOr';
+import isEmpty from 'lodash/fp/isEmpty';
 import noop from 'lodash/fp/noop';
 
 export function handlePartStepTriggered(getState, action, shared) {
@@ -12,6 +13,9 @@ export function handlePartStepTriggered(getState, action, shared) {
 
   noteIds.forEach((noteId) => {
     const note = getOr({}, `song.notes[${noteId}]`, getState());
+
+    if (isEmpty(note)) return;
+
     const pitch = getOr(-1, 'points[0].y', note);
     const name = getPitchName(pitch);
     const length = getNoteLength(note);
