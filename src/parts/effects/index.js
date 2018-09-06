@@ -6,7 +6,6 @@ import { reloadSequence } from './reloadSequence';
 import { setPartEventsByNoteId } from './setPartEventsByNoteId';
 import { setPartEvents } from './setPartEvents';
 import { startPart } from './startPart';
-import { stopPart } from './stopPart';
 
 export default function effects(getState, action, shared) {
   switch (action.type) {
@@ -31,9 +30,7 @@ export default function effects(getState, action, shared) {
       reloadSequence(getState, action, shared);
       break;
     case actions.SEQUENCE_POSITION_EDITED:
-      stopPart(getState, action, shared);
-      startPart(getState, action, shared);
-      disablePartLooping(getState, action, shared);
+      reloadSequence(getState, action, shared);
       break;
     default:
   }
