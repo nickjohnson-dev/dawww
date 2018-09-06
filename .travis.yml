@@ -17,5 +17,5 @@ script:
   - npm run testonce
   - npm run build
 after_success:
-  - npm run semantic-release
+  - npx semantic-release
   - './node_modules/.bin/nyc report --reporter=text-lcov > coverage.lcov && ./node_modules/.bin/codecov'
