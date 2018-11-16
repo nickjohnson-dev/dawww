@@ -12,16 +12,36 @@ const view = props => h('div', {}, [
   h('div', {}, [
     props.playbackState,
   ]),
-  h('div', {}, [
-    props.position,
+  h('div', {
+    style: {
+      backgroundColor: '#ddd',
+      height: '20px',
+      position: 'relative',
+      width: `${sampleSong.measureCount * 64}px`,
+    },
+  }, [
+    h('div', {
+      style: {
+        left: `${2 * props.position}px`,
+        position: 'absolute',
+        top: 0,
+        width: '100px',
+      },
+    }, [
+      `| ${props.position}`,
+    ]),
   ]),
   h('div', {}, [
     h('button', {
       onmousedown: () => {
-        dawww.start();
+        if (props.playbackState === 'STARTED') {
+          dawww.pause();
+        } else {
+          dawww.start();
+        }
       },
     }, [
-      'start',
+      props.playbackState === 'STARTED' ? 'pause' : 'start',
     ]),
     h('button', {
       onmousedown: () => {
