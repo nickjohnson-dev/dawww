@@ -11,6 +11,9 @@ test('should invoke toneAdapter.stop, dispatch with actions.playbackStateSet(con
     () => ({}),
     {},
     {
+      helpers: {
+        measuresToTime: x => 32 * x,
+      },
       selectors: {
         getLoopStartPoint: () => 1,
       },
@@ -23,6 +26,6 @@ test('should invoke toneAdapter.stop, dispatch with actions.playbackStateSet(con
   t.deepEqual(dispatch.getCall(0).args, [
     actions.playbackStateSet(constants.PLAYBACK_STATES.STOPPED),
   ]);
-  t.deepEqual(dispatch.getCall(1).args, [actions.positionSet(1)]);
+  t.deepEqual(dispatch.getCall(1).args, [actions.positionSet(32)]);
   t.deepEqual(stop.calledOnce, true);
 });
