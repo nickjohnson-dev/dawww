@@ -1,6 +1,6 @@
 export default {
   bpm: 140,
-  focusedSequenceId: '0',
+  focusedSequenceId: '1',
   id: '0',
   measureCount: 2,
   notes: {
@@ -24,11 +24,11 @@ export default {
     //   points: [{ x: 12, y: 35 }, { x: 15, y: 35 }],
     //   sequenceId: '0',
     // },
-    // 4: {
-    //   id: '4',
-    //   points: [{ x: 0, y: 11 }, { x: 3, y: 11 }],
-    //   sequenceId: '1',
-    // },
+    4: {
+      id: '4',
+      points: [{ x: 0, y: 11 }, { x: 3, y: 11 }],
+      sequenceId: '1',
+    },
     // 5: {
     //   id: '5',
     //   points: [{ x: 4, y: 23 }, { x: 7, y: 23 }],

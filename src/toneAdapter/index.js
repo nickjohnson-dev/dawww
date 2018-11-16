@@ -66,7 +66,7 @@ export function createToneAdapter(Tone) {
     },
 
     stop() {
-      invokeArgs('Transport.stop', [], Tone);
+      invokeArgs('Transport.pause', [], Tone);
     },
   };
 }

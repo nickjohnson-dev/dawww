@@ -2,15 +2,15 @@ import test from 'ava';
 import sinon from 'sinon';
 import { createToneAdapter } from '../index';
 
-test('should invoke Tone.Transport.stop method', (t) => {
+test('should invoke Tone.Transport.pause method', (t) => {
   const expected = true;
-  const stop = sinon.spy();
+  const pause = sinon.spy();
   const toneAdapter = createToneAdapter({
     Transport: {
-      stop,
+      pause,
     },
   });
-  toneAdapter.stop();
-  const result = stop.calledOnce;
+  toneAdapter.pause();
+  const result = pause.calledOnce;
   t.is(result, expected);
 });
