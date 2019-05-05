@@ -2,7 +2,7 @@ import test from 'ava';
 import sinon from 'sinon';
 import { startTransportPart } from '../startTransportPart';
 
-test('should invoke models.part.startAtOffset with helpers.measuresToTime(selectors.getLoopStartPoint)', (t) => {
+test('should invoke models.part.startAtOffset with helpers.measuresToTime(selectors.getLoopStartPoint)', t => {
   const expected = ['time:0', { id: 'a' }];
   const startAtOffset = sinon.spy();
   startTransportPart(

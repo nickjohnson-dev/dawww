@@ -16,8 +16,8 @@ export function setPartEventsByNoteId(getState, action, shared) {
   );
   const part = getOr({ at: noop }, `parts[${note.sequenceId}]`, getState());
 
-  times((i) => {
-    const notesAtStep = filter((n) => {
+  times(i => {
+    const notesAtStep = filter(n => {
       const notePosition = getOr(-1, 'points[0].x', n);
       return notePosition === i;
     }, notesInSequence);
@@ -30,11 +30,13 @@ export function setPartEventsByNoteId(getState, action, shared) {
         shared.dispatch(actions.positionSet(i));
       }
 
-      shared.dispatch(actions.partStepTriggered({
-        noteIds: payload.noteIds,
-        trackId: payload.trackId,
-        time,
-      }));
+      shared.dispatch(
+        actions.partStepTriggered({
+          noteIds: payload.noteIds,
+          trackId: payload.trackId,
+          time,
+        }),
+      );
     };
     const payload = {
       noteIds: noteIdsAtStep,

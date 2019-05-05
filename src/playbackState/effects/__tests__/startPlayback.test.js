@@ -4,7 +4,7 @@ import * as actions from '../../../actions';
 import * as constants from '../../../constants';
 import { startPlayback } from '../startPlayback';
 
-test('should invoke toneAdapter.start, dispatch with actions.playbackStateSet(constants.PLAYBACK_STATES.STARTED)', (t) => {
+test('should invoke toneAdapter.start, dispatch with actions.playbackStateSet(constants.PLAYBACK_STATES.STARTED)', t => {
   const dispatch = sinon.spy();
   const start = sinon.spy();
   startPlayback(

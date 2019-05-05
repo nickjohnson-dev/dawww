@@ -5,8 +5,5 @@ import { addPoints } from './addPoints';
 
 export const resizeNote = curry((delta, note) => ({
   ...note,
-  points: [
-    ...initial(note.points),
-    addPoints(delta, last(note.points)),
-  ],
+  points: [...initial(note.points), addPoints(delta, last(note.points))],
 }));

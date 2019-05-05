@@ -2,7 +2,7 @@ import test from 'ava';
 import sinon from 'sinon';
 import { stop } from '../stop';
 
-test('should invoke stop method on part with 0', (t) => {
+test('should invoke stop method on part with 0', t => {
   const expected = [0];
   const part = {
     stop: sinon.spy(),

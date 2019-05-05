@@ -7,14 +7,21 @@ export function setTransportPartEvents(getState, action, shared) {
   const mapEvents = getOr(noop, 'models.part.mapEvents', shared);
   const transportPart = getOr({}, 'transportPart', getState());
 
-  mapEvents((event, index) => ({
-    fn: (payload) => {
-      const focusedSequenceId = getOr('', 'song.focusedSequenceId', getState());
+  mapEvents(
+    (event, index) => ({
+      fn: payload => {
+        const focusedSequenceId = getOr(
+          '',
+          'song.focusedSequenceId',
+          getState(),
+        );
 
-      if (focusedSequenceId) return;
+        if (focusedSequenceId) return;
 
-      dispatch(actions.positionSet(payload));
-    },
-    payload: index,
-  }), transportPart);
+        dispatch(actions.positionSet(payload));
+      },
+      payload: index,
+    }),
+    transportPart,
+  );
 }

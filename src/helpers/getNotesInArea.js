@@ -9,8 +9,7 @@ const getIsInside = (start, end, target) => {
   const y1 = Math.min(start.y, end.y);
   const y2 = Math.max(start.y, end.y);
 
-  return x1 <= tx && tx <= x2
-    && y1 <= ty && ty <= y2;
+  return x1 <= tx && tx <= x2 && y1 <= ty && ty <= y2;
 };
 
 export function getNotesInArea(start, end, allNotes) {

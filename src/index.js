@@ -21,12 +21,15 @@ export default function Dawww(options) {
     selectors,
     toneAdapter,
   };
-  const updateSong = song => dispatch(actions.songUpdated({
-    prevSong: getOr({}, 'song', getState()),
-    song,
-  }));
+  const updateSong = song =>
+    dispatch(
+      actions.songUpdated({
+        prevSong: getOr({}, 'song', getState()),
+        song,
+      }),
+    );
 
-  on(channels.ACTION_OCCURRED, (action) => {
+  on(channels.ACTION_OCCURRED, action => {
     setState(reducer(getState(), action, shared));
 
     // console.log('ACTION_OCCURRED', action, getState());
@@ -42,20 +45,29 @@ export default function Dawww(options) {
   });
 
   // Load initial song data
-  updateSong(getOr({
-    notes: {},
-    sequences: {},
-    tracks: {},
-  }, 'song', options));
+  updateSong(
+    getOr(
+      {
+        notes: {},
+        sequences: {},
+        tracks: {},
+      },
+      'song',
+      options,
+    ),
+  );
 
   return {
     onPositionChange: fn => on(channels.POSITION_SET, fn),
     onStateChange: fn => on(channels.PLAYBACK_STATE_SET, fn),
     pause: () => dispatch(actions.playbackPauseRequested()),
-    preview: (trackId, pitch) => dispatch(actions.notePlayed({
-      pitch,
-      trackId,
-    })),
+    preview: (trackId, pitch) =>
+      dispatch(
+        actions.notePlayed({
+          pitch,
+          trackId,
+        }),
+      ),
     setPosition: (...args) => dispatch(actions.positionSetRequested(...args)),
     start: () => dispatch(actions.playbackStartRequested()),
     stop: () => dispatch(actions.playbackStopRequested()),
@@ -64,9 +76,9 @@ export default function Dawww(options) {
 }
 
 /* eslint-disable import/namespace */
-Object.keys(constants).forEach((key) => {
+Object.keys(constants).forEach(key => {
   Dawww[key] = constants[key];
 });
-Object.keys(helpers).forEach((key) => {
+Object.keys(helpers).forEach(key => {
   Dawww[key] = helpers[key];
 });

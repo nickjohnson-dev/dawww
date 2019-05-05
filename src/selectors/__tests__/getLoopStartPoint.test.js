@@ -1,7 +1,7 @@
 import test from 'ava';
 import { getLoopStartPoint } from '../getLoopStartPoint';
 
-test('should return song.sequences[song.focusedSequenceId].position when song.sequences[song.focusedSequenceId] is not empty', (t) => {
+test('should return song.sequences[song.focusedSequenceId].position when song.sequences[song.focusedSequenceId] is not empty', t => {
   const expected = 2;
   const result = getLoopStartPoint({
     song: {
@@ -18,7 +18,7 @@ test('should return song.sequences[song.focusedSequenceId].position when song.se
   t.is(result, expected);
 });
 
-test('should return 0 when song.sequences[song.focusedSequenceId] is empty', (t) => {
+test('should return 0 when song.sequences[song.focusedSequenceId] is empty', t => {
   const expected = 0;
   const result = getLoopStartPoint({
     song: {

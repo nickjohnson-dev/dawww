@@ -2,7 +2,7 @@ import test from 'ava';
 import sinon from 'sinon';
 import { handlePartStepTriggered } from '../handlePartStepTriggered';
 
-test('should invoke models.instrument.playNote once for each noteId with instrument, name, length, time', (t) => {
+test('should invoke models.instrument.playNote once for each noteId with instrument, name, length, time', t => {
   const playNote = sinon.spy();
   handlePartStepTriggered(
     () => ({
@@ -13,15 +13,11 @@ test('should invoke models.instrument.playNote once for each noteId with instrum
         notes: {
           a: {
             length: 2,
-            points: [
-              { y: 'C' },
-            ],
+            points: [{ y: 'C' }],
           },
           b: {
             length: 3,
-            points: [
-              { y: 'D' },
-            ],
+            points: [{ y: 'D' }],
           },
         },
       },

@@ -2,7 +2,7 @@ import test from 'ava';
 import sinon from 'sinon';
 import { handleTrackVoiceEdit } from '../handleTrackVoiceEdit';
 
-test('should invoke models.instrument.setVoice with instrument, action.payload.value', (t) => {
+test('should invoke models.instrument.setVoice with instrument, action.payload.value', t => {
   const expected = [{ id: 'a' }, 'guitar'];
   const setVoice = sinon.spy();
   handleTrackVoiceEdit(

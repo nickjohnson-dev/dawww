@@ -2,7 +2,7 @@ import test from 'ava';
 import sinon from 'sinon';
 import { disablePartLooping } from '../disablePartLooping';
 
-test('should invoke models.part.disableLooping with part', (t) => {
+test('should invoke models.part.disableLooping with part', t => {
   const expected = [{ id: 'a' }];
   const disableLooping = sinon.spy();
   disablePartLooping(

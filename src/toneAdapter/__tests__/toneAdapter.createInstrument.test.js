@@ -2,7 +2,7 @@ import test from 'ava';
 import sinon from 'sinon';
 import { createToneAdapter } from '../index';
 
-test('should return instance of Tone.PolySynth', (t) => {
+test('should return instance of Tone.PolySynth', t => {
   const expected = true;
   class PolySynth {}
   const toneAdapter = createToneAdapter({
@@ -13,7 +13,7 @@ test('should return instance of Tone.PolySynth', (t) => {
   t.is(result, expected);
 });
 
-test('should invoke Tone.PolySynth constructor with 5', (t) => {
+test('should invoke Tone.PolySynth constructor with 5', t => {
   const expected = [5];
   const constructor = sinon.spy();
   class PolySynth {
@@ -29,7 +29,7 @@ test('should invoke Tone.PolySynth constructor with 5', (t) => {
   t.deepEqual(result, expected);
 });
 
-test('should invoke set method of Tone.PolySynth with { oscillator: { type: options.track.voice } }', (t) => {
+test('should invoke set method of Tone.PolySynth with { oscillator: { type: options.track.voice } }', t => {
   const expected = [
     {
       oscillator: {

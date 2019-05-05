@@ -2,7 +2,7 @@ import test from 'ava';
 import sinon from 'sinon';
 import { createToneAdapter } from '../index';
 
-test('should return instance of Tone.Volume ', (t) => {
+test('should return instance of Tone.Volume ', t => {
   const expected = true;
   class Volume {}
   const toneAdapter = createToneAdapter({
@@ -13,7 +13,7 @@ test('should return instance of Tone.Volume ', (t) => {
   t.is(result, expected);
 });
 
-test('should invoke Tone.Volume constructor with options.track.volume', (t) => {
+test('should invoke Tone.Volume constructor with options.track.volume', t => {
   const expected = [-5];
   const constructor = sinon.spy();
   class Volume {

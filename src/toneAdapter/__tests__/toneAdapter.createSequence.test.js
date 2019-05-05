@@ -2,7 +2,7 @@ import test from 'ava';
 import sinon from 'sinon';
 import { createToneAdapter } from '../index';
 
-test('should return instance of Tone.Sequence ', (t) => {
+test('should return instance of Tone.Sequence ', t => {
   const expected = true;
   class Sequence {}
   const toneAdapter = createToneAdapter({
@@ -13,7 +13,7 @@ test('should return instance of Tone.Sequence ', (t) => {
   t.is(result, expected);
 });
 
-test('should invoke Tone.Sequence constructor with correct onSequenceStep method, range of numbers with length === length, "32n"', (t) => {
+test('should invoke Tone.Sequence constructor with correct onSequenceStep method, range of numbers with length === length, "32n"', t => {
   const onSequenceStep = () => {};
   const expected = [onSequenceStep, [0, 1, 2], '32n'];
   const constructor = sinon.spy();

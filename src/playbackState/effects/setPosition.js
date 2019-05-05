@@ -6,10 +6,14 @@ export function setPosition(getState, action, shared) {
   const dispatch = getOr(noop, 'dispatch', shared);
   const sizeToTime = getOr(noop, 'helpers.sizeToTime', shared);
   const getLoopStartPoint = getOr(noop, 'selectors.getLoopStartPoint', shared);
-  const setTransportPosition = getOr(noop, 'toneAdapter.setTransportPosition', shared);
+  const setTransportPosition = getOr(
+    noop,
+    'toneAdapter.setTransportPosition',
+    shared,
+  );
   const loopStartPoint = getLoopStartPoint(getState());
   const position = getOr(0, 'payload.position', action);
-  const positionAsTime = sizeToTime(((loopStartPoint * 32) + position) - 1);
+  const positionAsTime = sizeToTime(loopStartPoint * 32 + position - 1);
 
   setTransportPosition(positionAsTime);
 

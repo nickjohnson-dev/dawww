@@ -6,11 +6,12 @@ import * as constants from '../constants';
 import { addPoints } from './addPoints';
 
 function isOutOfBounds(measureCount) {
-  return some(point =>
-    point.x < 0 ||
-    point.x > ((measureCount * 8) * 4) - 1 ||
-    point.y < 0 ||
-    point.y > (constants.OCTAVE_RANGE.length * 12) - 1,
+  return some(
+    point =>
+      point.x < 0 ||
+      point.x > measureCount * 8 * 4 - 1 ||
+      point.y < 0 ||
+      point.y > constants.OCTAVE_RANGE.length * 12 - 1,
   );
 }
 

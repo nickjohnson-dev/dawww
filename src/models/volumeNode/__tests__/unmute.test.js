@@ -1,7 +1,7 @@
 import test from 'ava';
 import { unmute } from '../unmute';
 
-test('should set mute field on volumeNode: false', (t) => {
+test('should set mute field on volumeNode: false', t => {
   const expected = false;
   const volumeNode = { mute: true };
   unmute(volumeNode);

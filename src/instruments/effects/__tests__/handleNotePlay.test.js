@@ -2,7 +2,7 @@ import test from 'ava';
 import sinon from 'sinon';
 import { handleNotePlay } from '../handleNotePlay';
 
-test('should invoke models.instrument.playNote with instrument, name, length, time', (t) => {
+test('should invoke models.instrument.playNote with instrument, name, length, time', t => {
   const expected = [{ id: 'a' }, 'C3', 2, '(0 * 32n)'];
   const playNote = sinon.spy();
   handleNotePlay(

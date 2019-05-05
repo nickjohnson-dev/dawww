@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import { setTransportPartEvents } from '../setTransportPartEvents';
 import * as actions from '../../../actions';
 
-test('should invoke models.part.mapEvents with function that returns { fn: function that invokes dispatch with actions.positionSet(payload) when focusedSequenceId is not defined, payload: index }, and getState().transportPart', (t) => {
+test('should invoke models.part.mapEvents with function that returns { fn: function that invokes dispatch with actions.positionSet(payload) when focusedSequenceId is not defined, payload: index }, and getState().transportPart', t => {
   const dispatch = sinon.spy();
   const mapEvents = sinon.spy();
   setTransportPartEvents(
@@ -27,7 +27,7 @@ test('should invoke models.part.mapEvents with function that returns { fn: funct
   t.deepEqual(dispatch.lastCall.args, [actions.positionSet('a')]);
 });
 
-test('should invoke models.part.mapEvents with function that returns { fn: function that invokes dispatch with actions.positionSet(payload) when focusedSequenceId is not defined, payload: index }, and getState().transportPart', (t) => {
+test('should invoke models.part.mapEvents with function that returns { fn: function that invokes dispatch with actions.positionSet(payload) when focusedSequenceId is not defined, payload: index }, and getState().transportPart', t => {
   const dispatch = sinon.spy();
   const mapEvents = sinon.spy();
   setTransportPartEvents(

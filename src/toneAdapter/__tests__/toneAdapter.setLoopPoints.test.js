@@ -2,7 +2,7 @@ import test from 'ava';
 import sinon from 'sinon';
 import { createToneAdapter } from '../index';
 
-test('should invoke Tone.Transport.setLoopPoints method with args', (t) => {
+test('should invoke Tone.Transport.setLoopPoints method with args', t => {
   const expected = ['a', 'b', 'c'];
   const setLoopPoints = sinon.spy();
   const toneAdapter = createToneAdapter({
@@ -15,7 +15,7 @@ test('should invoke Tone.Transport.setLoopPoints method with args', (t) => {
   t.deepEqual(result, expected);
 });
 
-test('should set Tone.Transport.loop to "true"', (t) => {
+test('should set Tone.Transport.loop to "true"', t => {
   const expected = true;
   const Tone = {};
   const toneAdapter = createToneAdapter(Tone);

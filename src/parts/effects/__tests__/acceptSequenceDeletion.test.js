@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import * as actions from '../../../actions';
 import { acceptSequenceDeletion } from '../acceptSequenceDeletion';
 
-test('should invoke dispatch with actions.sequenceDeletionAccepted(sequence)', (t) => {
+test('should invoke dispatch with actions.sequenceDeletionAccepted(sequence)', t => {
   const expected = [actions.sequenceDeletionAccepted({ id: 'a' })];
   const dispatch = sinon.spy();
   acceptSequenceDeletion(

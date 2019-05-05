@@ -2,7 +2,7 @@ import test from 'ava';
 import sinon from 'sinon';
 import { disposePart } from '../disposePart';
 
-test('should invoke models.part.dispose with part', (t) => {
+test('should invoke models.part.dispose with part', t => {
   const expected = [{ id: 'a' }];
   const dispose = sinon.spy();
   disposePart(

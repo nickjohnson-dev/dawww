@@ -16,11 +16,17 @@ export function createToneAdapter(Tone) {
       const voice = getOr('sine', 'track.voice', options);
       const instrument = new Tone.PolySynth(5);
 
-      invokeArgs('set', [{
-        oscillator: {
-          type: voice.toLowerCase(),
-        },
-      }], instrument);
+      invokeArgs(
+        'set',
+        [
+          {
+            oscillator: {
+              type: voice.toLowerCase(),
+            },
+          },
+        ],
+        instrument,
+      );
 
       return instrument;
     },

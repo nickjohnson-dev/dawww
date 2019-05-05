@@ -2,7 +2,7 @@ import test from 'ava';
 import sinon from 'sinon';
 import { createToneAdapter } from '../index';
 
-test('should invoke Tone.Transport.start method with args', (t) => {
+test('should invoke Tone.Transport.start method with args', t => {
   const expected = [2];
   const start = sinon.spy();
   const toneAdapter = createToneAdapter({

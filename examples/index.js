@@ -98,11 +98,11 @@ const view = props =>
     ]),
   ]);
 
-dawww.onPositionChange((position) => {
+dawww.onPositionChange(position => {
   render(view, { position });
 });
 
-dawww.onStateChange((playbackState) => {
+dawww.onStateChange(playbackState => {
   render(view, { playbackState });
 });
 

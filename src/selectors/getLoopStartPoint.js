@@ -1,9 +1,13 @@
 import getOr from 'lodash/fp/getOr';
 import isEmpty from 'lodash/fp/isEmpty';
 
-export const getLoopStartPoint = (state) => {
+export const getLoopStartPoint = state => {
   const focusedSequenceId = getOr('', 'song.focusedSequenceId', state);
-  const focusedSequence = getOr({}, `song.sequences[${focusedSequenceId}]`, state);
+  const focusedSequence = getOr(
+    {},
+    `song.sequences[${focusedSequenceId}]`,
+    state,
+  );
 
   if (isEmpty(focusedSequence)) {
     return 0;

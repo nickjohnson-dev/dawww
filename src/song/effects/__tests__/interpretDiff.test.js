@@ -3,7 +3,7 @@ import * as actions from '../../../actions';
 import * as constants from '../../../constants';
 import { interpretDiff } from '../interpretDiff';
 
-test('should return interpreted action when diff is BPM_EDITED type', (t) => {
+test('should return interpreted action when diff is BPM_EDITED type', t => {
   const expected = {
     type: actions.BPM_EDITED,
     payload: {
@@ -18,7 +18,7 @@ test('should return interpreted action when diff is BPM_EDITED type', (t) => {
   t.deepEqual(result, expected);
 });
 
-test('should return interpreted action when diff is FOCUSED_SEQUENCE_ID_EDITED type', (t) => {
+test('should return interpreted action when diff is FOCUSED_SEQUENCE_ID_EDITED type', t => {
   const expected = {
     type: actions.FOCUSED_SEQUENCE_ID_EDITED,
     payload: {
@@ -33,7 +33,7 @@ test('should return interpreted action when diff is FOCUSED_SEQUENCE_ID_EDITED t
   t.deepEqual(result, expected);
 });
 
-test('should return interpreted action when diff is MEASURE_COUNT_EDITED type', (t) => {
+test('should return interpreted action when diff is MEASURE_COUNT_EDITED type', t => {
   const expected = {
     type: actions.MEASURE_COUNT_EDITED,
     payload: {
@@ -48,7 +48,7 @@ test('should return interpreted action when diff is MEASURE_COUNT_EDITED type', 
   t.deepEqual(result, expected);
 });
 
-test('should return interpreted action when diff is NOTE_ADDED type', (t) => {
+test('should return interpreted action when diff is NOTE_ADDED type', t => {
   const expected = {
     type: actions.NOTE_ADDED,
     payload: {
@@ -64,7 +64,7 @@ test('should return interpreted action when diff is NOTE_ADDED type', (t) => {
   t.deepEqual(result, expected);
 });
 
-test('should return interpreted action when diff is NOTE_DELETED type', (t) => {
+test('should return interpreted action when diff is NOTE_DELETED type', t => {
   const expected = {
     type: actions.NOTE_DELETED,
     payload: {
@@ -80,7 +80,7 @@ test('should return interpreted action when diff is NOTE_DELETED type', (t) => {
   t.deepEqual(result, expected);
 });
 
-test('should return interpreted action when diff is NOTE_POINT_ADDED type', (t) => {
+test('should return interpreted action when diff is NOTE_POINT_ADDED type', t => {
   const expected = {
     type: actions.NOTE_POINT_ADDED,
     payload: {
@@ -101,7 +101,7 @@ test('should return interpreted action when diff is NOTE_POINT_ADDED type', (t) 
   t.deepEqual(result, expected);
 });
 
-test('should return interpreted action when diff is NOTE_POINT_DELETED type', (t) => {
+test('should return interpreted action when diff is NOTE_POINT_DELETED type', t => {
   const expected = {
     type: actions.NOTE_POINT_DELETED,
     payload: {
@@ -122,7 +122,7 @@ test('should return interpreted action when diff is NOTE_POINT_DELETED type', (t
   t.deepEqual(result, expected);
 });
 
-test('should return interpreted action when diff is NOTE_POINT_X_EDITED type', (t) => {
+test('should return interpreted action when diff is NOTE_POINT_X_EDITED type', t => {
   const expected = {
     type: actions.NOTE_POINT_X_EDITED,
     payload: {
@@ -141,7 +141,7 @@ test('should return interpreted action when diff is NOTE_POINT_X_EDITED type', (
   t.deepEqual(result, expected);
 });
 
-test('should return interpreted action when diff is NOTE_POINT_Y_EDITED type', (t) => {
+test('should return interpreted action when diff is NOTE_POINT_Y_EDITED type', t => {
   const expected = {
     type: actions.NOTE_POINT_Y_EDITED,
     payload: {
@@ -160,7 +160,7 @@ test('should return interpreted action when diff is NOTE_POINT_Y_EDITED type', (
   t.deepEqual(result, expected);
 });
 
-test('should return interpreted action when diff is NOTE_SEQUENCE_ID_EDITED type', (t) => {
+test('should return interpreted action when diff is NOTE_SEQUENCE_ID_EDITED type', t => {
   const expected = {
     type: actions.NOTE_SEQUENCE_ID_EDITED,
     payload: {
@@ -178,7 +178,7 @@ test('should return interpreted action when diff is NOTE_SEQUENCE_ID_EDITED type
   t.deepEqual(result, expected);
 });
 
-test('should return interpreted action when diff is SEQUENCE_ADDED type', (t) => {
+test('should return interpreted action when diff is SEQUENCE_ADDED type', t => {
   const expected = {
     type: actions.SEQUENCE_ADDED,
     payload: {
@@ -193,7 +193,7 @@ test('should return interpreted action when diff is SEQUENCE_ADDED type', (t) =>
   t.deepEqual(result, expected);
 });
 
-test('should return interpreted action when diff is SEQUENCE_DELETION_REQUESTED type', (t) => {
+test('should return interpreted action when diff is SEQUENCE_DELETION_REQUESTED type', t => {
   const expected = {
     type: actions.SEQUENCE_DELETION_REQUESTED,
     payload: {
@@ -208,7 +208,7 @@ test('should return interpreted action when diff is SEQUENCE_DELETION_REQUESTED 
   t.deepEqual(result, expected);
 });
 
-test('should return interpreted action when diff is SEQUENCE_MEASURE_COUNT_EDITED type', (t) => {
+test('should return interpreted action when diff is SEQUENCE_MEASURE_COUNT_EDITED type', t => {
   const expected = {
     type: actions.SEQUENCE_MEASURE_COUNT_EDITED,
     payload: {
@@ -226,7 +226,7 @@ test('should return interpreted action when diff is SEQUENCE_MEASURE_COUNT_EDITE
   t.deepEqual(result, expected);
 });
 
-test('should return interpreted action when diff is SEQUENCE_POSITION_EDITED type', (t) => {
+test('should return interpreted action when diff is SEQUENCE_POSITION_EDITED type', t => {
   const expected = {
     type: actions.SEQUENCE_POSITION_EDITED,
     payload: {
@@ -244,7 +244,7 @@ test('should return interpreted action when diff is SEQUENCE_POSITION_EDITED typ
   t.deepEqual(result, expected);
 });
 
-test('should return interpreted action when diff is SEQUENCE_TRACK_ID_EDITED type', (t) => {
+test('should return interpreted action when diff is SEQUENCE_TRACK_ID_EDITED type', t => {
   const expected = {
     type: actions.SEQUENCE_TRACK_ID_EDITED,
     payload: {
@@ -262,7 +262,7 @@ test('should return interpreted action when diff is SEQUENCE_TRACK_ID_EDITED typ
   t.deepEqual(result, expected);
 });
 
-test('should return interpreted action when diff is TRACK_ADDED type', (t) => {
+test('should return interpreted action when diff is TRACK_ADDED type', t => {
   const expected = {
     type: actions.TRACK_ADDED,
     payload: {
@@ -270,20 +270,23 @@ test('should return interpreted action when diff is TRACK_ADDED type', (t) => {
       track: { id: 'a' },
     },
   };
-  const result = interpretDiff({
-    kind: constants.DIFF_KIND_N,
-    path: ['tracks'],
-    rhs: { id: 'a' },
-  }, {
-    tracks: {
-      0: { isSoloing: true },
-      1: { isSoloing: false },
+  const result = interpretDiff(
+    {
+      kind: constants.DIFF_KIND_N,
+      path: ['tracks'],
+      rhs: { id: 'a' },
     },
-  });
+    {
+      tracks: {
+        0: { isSoloing: true },
+        1: { isSoloing: false },
+      },
+    },
+  );
   t.deepEqual(result, expected);
 });
 
-test('should return interpreted action when diff is TRACK_DELETION_REQUESTED type', (t) => {
+test('should return interpreted action when diff is TRACK_DELETION_REQUESTED type', t => {
   const expected = {
     type: actions.TRACK_DELETION_REQUESTED,
     payload: {
@@ -298,7 +301,7 @@ test('should return interpreted action when diff is TRACK_DELETION_REQUESTED typ
   t.deepEqual(result, expected);
 });
 
-test('should return interpreted action when diff is TRACK_IS_MUTED_EDITED type', (t) => {
+test('should return interpreted action when diff is TRACK_IS_MUTED_EDITED type', t => {
   const expected = {
     type: actions.TRACK_IS_MUTED_EDITED,
     payload: {
@@ -316,7 +319,7 @@ test('should return interpreted action when diff is TRACK_IS_MUTED_EDITED type',
   t.deepEqual(result, expected);
 });
 
-test('should return interpreted action when diff is TRACK_IS_SOLOING_EDITED type', (t) => {
+test('should return interpreted action when diff is TRACK_IS_SOLOING_EDITED type', t => {
   const expected = {
     type: actions.TRACK_IS_SOLOING_EDITED,
     payload: {
@@ -334,7 +337,7 @@ test('should return interpreted action when diff is TRACK_IS_SOLOING_EDITED type
   t.deepEqual(result, expected);
 });
 
-test('should return interpreted action when diff is TRACK_VOICE_EDITED type', (t) => {
+test('should return interpreted action when diff is TRACK_VOICE_EDITED type', t => {
   const expected = {
     type: actions.TRACK_VOICE_EDITED,
     payload: {
@@ -352,7 +355,7 @@ test('should return interpreted action when diff is TRACK_VOICE_EDITED type', (t
   t.deepEqual(result, expected);
 });
 
-test('should return interpreted action when diff is TRACK_VOLUME_EDITED type', (t) => {
+test('should return interpreted action when diff is TRACK_VOLUME_EDITED type', t => {
   const expected = {
     type: actions.TRACK_VOLUME_EDITED,
     payload: {
@@ -370,7 +373,7 @@ test('should return interpreted action when diff is TRACK_VOLUME_EDITED type', (
   t.deepEqual(result, expected);
 });
 
-test('should return interpreted action when diff is UNKNOWN type', (t) => {
+test('should return interpreted action when diff is UNKNOWN type', t => {
   const expected = {
     type: actions.UNKNOWN,
   };
