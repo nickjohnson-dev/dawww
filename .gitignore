@@ -57,4 +57,7 @@ typings/
 # dotenv environment variables file
 .env
 
-examples/dist
+dist
+
+# parcel cache
+.cache

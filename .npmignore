@@ -1,3 +1,4 @@
+.cache
 .gitignore
 .nyc_output
 configs

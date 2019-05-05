@@ -7,13 +7,11 @@
     "build": "babel src --out-dir dist --ignore test.js",
     "trybuild": "babel src --ignore test.js",
     "clean": "rimraf dist",
-    "cm": "git-cz",
-    "cmretry": "git-cz --retry",
     "lint": "eslint src",
     "prebuild": "npm run clean -s",
-    "precommit": "npm run lint && npm run testonce && npm run trybuild",
+    "prepush": "npm run lint && npm run testonce && npm run trybuild",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "start": "webpack-dev-server --config ./examples/configs/webpack-dev.config.js --port 8082 --open",
+    "start": "parcel ./examples/index.html",
     "test": "ava --watch",
     "testonce": "nyc ava"
   },
@@ -22,32 +20,22 @@
     "babel-cli": "6.26.0",
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
-    "babel-loader": "7.1.2",
     "babel-plugin-transform-class-properties": "6.24.1",
     "babel-preset-es2015": "6.24.1",
     "babel-preset-stage-2": "6.24.1",
     "browser-env": "3.2.1",
-    "circular-dependency-plugin": "4.0.0",
-    "clean-webpack-plugin": "0.1.16",
     "codecov": "2.3.0",
-    "commitizen": "2.9.6",
-    "cz-conventional-changelog": "2.0.0",
     "eslint": "4.5.0",
     "eslint-config-airbnb-base": "11.3.1",
-    "eslint-loader": "1.9.0",
     "eslint-plugin-import": "2.7.0",
     "eslint-plugin-lodash-fp": "2.1.3",
-    "html-webpack-plugin": "2.30.1",
-    "html-webpack-template": "5.6.0",
     "husky": "0.14.3",
     "nyc": "11.2.1",
+    "parcel": "1.12.3",
     "picodom": "0.1.0",
     "rimraf": "2.6.1",
     "semantic-release": "15.9.12",
-    "sinon": "4.0.1",
-    "webpack": "3.5.5",
-    "webpack-dev-server": "2.7.1",
-    "webpack-merge": "4.1.0"
+    "sinon": "4.0.1"
   },
   "repository": {
     "type": "git",
@@ -84,10 +72,5 @@
     "lodash": "4.17.11",
     "shortid": "2.2.8",
     "tone": "0.11.11"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }
