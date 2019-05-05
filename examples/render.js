@@ -1,4 +1,4 @@
-import { patch } from 'picodom';
+import { patch } from 'superfine';
 
 const root = document.querySelector('#root');
 let element = root;
@@ -12,8 +12,7 @@ export default function render(getNode, propUpdates) {
   };
   const node = getNode(props);
 
-  element = patch(oldNode, node, element);
+  oldNode = patch(oldNode, node, element);
 
-  oldNode = node;
   oldProps = props;
 }

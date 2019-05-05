@@ -1,4 +1,4 @@
-import { h } from 'picodom';
+import { h } from 'superfine';
 import Dawww from '../src';
 import render from './render';
 import sampleSong from './loadTestingSong.json';
