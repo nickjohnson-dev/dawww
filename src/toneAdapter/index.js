@@ -80,7 +80,7 @@ export function createToneAdapter(Tone) {
     },
 
     Time(...args) {
-      invokeArgs('Time', args, Tone);
+      return invokeArgs('Time', args, Tone);
     },
   };
 }
