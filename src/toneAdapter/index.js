@@ -35,7 +35,11 @@ export function createToneAdapter(Tone) {
       const length = getOr(0, 'length', options);
       const Sequence = getOr(Object, 'Sequence', Tone);
 
-      return new Sequence(this.onSequenceStep, range(0, length), '32n');
+      return new Sequence(
+        this.onSequenceStep,
+        range(0, length),
+        Tone.Time('32n'),
+      );
     },
 
     createVolume(options) {

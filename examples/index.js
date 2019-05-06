@@ -1,8 +1,15 @@
 import { h } from 'superfine';
+import Tone from 'tone';
 import Dawww from '../src';
 import render from './render';
 import sampleSong from './loadTestingSong.json';
 import sampleSongAlt from './sampleSongAlt';
+
+['keydown', 'mousedown', 'touchdown'].forEach(eventName => {
+  document.body.addEventListener(eventName, () => {
+    Tone.start();
+  });
+});
 
 const dawww = Dawww({
   song: sampleSong,
@@ -40,7 +47,7 @@ const view = props =>
       h(
         'button',
         {
-          onmousedown: () => {
+          onclick: () => {
             if (props.playbackState === 'STARTED') {
               dawww.pause();
             } else {
@@ -53,7 +60,7 @@ const view = props =>
       h(
         'button',
         {
-          onmousedown: () => {
+          onclick: () => {
             dawww.stop();
           },
         },
@@ -62,7 +69,7 @@ const view = props =>
       h(
         'button',
         {
-          onmousedown: () => {
+          onclick: () => {
             dawww.updateSong(sampleSong);
           },
         },
@@ -71,7 +78,7 @@ const view = props =>
       h(
         'button',
         {
-          onmousedown: () => {
+          onclick: () => {
             dawww.updateSong(sampleSongAlt);
           },
         },
@@ -80,7 +87,7 @@ const view = props =>
       h(
         'button',
         {
-          onmousedown: () => {
+          onclick: () => {
             dawww.preview(0, 47);
           },
         },
@@ -89,7 +96,7 @@ const view = props =>
       h(
         'button',
         {
-          onmousedown: () => {
+          onclick: () => {
             dawww.setPosition(8);
           },
         },
