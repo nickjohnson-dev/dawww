@@ -13,7 +13,10 @@ export function setPosition(getState, action, shared) {
   );
   const loopStartPoint = getLoopStartPoint(getState());
   const position = getOr(0, 'payload.position', action);
-  const positionAsTime = sizeToTime(loopStartPoint * 32 + position - 1);
+  const positionAsTime = sizeToTime(
+    loopStartPoint * 32 + position - 1,
+    shared.toneAdapter,
+  );
 
   setTransportPosition(positionAsTime);
 
