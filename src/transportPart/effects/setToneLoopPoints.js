@@ -7,9 +7,9 @@ export function setToneLoopPoints(getState, action, shared) {
   const getLoopStartPoint = getOr(noop, 'selectors.getLoopStartPoint', shared);
   const setLoopPoints = getOr(noop, 'toneAdapter.setLoopPoints', shared);
   const loopEndPoint = getLoopEndPoint(getState());
-  const loopEndTime = measuresToTime(loopEndPoint);
+  const loopEndTime = measuresToTime(loopEndPoint, shared.toneAdapter);
   const loopStartPoint = getLoopStartPoint(getState());
-  const loopStartTime = measuresToTime(loopStartPoint);
+  const loopStartTime = measuresToTime(loopStartPoint, shared.toneAdapter);
 
   setLoopPoints(loopStartTime, loopEndTime);
 }

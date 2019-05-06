@@ -4,7 +4,7 @@ import getOr from 'lodash/fp/getOr';
 import last from 'lodash/fp/last';
 import { sizeToTime } from './sizeToTime';
 
-export function getNoteLength(note) {
+export function getNoteLength(note, toneAdapter) {
   const start = compose(
     getOr(0, 'x'),
     first,
@@ -16,5 +16,5 @@ export function getNoteLength(note) {
     getOr([], 'points'),
   )(note);
 
-  return sizeToTime(end - start);
+  return sizeToTime(end - start, toneAdapter);
 }

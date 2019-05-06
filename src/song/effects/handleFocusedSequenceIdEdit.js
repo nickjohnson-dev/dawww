@@ -5,8 +5,8 @@ export function handleFocusedSequenceIdEdit(getState, action, shared) {
   const loopEndPoint = shared.selectors.getLoopEndPoint(getState());
 
   shared.toneAdapter.setLoopPoints(
-    shared.helpers.measuresToTime(loopStartPoint),
-    shared.helpers.measuresToTime(loopEndPoint),
+    shared.helpers.measuresToTime(loopStartPoint, shared.toneAdapter),
+    shared.helpers.measuresToTime(loopEndPoint, shared.toneAdapter),
   );
 
   shared.dispatch(actions.positionSetRequested(0));

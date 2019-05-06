@@ -18,7 +18,7 @@ export function handlePartStepTriggered(getState, action, shared) {
 
     const pitch = getOr(-1, 'points[0].y', note);
     const name = getPitchName(pitch);
-    const length = getNoteLength(note);
+    const length = getNoteLength(note, shared.toneAdapter);
 
     playNote(instrument, name, length, time);
   });

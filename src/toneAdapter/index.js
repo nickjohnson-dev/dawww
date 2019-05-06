@@ -78,5 +78,9 @@ export function createToneAdapter(Tone) {
     stop() {
       invokeArgs('Transport.pause', [], Tone);
     },
+
+    Time(...args) {
+      invokeArgs('Time', args, Tone);
+    },
   };
 }

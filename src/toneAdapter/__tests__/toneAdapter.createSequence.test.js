@@ -7,6 +7,7 @@ test('should return instance of Tone.Sequence ', t => {
   class Sequence {}
   const toneAdapter = createToneAdapter({
     Sequence,
+    Time: x => x,
   });
   const returnValue = toneAdapter.createSequence();
   const result = returnValue instanceof Sequence;
@@ -23,7 +24,7 @@ test('should invoke Tone.Sequence constructor with correct onSequenceStep method
     }
   }
   const toneAdapter = {
-    ...createToneAdapter({ Sequence }),
+    ...createToneAdapter({ Sequence, Time: x => x }),
     onSequenceStep,
   };
   toneAdapter.createSequence({

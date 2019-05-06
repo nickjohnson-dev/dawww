@@ -6,7 +6,7 @@ export function startTransportPart(getState, action, shared) {
   const startAtOffset = getOr(noop, 'models.part.startAtOffset', shared);
   const getLoopStartPoint = getOr(noop, 'selectors.getLoopStartPoint', shared);
   const loopStartPoint = getLoopStartPoint(getState());
-  const loopStartTime = measuresToTime(loopStartPoint);
+  const loopStartTime = measuresToTime(loopStartPoint, shared.toneAdapter);
   const transportPart = getOr({}, 'transportPart', getState());
 
   startAtOffset(loopStartTime, transportPart);

@@ -9,5 +9,5 @@ export function startPart(getState, action, shared) {
   const position = getOr(0, 'position', sequence);
   const part = getOr({}, `parts[${sequenceId}]`, getState());
 
-  startAtTime(measuresToTime(position), part);
+  startAtTime(measuresToTime(position, shared.toneAdapter), part);
 }
