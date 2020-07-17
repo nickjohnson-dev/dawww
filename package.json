@@ -72,7 +72,7 @@
   "dependencies": {
     "deep-diff": "0.3.8",
     "event-emitter": "0.3.5",
-    "lodash": "4.17.11",
+    "lodash": "4.17.19",
     "shortid": "2.2.14",
     "tone": "13.4.9"
   }
