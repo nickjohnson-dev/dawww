@@ -23,7 +23,7 @@
     "@babel/register": "7.4.4",
     "ava": "1.4.1",
     "browser-env": "3.2.6",
-    "codecov": "3.3.0",
+    "codecov": "3.7.1",
     "husky": "0.14.3",
     "nyc": "14.1.0",
     "parcel": "1.12.3",
